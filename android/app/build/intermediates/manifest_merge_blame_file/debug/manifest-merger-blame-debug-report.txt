@@ -1,0 +1,134 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.wasabiplayer"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+9        android:targetSdkVersion="31" />
+10
+11    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+11-->C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\android\app\src\debug\AndroidManifest.xml:5:5-77
+11-->C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\android\app\src\debug\AndroidManifest.xml:5:22-75
+12    <uses-permission android:name="android.permission.INTERNET" />
+12-->C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\android\app\src\main\AndroidManifest.xml:4:5-67
+12-->C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\android\app\src\main\AndroidManifest.xml:4:22-64
+13    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+13-->[com.facebook.flipper:flipper:0.125.0] C:\Users\manbeartrain\.gradle\caches\transforms-3\95e931fbbfdb29d8fe263063f71e1fc3\transformed\jetified-flipper-0.125.0\AndroidManifest.xml:16:5-76
+13-->[com.facebook.flipper:flipper:0.125.0] C:\Users\manbeartrain\.gradle\caches\transforms-3\95e931fbbfdb29d8fe263063f71e1fc3\transformed\jetified-flipper-0.125.0\AndroidManifest.xml:16:22-73
+14    <uses-permission android:name="android.permission.WAKE_LOCK" />
+14-->[:react-native-track-player] C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\node_modules\react-native-track-player\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-68
+14-->[:react-native-track-player] C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\node_modules\react-native-track-player\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:9:22-65
+15    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+15-->[:react-native-track-player] C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\node_modules\react-native-track-player\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:10:5-77
+15-->[:react-native-track-player] C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\node_modules\react-native-track-player\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:10:22-74
+16    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+16-->[com.github.doublesymmetry.Exoplayer:exoplayer-core:r2.17.2] C:\Users\manbeartrain\.gradle\caches\transforms-3\8b18f36e4cb34f879d6485f8d91a2b64\transformed\jetified-exoplayer-core-r2.17.2\AndroidManifest.xml:24:5-79
+16-->[com.github.doublesymmetry.Exoplayer:exoplayer-core:r2.17.2] C:\Users\manbeartrain\.gradle\caches\transforms-3\8b18f36e4cb34f879d6485f8d91a2b64\transformed\jetified-exoplayer-core-r2.17.2\AndroidManifest.xml:24:22-76
+17
+18    <application
+18-->C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\android\app\src\main\AndroidManifest.xml:6:5-26:19
+19        android:name="com.wasabiplayer.MainApplication"
+19-->C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\android\app\src\main\AndroidManifest.xml:7:7-38
+20        android:allowBackup="false"
+20-->C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\android\app\src\main\AndroidManifest.xml:11:7-34
+21        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+21-->[androidx.core:core:1.7.0] C:\Users\manbeartrain\.gradle\caches\transforms-3\b5a8e99dac667ebea08e9f9757d3b404\transformed\core-1.7.0\AndroidManifest.xml:24:18-86
+22        android:debuggable="true"
+23        android:icon="@mipmap/ic_launcher"
+23-->C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\android\app\src\main\AndroidManifest.xml:9:7-41
+24        android:label="@string/app_name"
+24-->C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\android\app\src\main\AndroidManifest.xml:8:7-39
+25        android:roundIcon="@mipmap/ic_launcher_round"
+25-->C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\android\app\src\main\AndroidManifest.xml:10:7-52
+26        android:theme="@style/AppTheme"
+26-->C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\android\app\src\main\AndroidManifest.xml:12:7-38
+27        android:usesCleartextTraffic="true" >
+27-->C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\android\app\src\debug\AndroidManifest.xml:8:9-44
+28        <activity
+28-->C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\android\app\src\debug\AndroidManifest.xml:11:9-111
+29            android:name="com.facebook.react.devsupport.DevSettingsActivity"
+29-->C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\android\app\src\debug\AndroidManifest.xml:11:19-83
+30            android:exported="false" />
+30-->C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\android\app\src\debug\AndroidManifest.xml:11:84-108
+31        <activity
+31-->C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\android\app\src\main\AndroidManifest.xml:13:7-25:18
+32            android:name="com.wasabiplayer.MainActivity"
+32-->C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\android\app\src\main\AndroidManifest.xml:14:9-37
+33            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+33-->C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\android\app\src\main\AndroidManifest.xml:16:9-118
+34            android:exported="true"
+34-->C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\android\app\src\main\AndroidManifest.xml:20:9-32
+35            android:label="@string/app_name"
+35-->C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\android\app\src\main\AndroidManifest.xml:15:9-41
+36            android:launchMode="singleTask"
+36-->C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\android\app\src\main\AndroidManifest.xml:18:9-40
+37            android:screenOrientation="portrait"
+37-->C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\android\app\src\main\AndroidManifest.xml:17:9-45
+38            android:windowSoftInputMode="adjustResize" >
+38-->C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\android\app\src\main\AndroidManifest.xml:19:9-51
+39            <intent-filter>
+39-->C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\android\app\src\main\AndroidManifest.xml:21:9-24:25
+40                <action android:name="android.intent.action.MAIN" />
+40-->C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\android\app\src\main\AndroidManifest.xml:22:13-65
+40-->C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\android\app\src\main\AndroidManifest.xml:22:21-62
+41
+42                <category android:name="android.intent.category.LAUNCHER" />
+42-->C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\android\app\src\main\AndroidManifest.xml:23:13-73
+42-->C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\android\app\src\main\AndroidManifest.xml:23:23-70
+43            </intent-filter>
+44        </activity> <!-- The main service, handles playback, playlists and media buttons -->
+45        <service
+45-->[:react-native-track-player] C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\node_modules\react-native-track-player\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:15:9-22:19
+46            android:name="com.doublesymmetry.trackplayer.service.MusicService"
+46-->[:react-native-track-player] C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\node_modules\react-native-track-player\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-79
+47            android:enabled="true"
+47-->[:react-native-track-player] C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\node_modules\react-native-track-player\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:17:13-35
+48            android:exported="false" >
+48-->[:react-native-track-player] C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\node_modules\react-native-track-player\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:18:13-37
+49            <intent-filter>
+49-->[:react-native-track-player] C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\node_modules\react-native-track-player\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:19:13-21:29
+50                <action android:name="android.intent.action.MEDIA_BUTTON" />
+50-->[:react-native-track-player] C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\node_modules\react-native-track-player\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:20:17-77
+50-->[:react-native-track-player] C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\node_modules\react-native-track-player\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:20:25-74
+51            </intent-filter>
+52        </service> <!-- A receiver that will receive media buttons. Required on pre-lollipop devices -->
+53        <receiver
+53-->[:react-native-track-player] C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\node_modules\react-native-track-player\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:25:9-31:20
+54            android:name="androidx.media.session.MediaButtonReceiver"
+54-->[:react-native-track-player] C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\node_modules\react-native-track-player\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:26:13-70
+55            android:exported="true" >
+55-->[:react-native-track-player] C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\node_modules\react-native-track-player\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:27:13-36
+56            <intent-filter>
+56-->[:react-native-track-player] C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\node_modules\react-native-track-player\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:19:13-21:29
+57                <action android:name="android.intent.action.MEDIA_BUTTON" />
+57-->[:react-native-track-player] C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\node_modules\react-native-track-player\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:20:17-77
+57-->[:react-native-track-player] C:\Users\manbeartrain\Documents\GitHub\wasabi-mobile\node_modules\react-native-track-player\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:20:25-74
+58            </intent-filter>
+59        </receiver>
+60
+61        <provider
+61-->[androidx.emoji2:emoji2:1.0.0] C:\Users\manbeartrain\.gradle\caches\transforms-3\31798a0ea3f25ea98e44c876b4851b08\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:26:9-34:20
+62            android:name="androidx.startup.InitializationProvider"
+62-->[androidx.emoji2:emoji2:1.0.0] C:\Users\manbeartrain\.gradle\caches\transforms-3\31798a0ea3f25ea98e44c876b4851b08\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:27:13-67
+63            android:authorities="com.wasabiplayer.androidx-startup"
+63-->[androidx.emoji2:emoji2:1.0.0] C:\Users\manbeartrain\.gradle\caches\transforms-3\31798a0ea3f25ea98e44c876b4851b08\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:28:13-68
+64            android:exported="false" >
+64-->[androidx.emoji2:emoji2:1.0.0] C:\Users\manbeartrain\.gradle\caches\transforms-3\31798a0ea3f25ea98e44c876b4851b08\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:29:13-37
+65            <meta-data
+65-->[androidx.emoji2:emoji2:1.0.0] C:\Users\manbeartrain\.gradle\caches\transforms-3\31798a0ea3f25ea98e44c876b4851b08\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:31:13-33:52
+66                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+66-->[androidx.emoji2:emoji2:1.0.0] C:\Users\manbeartrain\.gradle\caches\transforms-3\31798a0ea3f25ea98e44c876b4851b08\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:32:17-75
+67                android:value="androidx.startup" />
+67-->[androidx.emoji2:emoji2:1.0.0] C:\Users\manbeartrain\.gradle\caches\transforms-3\31798a0ea3f25ea98e44c876b4851b08\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:33:17-49
+68            <meta-data
+68-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\manbeartrain\.gradle\caches\transforms-3\39517e1b011367242185b54afc0b3c9e\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:31:13-33:52
+69                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+69-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\manbeartrain\.gradle\caches\transforms-3\39517e1b011367242185b54afc0b3c9e\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:32:17-78
+70                android:value="androidx.startup" />
+70-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\manbeartrain\.gradle\caches\transforms-3\39517e1b011367242185b54afc0b3c9e\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:33:17-49
+71        </provider>
+72    </application>
+73
+74</manifest>
