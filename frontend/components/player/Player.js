@@ -1,12 +1,6 @@
-import {View, Text, StyleSheet, Image} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {
-  getCurrentSong,
-  handlePause,
-  handleSelectedSong,
-  handleSkipBackward,
-  handleSkipForward,
-} from '../../helpers/playerControls';
+import {View, Text, StyleSheet, Image, Pressable} from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import TrackPlayer, {
   Event,
@@ -14,92 +8,113 @@ import TrackPlayer, {
   usePlaybackState,
   useTrackPlayerEvents,
 } from 'react-native-track-player';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import {library} from '../../helpers/Library';
-import {useSelector, useDispatch} from 'react-redux';
-import {setSong} from '../../redux/actions';
-import SliderComp from './Slider';
 
-export default function Player({playlist, selectedSong}) {
-  const {song} = useSelector(state => state.userReducer);
+import {
+  getCurrentSong,
+  handlePause,
+  handleSkipBackward,
+  handleSkipForward,
+  playSelectedSong,
+} from '../../helpers/playerControls';
+import {library} from '../../helpers/Library';
+import {palette} from '../../utils/palette';
+import SliderComp from './Slider';
+import GlobalStyles from '../../styles/GlobalStyles';
+import {setSongPlaying} from '../../redux/songPlayingSlice';
+
+const Player = ({playlist, selectedSong}) => {
+  const {songPlaying} = useSelector(state => state.songPlaying);
   const dispatch = useDispatch();
 
   let playbackState = usePlaybackState();
 
   const [songIndex, setSongIndex] = useState();
 
-  const handleNext = async () => {
-    if (songIndex + 1 === library.length) {
-      handleSelectedSong(0);
-      setSongIndex(0);
-      const currentSong = await getCurrentSong();
+  const resetPlayer = async () => {
+    playSelectedSong(0);
+    setSongIndex(0);
+    const currentSong = await getCurrentSong();
+    dispatch(setSongPlaying(currentSong));
+  };
 
-      dispatch(setSong(currentSong));
+  const isPlaylistOver = () => songIndex + 1 === library.length;
+
+  const handleSkipForwardOnPress = async () => {
+    if (isPlaylistOver()) {
+      await resetPlayer();
     } else {
       await handleSkipForward();
       setSongIndex(songIndex + 1);
     }
   };
 
-  const handlePrev = async () => {
+  const handleSkipBackwardOnPress = async () => {
     await handleSkipBackward();
     setSongIndex(songIndex - 1);
     const currentSong = await getCurrentSong();
-    dispatch(setSong(currentSong));
+    dispatch(setSongPlaying(currentSong));
   };
 
   useTrackPlayerEvents([Event.PlaybackTrackChanged], async event => {
     if (event.type === Event.PlaybackTrackChanged && event.nextTrack !== null) {
       const track = await TrackPlayer.getTrack(event.nextTrack);
-      dispatch(setSong(track));
+      dispatch(setSongPlaying(track));
     }
   });
 
   useEffect(() => {
-    const handleSong = async () => {
+    const playSong = async () => {
       if (selectedSong !== null) {
         setSongIndex(selectedSong.index);
-        handleSelectedSong(selectedSong.index);
+        playSelectedSong(selectedSong.index);
       }
     };
-    handleSong();
+    playSong();
   }, [selectedSong]);
 
   return (
     <View style={styles.player}>
-      <Image style={styles.songPlayerImage} source={{uri: song?.artwork}} />
+      <Image
+        style={styles.songPlayerImage}
+        source={{uri: songPlaying?.artwork}}
+      />
       <View style={styles.songDetails}>
-        <Text style={styles.songName}>{song?.title}</Text>
-        <Text style={styles.artistName}>{song?.artist}</Text>
+        <Text style={[styles.songName, GlobalStyles.whiteText]}>
+          {songPlaying?.title}
+        </Text>
+        <Text style={[styles.artistName, GlobalStyles.whiteText]}>
+          {songPlaying?.artist}
+        </Text>
         <SliderComp />
         <View style={styles.controls}>
-          <TouchableOpacity onPress={handlePrev}>
-            <Icon name={'step-backward'} color="black" size={24} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => handlePause(playbackState)}>
+          <Pressable onPress={handleSkipBackwardOnPress}>
+            <Icon name={'step-backward'} color={palette.lightgray} size={24} />
+          </Pressable>
+          <Pressable onPress={() => handlePause(playbackState)}>
             <Icon
               name={
                 playbackState === State.Playing ? 'pause-circle' : 'play-circle'
               }
-              color="black"
+              color={palette.lightgray}
               size={40}
             />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={handleNext}>
-            <Icon name={'step-forward'} color="black" size={24} />
-          </TouchableOpacity>
+          </Pressable>
+          <Pressable onPress={handleSkipForwardOnPress}>
+            <Icon name={'step-forward'} color={palette.lightgray} size={24} />
+          </Pressable>
         </View>
       </View>
     </View>
   );
-}
+};
+
+export default Player;
 
 const styles = StyleSheet.create({
   player: {
     height: 150,
-
+    backgroundColor: palette.dark.secondary,
     width: '100%',
-    backgroundColor: 'white',
     position: 'absolute',
     bottom: 0,
     alignItems: 'center',

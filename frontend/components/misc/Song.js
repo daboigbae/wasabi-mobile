@@ -1,17 +1,24 @@
 import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import GlobalStyles from '../../styles/GlobalStyles';
 
-export default function Song({song, index, handleSongSelect}) {
+const Song = ({song, index, handleSongSelect}) => {
   return (
-    <TouchableOpacity style={styles.song} onPress={handleSongSelect}>
-      <Image style={styles.songImage} source={{uri: song.artwork}} />
+    <Pressable style={styles.song} onPress={handleSongSelect}>
+      <Image style={styles.songImage} source={{uri: song?.artwork}} />
       <View style={styles.songDetails}>
-        <Text style={styles.songName}>{song.title}</Text>
-        <Text style={styles.artistName}>{song.artistName || 'Anonymous'}</Text>
+        <Text style={[styles.songName, GlobalStyles.whiteText]}>
+          {song?.title}
+        </Text>
+        <Text style={[styles.artistName, GlobalStyles.whiteText]}>
+          {song?.artistName || 'Anonymous'}
+        </Text>
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
-}
+};
+
+export default Song;
 
 const styles = StyleSheet.create({
   song: {

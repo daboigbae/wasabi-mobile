@@ -1,27 +1,28 @@
-import { View, Text, StyleSheet, SafeAreaView, Image } from 'react-native';
-import React, { useState } from 'react';
-import { library } from '../../helpers/Library';
+import React, {useState} from 'react';
+import {View, Text, StyleSheet, SafeAreaView, Image} from 'react-native';
+import {FlatList} from 'react-native-gesture-handler';
+
+import {library} from '../../helpers/Library';
+import {coverImage} from '../../constants/constants';
 import Divider from '../misc/Divider';
-import { FlatList } from 'react-native-gesture-handler';
 import Song from '../misc/Song';
 import Player from '../player/Player';
-import { coverImage } from '../../constants/constants';
+import GlobalStyles from '../../styles/GlobalStyles';
 
-export default function Library() {
+const Library = () => {
   const [selectedSong, setSelectedSong] = useState(null);
 
-  const renderPlaylist = ({ item, index }) => {
-    return (
-      <Song
-        song={item}
-        index={index}
-        handleSongSelect={() => setSelectedSong({ item, index })}
-      />
-    );
-  };
+  const renderPlaylist = ({item, index}) => (
+    <Song
+      song={item}
+      index={index}
+      handleSongSelect={() => setSelectedSong({item, index})}
+    />
+  );
 
   return (
-    <SafeAreaView style={[StyleSheet.absoluteFill, styles.container]}>
+    <SafeAreaView
+      style={[StyleSheet.absoluteFill, styles.container, GlobalStyles.appView]}>
       <View style={styles.flexContainer}>
         <View style={styles.detailsContainer}>
           <Image
@@ -31,8 +32,12 @@ export default function Library() {
             }}
           />
           <View style={styles.contentContainer}>
-            <Text style={styles.titleText}>Top NFT Songs</Text>
-            <Text style={styles.text}>Total Songs: {library?.length}</Text>
+            <Text style={[styles.titleText, GlobalStyles.whiteText]}>
+              Top NFT Songs
+            </Text>
+            <Text style={GlobalStyles.whiteText}>
+              Total Songs: {library?.length}
+            </Text>
           </View>
         </View>
         <Divider />
@@ -49,13 +54,14 @@ export default function Library() {
       )}
     </SafeAreaView>
   );
-}
+};
+
+export default Library;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start',
-    backgroundColor: 'white',
     position: 'relative',
   },
 
@@ -88,7 +94,6 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: 'black',
   },
 
   songList: {
