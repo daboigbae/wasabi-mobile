@@ -1,21 +1,21 @@
-import {View, Text, StyleSheet, SafeAreaView, Image} from 'react-native';
-import React, {useState} from 'react';
-import {library} from '../../helpers/Library';
+import { View, Text, StyleSheet, SafeAreaView, Image } from 'react-native';
+import React, { useState } from 'react';
+import { library } from '../../helpers/Library';
 import Divider from '../misc/Divider';
-import {FlatList} from 'react-native-gesture-handler';
+import { FlatList } from 'react-native-gesture-handler';
 import Song from '../misc/Song';
 import Player from '../player/Player';
-import {coverImage} from '../../constants/constants';
+import { coverImage } from '../../constants/constants';
 
 export default function Library() {
   const [selectedSong, setSelectedSong] = useState(null);
 
-  const renderPlaylist = ({item, index}) => {
+  const renderPlaylist = ({ item, index }) => {
     return (
       <Song
         song={item}
         index={index}
-        handleSongSelect={() => setSelectedSong({item, index})}
+        handleSongSelect={() => setSelectedSong({ item, index })}
       />
     );
   };
@@ -31,8 +31,8 @@ export default function Library() {
             }}
           />
           <View style={styles.contentContainer}>
-            <Text style={styles.titleText}>Wasabi Library</Text>
-            <Text style={styles.text}>Songs: {library?.length}</Text>
+            <Text style={styles.titleText}>Top NFT Songs</Text>
+            <Text style={styles.text}>Total Songs: {library?.length}</Text>
           </View>
         </View>
         <Divider />
