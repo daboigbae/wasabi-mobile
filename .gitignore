@@ -23,7 +23,7 @@ project.xcworkspace
 pods
 
 # Gradle
-/build/
+android/app/build/
 /packages/react-native-gradle-plugin/build/
 /packages/rn-tester/build
 /packages/rn-tester/android/app/.cxx/
@@ -40,6 +40,7 @@ pods
 /ReactAndroid/hermes-engine/.cxx/
 /template/android/app/build/
 /template/android/build/
+
 
 # Buck
 .buckd
