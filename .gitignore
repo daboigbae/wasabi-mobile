@@ -21,6 +21,7 @@ DerivedData
 project.xcworkspace
 **/.xcode.env.local
 pods
+ios/build
 
 # Gradle
 android/app/build/
