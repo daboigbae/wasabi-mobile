@@ -3,7 +3,7 @@ import {setSongPlaying} from './frontend/redux/songPlayingSlice';
 import {getCurrentSong} from './frontend/helpers/playerControls';
 import store from './frontend/redux/store';
 
-module.exports = async function () {
+const service = async () => {
   TrackPlayer.addEventListener(
     'remote-play',
     async () => await TrackPlayer.play(),
@@ -31,3 +31,5 @@ module.exports = async function () {
     store.dispatch(setSongPlaying(currentSong));
   });
 };
+
+module.exports = service;

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet, Image, Pressable} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
+import {View, Text, StyleSheet, Image, Pressable} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import TrackPlayer, {
   Event,
