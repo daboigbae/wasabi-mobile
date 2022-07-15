@@ -1,6 +1,6 @@
 import React from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
-import GlobalStyles from "../../styles/GlobalStyles";
+import GlobalStyles from "../styles/GlobalStyles";
 import PropTypes from "prop-types";
 const Song = ({ song, handleSongSelect }) => {
 	return (

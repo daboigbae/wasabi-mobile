@@ -4,8 +4,8 @@ import { FlatList } from "react-native-gesture-handler";
 
 import SongLibrary from "../assets/SongLibrary";
 import { coverImage } from "../utils/constants";
-import Divider from "../components/misc/Divider";
-import Song from "../components/misc/Song";
+import Divider from "../components/common/Divider";
+import Song from "../components/Song";
 import Player from "../components/player/Player";
 import GlobalStyles from "../styles/GlobalStyles";
 
