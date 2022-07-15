@@ -15,7 +15,7 @@ import {
 	handleSkipBackward,
 	handleSkipForward,
 	playSelectedSong
-} from "../../utils/playerControls";
+} from "../../utils/MusicPlayerUtil";
 import SongLibrary from "../../assets/SongLibrary";
 import { palette } from "../../utils/palette";
 import SliderComp from "./Slider";

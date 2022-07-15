@@ -1,8 +1,8 @@
 import React from "react";
 
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import Library from "../screens/Library";
-import { HOME_SCREENS } from "../../constants/constants";
+import Library from "../components/screens/Library";
+import { HOME_SCREENS } from "../constants/constants";
 
 const Drawer = createDrawerNavigator();
 

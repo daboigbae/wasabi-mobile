@@ -1,6 +1,8 @@
-import TrackPlayer, { State } from "react-native-track-player";
+import TrackPlayer, { State, Capability } from "react-native-track-player";
 import { setSongPlaying } from "../redux/songPlayingSlice";
 import store from "../redux/store";
+
+import SongLibrary from "../assets/SongLibrary";
 
 const TIME_OUT_BETWEEN_SKIPS_IN_MILLISECONDS = 1000;
 
@@ -63,4 +65,29 @@ export const handlePause = async (playbackState) => {
 
 export const handlePlay = async () => {
 	await TrackPlayer.play();
+};
+
+export const playerSetup = async () => {
+	try {
+		await TrackPlayer.setupPlayer().then(() => {
+			TrackPlayer.updateOptions({
+				compactCapabilities: [
+					Capability.Play,
+					Capability.Pause,
+					Capability.SkipToNext,
+					Capability.SkipToPrevious
+				],
+				notificationCapabilities: [
+					Capability.Play,
+					Capability.Pause,
+					Capability.SkipToNext,
+					Capability.SkipToPrevious
+				]
+			});
+
+			TrackPlayer.add(SongLibrary);
+		});
+	} catch (err) {
+		console.log(err);
+	}
 };

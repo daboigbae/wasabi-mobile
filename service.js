@@ -1,6 +1,6 @@
 import TrackPlayer from "react-native-track-player";
 import { setSongPlaying } from "./src/redux/songPlayingSlice";
-import { getCurrentSong } from "./src/utils/playerControls";
+import { getCurrentSong } from "./src/utils/MusicPlayerUtil";
 import store from "./src/redux/store";
 
 const service = async () => {
