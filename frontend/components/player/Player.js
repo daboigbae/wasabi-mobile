@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import TrackPlayer, {

@@ -5,7 +5,12 @@ module.exports = {
 		es2021: true,
 		"react-native/react-native": true
 	},
-	extends: ["plugin:react/recommended", "prettier", "prettier/react"],
+	extends: [
+		"plugin:react/recommended",
+		"prettier",
+		"prettier/react",
+		"eslint:recommended"
+	],
 	parserOptions: {
 		ecmaFeatures: {
 			jsx: true
