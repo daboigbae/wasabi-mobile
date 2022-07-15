@@ -8,7 +8,7 @@ The application was written in React Native. Currently uses a hard coded playlis
 ##### iOS
 Take the following steps to run the application locally for iOS
 1. `yarn install` or `npm install`
-2. navigate to the iOS folder using a terminal
+2. navigate to the iOS folder using a terminal `cd ios` 
 3. run `pod install`
 4. run `yarn start` within the directory in a terminal
 5. open the `temp.xworspace` using xcode
