@@ -14,6 +14,7 @@ const LibraryScreen = () => {
 
 	const renderPlaylist = ({ item, index }) => (
 		<Song
+			testID={`song:${index}`}
 			song={item}
 			index={index}
 			handleSongSelect={() => setSelectedSong({ item, index })}

@@ -1,4 +1,5 @@
 module.exports = {
+	root: true,
 	env: {
 		node: true,
 		browser: true,
@@ -21,12 +22,15 @@ module.exports = {
 		ecmaVersion: "latest",
 		sourceType: "module"
 	},
+
 	plugins: ["react", "react-native", "detox"],
 
 	rules: {
 		indent: ["error", "tab"],
 		"linebreak-style": ["error", "unix"],
 		quotes: ["error", "double"],
-		semi: ["error", "always"]
+		semi: ["error", "always"],
+		"no-console": ["error"],
+		"no-unused-vars": ["error", { vars: "all" }]
 	}
 };

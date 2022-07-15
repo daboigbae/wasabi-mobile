@@ -75,7 +75,7 @@ function Player({ selectedSong }) {
 	});
 
 	return (
-		<View style={styles.player}>
+		<View style={styles.player} testID="player">
 			<Image
 				style={styles.songPlayerImage}
 				source={{ uri: selectedSongItem?.artwork }}
@@ -92,7 +92,10 @@ function Player({ selectedSong }) {
 					<Pressable onPress={handleSkipBackwardOnPress}>
 						<Icon name={icons.back} color={COLOR_PALETTE.lightgray} size={24} />
 					</Pressable>
-					<Pressable onPress={() => handlePause(playbackState)}>
+					<Pressable
+						onPress={() => handlePause(playbackState)}
+						testID="playButton"
+					>
 						<Icon
 							name={getPlayButtonIcon}
 							color={COLOR_PALETTE.lightgray}
