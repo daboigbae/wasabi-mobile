@@ -19,7 +19,8 @@ module.exports = {
 	},
 	rules: {
 		'react-native/no-color-literals': 'error',
-		'no-unused-vars': 'error',
+		'no-unused-vars': ['error', { args: 'all' }],
 		'no-console': 'error',
+		'prefer-arrow-callback': 'error',
 	},
 };

@@ -23,7 +23,7 @@ import GlobalStyles from '../../styles/GlobalStyles';
 import { setSongPlaying } from '../../redux/songPlayingSlice';
 import { icons } from '../../constants/constants';
 
-const Player = ({ playlist, selectedSong }) => {
+const Player = ({ selectedSong }) => {
 	const { songPlaying } = useSelector((state) => state.songPlaying);
 	const dispatch = useDispatch();
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import GlobalStyles from '../../styles/GlobalStyles';
 
-const Song = ({ song, index, handleSongSelect }) => {
+const Song = ({ song, handleSongSelect }) => {
 	return (
 		<Pressable style={styles.song} onPress={handleSongSelect}>
 			<Image style={styles.songImage} source={{ uri: song?.artwork }} />

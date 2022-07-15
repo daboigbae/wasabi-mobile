@@ -45,7 +45,7 @@ const Library = () => {
 				<FlatList
 					data={library}
 					renderItem={renderPlaylist}
-					keyExtractor={(item, index) => index.toString()}
+					keyExtractor={(index) => index.toString()}
 					contentContainerStyle={styles.songList}
 					showsVerticalScrollIndicator={false}
 				/>
