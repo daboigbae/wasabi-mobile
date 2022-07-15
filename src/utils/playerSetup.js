@@ -1,5 +1,5 @@
 import TrackPlayer, { Capability } from "react-native-track-player";
-import { library } from "./Library";
+import { library } from "../utils/Library";
 
 export const playerSetup = async () => {
 	try {

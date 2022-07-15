@@ -6,7 +6,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
 
 import store from "./src/redux/store";
-import { playerSetup } from "./src/helpers/playerSetup";
+import { playerSetup } from "./src/utils/playerSetup";
 import Navigation from "./src/components/Navigation/Navigation";
 
 const persistor = persistStore(store);

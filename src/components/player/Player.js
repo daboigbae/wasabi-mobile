@@ -15,8 +15,8 @@ import {
 	handleSkipBackward,
 	handleSkipForward,
 	playSelectedSong
-} from "../../helpers/playerControls";
-import { library } from "../../helpers/Library";
+} from "../../utils/playerControls";
+import { library } from "../../utils/Library";
 import { palette } from "../../utils/palette";
 import SliderComp from "./Slider";
 import GlobalStyles from "../../styles/GlobalStyles";

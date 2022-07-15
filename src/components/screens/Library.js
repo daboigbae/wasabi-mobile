@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, SafeAreaView, Image } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 
-import { library } from "../../helpers/Library";
+import { library } from "../../utils/Library";
 import { coverImage } from "../../constants/constants";
 import Divider from "../misc/Divider";
 import Song from "../misc/Song";
