@@ -1,4 +1,4 @@
-export const library = [
+export default [
 	{
 		id: 0,
 		url: "https://cdn.warpsound.ai/ipfs/QmcjvQP84GC4PtKUYqVa9qHBhEmpkZV6UJuEhHhVXUJRxq/WVRP-5312.wav",

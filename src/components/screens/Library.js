@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, SafeAreaView, Image } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 
-import { library } from "../../utils/Library";
+import SongLibrary from "../../assets/SongLibrary";
 import { coverImage } from "../../constants/constants";
 import Divider from "../misc/Divider";
 import Song from "../misc/Song";
@@ -37,13 +37,13 @@ function Library() {
 							Top NFT Songs
 						</Text>
 						<Text style={GlobalStyles.whiteText}>
-							Total Songs: {library?.length}
+							Total Songs: {SongLibrary?.length}
 						</Text>
 					</View>
 				</View>
 				<Divider />
 				<FlatList
-					data={library}
+					data={SongLibrary}
 					renderItem={renderPlaylist}
 					keyExtractor={(item, index) => index.toString()}
 					contentContainerStyle={styles.songList}
@@ -51,7 +51,7 @@ function Library() {
 				/>
 			</View>
 			{selectedSong && (
-				<Player playlist={library} selectedSong={selectedSong} />
+				<Player playlist={SongLibrary} selectedSong={selectedSong} />
 			)}
 		</SafeAreaView>
 	);

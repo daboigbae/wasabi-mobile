@@ -16,7 +16,7 @@ import {
 	handleSkipForward,
 	playSelectedSong
 } from "../../utils/playerControls";
-import { library } from "../../utils/Library";
+import SongLibrary from "../../assets/SongLibrary";
 import { palette } from "../../utils/palette";
 import SliderComp from "./Slider";
 import GlobalStyles from "../../styles/GlobalStyles";
@@ -48,7 +48,7 @@ function Player({ selectedSong }) {
 		dispatch(setSongPlaying(currentSong));
 	};
 
-	const isPlaylistOver = () => songIndex + 1 === library.length;
+	const isPlaylistOver = () => songIndex + 1 === SongLibrary.length;
 
 	const handleSkipForwardOnPress = async () => {
 		if (isPlaylistOver()) {
