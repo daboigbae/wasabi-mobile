@@ -16,12 +16,13 @@ import {
 	handleSkipForward,
 	playSelectedSong
 } from "../../utils/MusicPlayerUtil";
+
 import SongLibrary from "../../assets/SongLibrary";
-import { palette } from "../../utils/palette";
+
 import SliderComp from "./Slider";
 import GlobalStyles from "../../styles/GlobalStyles";
 import { setSongPlaying } from "../../redux/songPlayingSlice";
-import { icons } from "../../constants/constants";
+import { COLOR_PALETTE, icons } from "../../utils/constants";
 
 import PropTypes from "prop-types";
 
@@ -89,17 +90,21 @@ function Player({ selectedSong }) {
 				<SliderComp />
 				<View style={styles.controls}>
 					<Pressable onPress={handleSkipBackwardOnPress}>
-						<Icon name={icons.back} color={palette.lightgray} size={24} />
+						<Icon name={icons.back} color={COLOR_PALETTE.lightgray} size={24} />
 					</Pressable>
 					<Pressable onPress={() => handlePause(playbackState)}>
 						<Icon
 							name={getPlayButtonIcon}
-							color={palette.lightgray}
+							color={COLOR_PALETTE.lightgray}
 							size={40}
 						/>
 					</Pressable>
 					<Pressable onPress={handleSkipForwardOnPress}>
-						<Icon name={icons.forward} color={palette.lightgray} size={24} />
+						<Icon
+							name={icons.forward}
+							color={COLOR_PALETTE.lightgray}
+							size={24}
+						/>
 					</Pressable>
 				</View>
 			</View>
@@ -116,7 +121,7 @@ export default Player;
 const styles = StyleSheet.create({
 	player: {
 		height: 150,
-		backgroundColor: palette.dark.secondary,
+		backgroundColor: COLOR_PALETTE.dark.secondary,
 		width: "100%",
 		position: "absolute",
 		bottom: 0,
@@ -128,7 +133,7 @@ const styles = StyleSheet.create({
 			width: 0,
 			height: -8
 		},
-		shadowColor: palette.shadow,
+		shadowColor: COLOR_PALETTE.shadow,
 		elevation: 20
 	},
 

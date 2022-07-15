@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import { palette } from "../../utils/palette";
+import { COLOR_PALETTE } from "../../utils/constants";
 
 const Divider = () => {
 	return <View style={styles.divider} />;
@@ -13,6 +13,6 @@ const styles = StyleSheet.create({
 		marginTop: 16,
 		width: "100%",
 		height: 1,
-		backgroundColor: palette.lightgray
+		backgroundColor: COLOR_PALETTE.lightgray
 	}
 });

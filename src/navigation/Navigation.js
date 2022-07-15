@@ -3,7 +3,7 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import { MAIN_SCREENS } from "../constants/constants";
+import { MAIN_SCREENS } from "../utils/constants";
 import HomeNavigation from "./HomeNavigation";
 
 const Stack = createStackNavigator();

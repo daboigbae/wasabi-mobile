@@ -1,15 +1,15 @@
 import React from "react";
 
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import Library from "../components/screens/Library";
-import { HOME_SCREENS } from "../constants/constants";
+import LibraryScreen from "../screens/LibraryScreen";
+import { HOME_SCREENS } from "../utils/constants";
 
 const Drawer = createDrawerNavigator();
 
 const HOME_SCREENS_ARRAY = [
 	{
 		name: HOME_SCREENS.LIBRARY_SCREEN,
-		component: () => <Library />
+		component: () => <LibraryScreen />
 	}
 ];
 

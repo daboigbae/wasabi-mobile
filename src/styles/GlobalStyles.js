@@ -1,11 +1,11 @@
 import { StyleSheet } from "react-native";
-import { palette } from "../utils/palette";
+import { COLOR_PALETTE } from "../utils/constants";
 
 export default StyleSheet.create({
 	appView: {
-		backgroundColor: palette.dark.primary
+		backgroundColor: COLOR_PALETTE.dark.primary
 	},
 	whiteText: {
-		color: palette.textlight
+		color: COLOR_PALETTE.textlight
 	}
 });

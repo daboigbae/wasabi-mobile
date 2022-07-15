@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, SafeAreaView, Image } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 
-import SongLibrary from "../../assets/SongLibrary";
-import { coverImage } from "../../constants/constants";
-import Divider from "../misc/Divider";
-import Song from "../misc/Song";
-import Player from "../player/Player";
-import GlobalStyles from "../../styles/GlobalStyles";
+import SongLibrary from "../assets/SongLibrary";
+import { coverImage } from "../utils/constants";
+import Divider from "../components/misc/Divider";
+import Song from "../components/misc/Song";
+import Player from "../components/player/Player";
+import GlobalStyles from "../styles/GlobalStyles";
 
-function Library() {
+const LibraryScreen = () => {
 	const [selectedSong, setSelectedSong] = useState(null);
 
 	const renderPlaylist = ({ item, index }) => (
@@ -55,7 +55,7 @@ function Library() {
 			)}
 		</SafeAreaView>
 	);
-}
+};
 
 const styles = StyleSheet.create({
 	container: {
@@ -100,4 +100,4 @@ const styles = StyleSheet.create({
 	}
 });
 
-export default Library;
+export default LibraryScreen;
