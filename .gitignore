@@ -20,9 +20,11 @@ DerivedData
 *.xcuserstate
 project.xcworkspace
 **/.xcode.env.local
+pods
+ios/build
 
 # Gradle
-/build/
+android/app/build/
 /packages/react-native-gradle-plugin/build/
 /packages/rn-tester/build
 /packages/rn-tester/android/app/.cxx/
@@ -39,6 +41,7 @@ project.xcworkspace
 /ReactAndroid/hermes-engine/.cxx/
 /template/android/app/build/
 /template/android/build/
+
 
 # Buck
 .buckd
@@ -61,7 +64,8 @@ buck-out
 .gradle
 local.properties
 *.iml
-/android/
+*.keystore
+
 
 # Node
 node_modules
@@ -124,3 +128,4 @@ package-lock.json
 
 # Android memory profiler files
 *.hprof
+
