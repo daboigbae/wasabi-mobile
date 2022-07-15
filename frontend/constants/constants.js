@@ -14,3 +14,10 @@ export const screens = [
 export const stack = {
   home: 'Home',
 };
+
+export const icons = {
+  pause: 'pause-circle',
+  play: 'play-circle',
+  back: 'step-backward',
+  forward: 'step-forward',
+};

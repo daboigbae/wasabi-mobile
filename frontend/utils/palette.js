@@ -6,4 +6,5 @@ export const palette = {
   textlight: '#ffffff',
   lightblue: '#1890ff',
   lightgray: '#868686',
+  shadow: '#000000',
 };

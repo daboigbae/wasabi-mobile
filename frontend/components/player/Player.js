@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useMemo, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {View, Text, StyleSheet, Image, Pressable} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -21,6 +21,7 @@ import {palette} from '../../utils/palette';
 import SliderComp from './Slider';
 import GlobalStyles from '../../styles/GlobalStyles';
 import {setSongPlaying} from '../../redux/songPlayingSlice';
+import {icons} from '../../constants/constants';
 
 const Player = ({playlist, selectedSong}) => {
   const {songPlaying} = useSelector(state => state.songPlaying);
@@ -62,7 +63,12 @@ const Player = ({playlist, selectedSong}) => {
     }
   });
 
-  useEffect(() => {
+  const getPlayButtonIcon = useMemo(
+    () => (playbackState === State.Playing ? icons.pause : icons.play),
+    [playbackState],
+  );
+
+  useMemo(() => {
     const playSong = async () => {
       if (selectedSong !== null) {
         setSongIndex(selectedSong.index);
@@ -88,19 +94,17 @@ const Player = ({playlist, selectedSong}) => {
         <SliderComp />
         <View style={styles.controls}>
           <Pressable onPress={handleSkipBackwardOnPress}>
-            <Icon name={'step-backward'} color={palette.lightgray} size={24} />
+            <Icon name={icons.back} color={palette.lightgray} size={24} />
           </Pressable>
           <Pressable onPress={() => handlePause(playbackState)}>
             <Icon
-              name={
-                playbackState === State.Playing ? 'pause-circle' : 'play-circle'
-              }
+              name={getPlayButtonIcon}
               color={palette.lightgray}
               size={40}
             />
           </Pressable>
           <Pressable onPress={handleSkipForwardOnPress}>
-            <Icon name={'step-forward'} color={palette.lightgray} size={24} />
+            <Icon name={icons.forward} color={palette.lightgray} size={24} />
           </Pressable>
         </View>
       </View>
@@ -125,7 +129,7 @@ const styles = StyleSheet.create({
       width: 0,
       height: -8,
     },
-    shadowColor: '#000000',
+    shadowColor: palette.shadow,
     elevation: 20,
   },
 
