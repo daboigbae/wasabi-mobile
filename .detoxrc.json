@@ -1,0 +1,22 @@
+{
+	"testRunner": "jest",
+	"runnerConfig": "e2e/config.json",
+	"configurations": {
+		"ios.sim.debug": {
+			"type": "ios.simulator",
+			"binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/temp.app",
+			"build": "xcodebuild -workspace ios/temp.xcworkspace -scheme temp -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
+			"device": {
+				"type": "iPhone 13"
+			}
+		},
+		"ios.sim.release": {
+			"binaryPath": "ios/build/Build/Products/Release-iphonesimulator/temp.app",
+			"build": "export RCT_NO_LAUNCH_PACKAGER=true && xcodebuild -workspace ios/temp.xcworkspace -UseNewBuildSystem=YES -scheme temp -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
+			"type": "ios.simulator",
+			"device": {
+				"type": "iPhone 11"
+			}
+		}
+	}
+}
