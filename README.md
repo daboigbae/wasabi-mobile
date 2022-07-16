@@ -1,9 +1,13 @@
-## Wasabi Music - A music NFT streaming platform.
+## Wasabi Music - A music NFT streaming platform.💿 💿 💿
 This is the repo of the mobile app for Wasabi Music. 
 
 The application was written in React Native. Currently uses a hard coded playlist of our favorite NFT songs as we implement the support to utilize the full catalog of NFT music found at https://wasabimusic.io/
 
-### Folder Structure
+📱📱📱📱📱
+Try the app now on TestFlight for iOS https://testflight.apple.com/join/OIYIps8f
+Android coming soon 
+
+### Folder Structure 📁 📁 📁 📁
 App.js - main application
 
 e2e
@@ -19,7 +23,7 @@ src
 * utils - for all helper functions
 
 
-### Running the project
+### Running the project 🏃‍♀️ 🏃‍♀️ 🏃‍♀️ 🏃‍♀️ 🏃‍♀️ 
 
 ##### iOS
 Take the following steps to run the application locally for iOS
@@ -43,7 +47,7 @@ If your android app runs, but it can't connect to the react native server
 3. Run `yarn start`
 4. Run `yarn android` 
 
-### Running Test Cases
+### Running Test Cases 🧪 🧪 🧪 🧪 🧪 🧪
 
 ##### iOS
 Take the following steps to run the test cases for the application
