@@ -1,6 +1,12 @@
-import React, { useState } from "react";
-import { View, Text, StyleSheet, SafeAreaView, Image } from "react-native";
-import { FlatList } from "react-native-gesture-handler";
+import React from "react";
+import {
+	View,
+	Text,
+	StyleSheet,
+	SafeAreaView,
+	Image,
+	FlatList
+} from "react-native";
 
 import SongLibrary from "../assets/SongLibrary";
 import { coverImage } from "../utils/constants";
@@ -10,14 +16,12 @@ import Player from "../components/player/Player";
 import GlobalStyles from "../utils/GlobalStyles";
 
 const LibraryScreen = () => {
-	const [selectedSong, setSelectedSong] = useState(null);
-
 	const renderPlaylist = ({ item, index }) => (
 		<Song
 			testID={`song:${index}`}
 			song={item}
-			index={index}
-			handleSongSelect={() => setSelectedSong({ item, index })}
+			songIndex={index}
+			playlist={SongLibrary}
 		/>
 	);
 
@@ -51,9 +55,8 @@ const LibraryScreen = () => {
 					showsVerticalScrollIndicator={false}
 				/>
 			</View>
-			{selectedSong && (
-				<Player playlist={SongLibrary} selectedSong={selectedSong} />
-			)}
+
+			<Player />
 		</SafeAreaView>
 	);
 };

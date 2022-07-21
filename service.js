@@ -1,7 +1,4 @@
 import TrackPlayer from "react-native-track-player";
-import { setSongPlaying } from "./src/redux/songPlayingSlice";
-import { getCurrentSong } from "./src/utils/MusicPlayerUtil";
-import store from "./src/redux/store";
 
 const service = async () => {
 	TrackPlayer.addEventListener(
@@ -21,14 +18,10 @@ const service = async () => {
 
 	TrackPlayer.addEventListener("remote-next", async () => {
 		await TrackPlayer.skipToNext();
-		const currentSong = await getCurrentSong();
-		store.dispatch(setSongPlaying(currentSong));
 	});
 
 	TrackPlayer.addEventListener("remote-previous", async () => {
 		await TrackPlayer.skipToPrevious();
-		const currentSong = await getCurrentSong();
-		store.dispatch(setSongPlaying(currentSong));
 	});
 };
 
