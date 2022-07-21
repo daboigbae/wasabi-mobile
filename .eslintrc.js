@@ -10,7 +10,6 @@ module.exports = {
 	extends: [
 		"plugin:react/recommended",
 		"prettier",
-		"prettier/react",
 		"eslint:recommended",
 		"plugin:jest/recommended"
 	],

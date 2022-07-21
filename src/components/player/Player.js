@@ -20,7 +20,7 @@ import {
 import SongLibrary from "../../assets/SongLibrary";
 
 import SliderComp from "./Slider";
-import GlobalStyles from "../../styles/GlobalStyles";
+import GlobalStyles from "../../utils/GlobalStyles";
 import { setSongPlaying } from "../../redux/songPlayingSlice";
 import { COLOR_PALETTE, icons } from "../../utils/constants";
 

@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { COLOR_PALETTE } from "../utils/constants";
+import { COLOR_PALETTE } from "./constants";
 
 export default StyleSheet.create({
 	appView: {

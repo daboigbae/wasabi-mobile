@@ -57,6 +57,6 @@ Take the following steps to run the test cases for the application
 4. run `detox build -c ios.sim.debug` to build the debug version of the app for testing
 5. run `detox test -c ios.sim.debug` to run the test cases
 
-##### iOS coming soon
+##### Android coming soon
 
 If everything is installed correctly, the tests should run

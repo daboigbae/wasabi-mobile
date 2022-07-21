@@ -1,7 +1,8 @@
 import React from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
-import GlobalStyles from "../styles/GlobalStyles";
+import GlobalStyles from "../utils/GlobalStyles";
 import PropTypes from "prop-types";
+
 const Song = ({ song, handleSongSelect, testID }) => (
 	<Pressable style={styles.song} onPress={handleSongSelect} testID={testID}>
 		<Image style={styles.songImage} source={{ uri: song?.artwork }} />
@@ -21,6 +22,7 @@ Song.propTypes = {
 	handleSongSelect: PropTypes.func,
 	testID: PropTypes.string
 };
+
 export default Song;
 
 const styles = StyleSheet.create({
@@ -30,23 +32,19 @@ const styles = StyleSheet.create({
 		marginTop: 16,
 		flexDirection: "row"
 	},
-
 	songImage: {
 		height: 90,
 		width: 90,
 		borderRadius: 8
 	},
-
 	songDetails: {
 		padding: 8
 	},
-
 	songName: {
 		fontSize: 14,
 		width: "95%",
 		fontWeight: "bold"
 	},
-
 	artistName: {
 		fontSize: 12,
 		fontWeight: "300"

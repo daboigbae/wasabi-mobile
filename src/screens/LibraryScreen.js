@@ -7,7 +7,7 @@ import { coverImage } from "../utils/constants";
 import Divider from "../components/common/Divider";
 import Song from "../components/Song";
 import Player from "../components/player/Player";
-import GlobalStyles from "../styles/GlobalStyles";
+import GlobalStyles from "../utils/GlobalStyles";
 
 const LibraryScreen = () => {
 	const [selectedSong, setSelectedSong] = useState(null);
