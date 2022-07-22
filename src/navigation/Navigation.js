@@ -1,5 +1,5 @@
 import React from "react";
-
+import { StatusBar } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -9,15 +9,18 @@ import HomeNavigation from "./HomeNavigation";
 const Stack = createStackNavigator();
 
 const MainNavigation = () => (
-	<NavigationContainer>
-		<Stack.Navigator>
-			<Stack.Screen
-				name={MAIN_SCREENS.HOME}
-				component={HomeNavigation}
-				options={{ headerShown: false }}
-			/>
-		</Stack.Navigator>
-	</NavigationContainer>
+	<>
+		<StatusBar barStyle="light-content" />
+		<NavigationContainer>
+			<Stack.Navigator>
+				<Stack.Screen
+					name={MAIN_SCREENS.MAIN}
+					component={HomeNavigation}
+					options={{ headerShown: false }}
+				/>
+			</Stack.Navigator>
+		</NavigationContainer>
+	</>
 );
 
 export default MainNavigation;

@@ -25,6 +25,7 @@ export default SliderComp;
 
 const styles = StyleSheet.create({
 	slider: {
-		width: "100%"
+		width: "95%",
+		paddingVertical: 8
 	}
 });
