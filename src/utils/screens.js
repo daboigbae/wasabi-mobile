@@ -5,7 +5,13 @@ import LibraryScreen from "../screens/LibraryScreen";
 
 export const HOME_SCREENS_ARRAY = [
 	{
+		name: HOME_SCREENS.HOME_SCREEN,
+		component: () => <LibraryScreen />,
+		tabIcon: "home"
+	},
+	{
 		name: HOME_SCREENS.LIBRARY_SCREEN,
-		component: () => <LibraryScreen />
+		component: () => <LibraryScreen />,
+		tabIcon: "music"
 	}
 ];
