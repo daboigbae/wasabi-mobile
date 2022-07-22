@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { useDispatch } from "react-redux";
+
 import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import TrackPlayer, {
@@ -10,7 +10,6 @@ import TrackPlayer, {
 } from "react-native-track-player";
 
 import {
-	getCurrentSong,
 	handlePause,
 	handleSkipBackward,
 	handleSkipForward,
@@ -20,104 +19,90 @@ import {
 import SongLibrary from "../../assets/SongLibrary";
 
 import SliderComp from "./Slider";
-import GlobalStyles from "../../styles/GlobalStyles";
-import { setSongPlaying } from "../../redux/songPlayingSlice";
+import GlobalStyles from "../../utils/GlobalStyles";
+
 import { COLOR_PALETTE, icons } from "../../utils/constants";
 
-import PropTypes from "prop-types";
-
-function Player({ selectedSong }) {
-	const dispatch = useDispatch();
+function Player() {
 	const playbackState = usePlaybackState();
-
-	const selectedSongItem = useMemo(async () => {
-		await playSelectedSong(selectedSong.index);
-		return selectedSong?.item;
-	}, [selectedSong]);
+	const [currentSong, setCurrentSong] = useState();
 
 	const getPlayButtonIcon = useMemo(
 		() => (playbackState === State.Playing ? icons.pause : icons.play),
 		[playbackState]
 	);
 
-	const [songIndex, setSongIndex] = useState();
-
 	const resetPlayer = async () => {
 		playSelectedSong(0);
-		setSongIndex(0);
-		const currentSong = await getCurrentSong();
-		dispatch(setSongPlaying(currentSong));
 	};
 
-	const isPlaylistOver = () => songIndex + 1 === SongLibrary.length;
+	const isPlaylistOver = () => 0 + 1 === SongLibrary.length;
 
 	const handleSkipForwardOnPress = async () => {
 		if (isPlaylistOver()) {
 			await resetPlayer();
 		} else {
 			await handleSkipForward();
-			setSongIndex(songIndex + 1);
 		}
 	};
 
 	const handleSkipBackwardOnPress = async () => {
 		await handleSkipBackward();
-		setSongIndex(songIndex - 1);
-		const currentSong = await getCurrentSong();
-		dispatch(setSongPlaying(currentSong));
 	};
 
 	useTrackPlayerEvents([Event.PlaybackTrackChanged], async (event) => {
-		if (event.type === Event.PlaybackTrackChanged && event.nextTrack !== null) {
+		if (event.type === Event.PlaybackTrackChanged && event.nextTrack != null) {
 			const track = await TrackPlayer.getTrack(event.nextTrack);
-			dispatch(setSongPlaying(track));
+			setCurrentSong(track);
 		}
 	});
 
 	return (
-		<View style={styles.player} testID="player">
-			<Image
-				style={styles.songPlayerImage}
-				source={{ uri: selectedSongItem?.artwork }}
-			/>
-			<View style={styles.songDetails}>
-				<Text style={[styles.songName, GlobalStyles.whiteText]}>
-					{selectedSongItem?.title}
-				</Text>
-				<Text style={[styles.artistName, GlobalStyles.whiteText]}>
-					{selectedSongItem?.artist}
-				</Text>
-				<SliderComp />
-				<View style={styles.controls}>
-					<Pressable onPress={handleSkipBackwardOnPress}>
-						<Icon name={icons.back} color={COLOR_PALETTE.lightgray} size={24} />
-					</Pressable>
-					<Pressable
-						onPress={() => handlePause(playbackState)}
-						testID="playButton"
-					>
-						<Icon
-							name={getPlayButtonIcon}
-							color={COLOR_PALETTE.lightgray}
-							size={40}
-						/>
-					</Pressable>
-					<Pressable onPress={handleSkipForwardOnPress}>
-						<Icon
-							name={icons.forward}
-							color={COLOR_PALETTE.lightgray}
-							size={24}
-						/>
-					</Pressable>
+		currentSong && (
+			<View style={styles.player} testID="player">
+				<Image
+					style={styles.songPlayerImage}
+					source={{ uri: currentSong?.artwork }}
+				/>
+				<View style={styles.songDetails}>
+					<Text style={[styles.songName, GlobalStyles.whiteText]}>
+						{currentSong?.title}
+					</Text>
+					<Text style={[styles.artistName, GlobalStyles.whiteText]}>
+						{currentSong?.artist}
+					</Text>
+					<SliderComp />
+					<View style={styles.controls}>
+						<Pressable onPress={handleSkipBackwardOnPress}>
+							<Icon
+								name={icons.back}
+								color={COLOR_PALETTE.lightgray}
+								size={24}
+							/>
+						</Pressable>
+						<Pressable
+							onPress={() => handlePause(playbackState)}
+							testID="playButton"
+						>
+							<Icon
+								name={getPlayButtonIcon}
+								color={COLOR_PALETTE.lightgray}
+								size={40}
+							/>
+						</Pressable>
+						<Pressable onPress={handleSkipForwardOnPress}>
+							<Icon
+								name={icons.forward}
+								color={COLOR_PALETTE.lightgray}
+								size={24}
+							/>
+						</Pressable>
+					</View>
 				</View>
 			</View>
-		</View>
+		)
 	);
 }
-
-Player.propTypes = {
-	selectedSong: PropTypes.object
-};
 
 export default Player;
 

@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"android": "npx react-native run-android",
-		"ios": "react-native run-ios",
+		"ios": "npx react-native run-ios",
 		"start": "react-native start",
 		"test": "jest",
 		"lint": "eslint .",
@@ -25,6 +25,7 @@
 		"@react-navigation/native": "^6.0.11",
 		"@react-navigation/stack": "^6.2.2",
 		"@reduxjs/toolkit": "^1.8.3",
+		"eslint-config-prettier": "^8.5.0",
 		"react": "18.0.0",
 		"react-native": "0.69.1",
 		"react-native-gesture-handler": "^2.5.0",
