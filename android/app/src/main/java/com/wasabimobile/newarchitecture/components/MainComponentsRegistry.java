@@ -1,4 +1,4 @@
-package com.wasabiplayer.newarchitecture.components;
+package com.wasabimobile.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;
