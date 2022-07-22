@@ -1,18 +1,18 @@
 import React from "react";
 
-import { createDrawerNavigator } from "@react-navigation/drawer";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { HOME_SCREENS_ARRAY } from "../utils/screens";
 
-const Drawer = createDrawerNavigator();
+const Tab = createBottomTabNavigator();
 
 const HomeNavigation = () => (
-	<Drawer.Navigator screenOptions={{ headerShown: false }}>
+	<Tab.Navigator screenOptions={{ headerShown: false }}>
 		{HOME_SCREENS_ARRAY.map((item, index) => (
-			<Drawer.Screen key={index} name={item.name}>
+			<Tab.Screen key={index} name={item.name}>
 				{item.component}
-			</Drawer.Screen>
+			</Tab.Screen>
 		))}
-	</Drawer.Navigator>
+	</Tab.Navigator>
 );
 
 export default HomeNavigation;
