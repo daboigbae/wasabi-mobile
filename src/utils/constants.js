@@ -20,6 +20,7 @@ export const COLOR_PALETTE = {
 		primary: "#13131d",
 		secondary: "#1f1f32"
 	},
+	purple: "#B026FF",
 	textlight: "#ffffff",
 	lightblue: "#1890ff",
 	lightgray: "#868686",

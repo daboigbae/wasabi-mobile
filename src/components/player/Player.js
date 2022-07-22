@@ -1,6 +1,13 @@
 import React, { useMemo, useState } from "react";
 
-import { View, Text, StyleSheet, Image, Pressable } from "react-native";
+import {
+	View,
+	Text,
+	StyleSheet,
+	Image,
+	Pressable,
+	Dimensions
+} from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import TrackPlayer, {
 	Event,
@@ -22,6 +29,7 @@ import SliderComp from "./Slider";
 import GlobalStyles from "../../utils/GlobalStyles";
 
 import { COLOR_PALETTE, icons } from "../../utils/constants";
+const windowWidth = Dimensions.get("window").width;
 
 function Player() {
 	const playbackState = usePlaybackState();
@@ -57,48 +65,43 @@ function Player() {
 		}
 	});
 
+	const renderControls = () => (
+		<View style={styles.controls}>
+			<Pressable onPress={handleSkipBackwardOnPress}>
+				<Icon name={icons.back} color={COLOR_PALETTE.lightgray} size={24} />
+			</Pressable>
+			<Pressable onPress={() => handlePause(playbackState)} testID="playButton">
+				<Icon
+					name={getPlayButtonIcon}
+					color={COLOR_PALETTE.lightgray}
+					size={40}
+				/>
+			</Pressable>
+			<Pressable onPress={handleSkipForwardOnPress}>
+				<Icon name={icons.forward} color={COLOR_PALETTE.lightgray} size={24} />
+			</Pressable>
+		</View>
+	);
+
 	return (
 		currentSong && (
 			<View style={styles.player} testID="player">
-				<Image
-					style={styles.songPlayerImage}
-					source={{ uri: currentSong?.artwork }}
-				/>
 				<View style={styles.songDetails}>
-					<Text style={[styles.songName, GlobalStyles.whiteText]}>
-						{currentSong?.title}
-					</Text>
-					<Text style={[styles.artistName, GlobalStyles.whiteText]}>
-						{currentSong?.artist}
-					</Text>
-					<SliderComp />
-					<View style={styles.controls}>
-						<Pressable onPress={handleSkipBackwardOnPress}>
-							<Icon
-								name={icons.back}
-								color={COLOR_PALETTE.lightgray}
-								size={24}
-							/>
-						</Pressable>
-						<Pressable
-							onPress={() => handlePause(playbackState)}
-							testID="playButton"
-						>
-							<Icon
-								name={getPlayButtonIcon}
-								color={COLOR_PALETTE.lightgray}
-								size={40}
-							/>
-						</Pressable>
-						<Pressable onPress={handleSkipForwardOnPress}>
-							<Icon
-								name={icons.forward}
-								color={COLOR_PALETTE.lightgray}
-								size={24}
-							/>
-						</Pressable>
+					<Image
+						style={styles.songPlayerImage}
+						source={{ uri: currentSong?.artwork }}
+					/>
+					<View style={styles.songInfoContainer}>
+						<Text style={[styles.songName, GlobalStyles.whiteText]}>
+							{currentSong?.title}
+						</Text>
+						<Text style={[styles.artistName, GlobalStyles.whiteText]}>
+							{currentSong?.artist}
+						</Text>
 					</View>
+					{renderControls()}
 				</View>
+				<SliderComp />
 			</View>
 		)
 	);
@@ -108,52 +111,47 @@ export default Player;
 
 const styles = StyleSheet.create({
 	player: {
-		height: 150,
+		borderTopColor: COLOR_PALETTE.purple,
+		borderTopWidth: 4,
 		backgroundColor: COLOR_PALETTE.dark.secondary,
 		width: "100%",
 		position: "absolute",
 		bottom: 0,
 		alignItems: "center",
-		flexDirection: "row",
-		justifyContent: "flex-start",
 		shadowRadius: 2,
-		shadowOffset: {
-			width: 0,
-			height: -8
-		},
 		shadowColor: COLOR_PALETTE.shadow,
 		elevation: 20
 	},
 
-	songPlayerImage: {
-		height: 150,
-		width: 150
-	},
-
 	songDetails: {
-		paddingTop: 12,
-		paddingBottom: 12,
-		height: 150,
-		flex: 1,
-		justifyContent: "flex-start",
-		alignItems: "flex-start"
+		width: "100%",
+		flexDirection: "row",
+		alignItems: "center"
+	},
+	songPlayerImage: {
+		width: windowWidth * 0.15,
+		height: windowWidth * 0.15
 	},
 
+	songInfoContainer: {
+		flexDirection: "column",
+		width: "50%",
+		paddingHorizontal: 8
+	},
 	songName: {
-		marginLeft: 16,
 		fontWeight: "bold"
 	},
 
 	artistName: {
-		marginLeft: 16,
 		fontWeight: "300"
 	},
 
 	controls: {
-		marginTop: 10,
 		flexDirection: "row",
-		justifyContent: "space-around",
-		alignItems: "center",
-		width: "100%"
+		justifyContent: "space-between",
+		width: "35%",
+		paddingEnd: 16,
+		paddingTop: 8,
+		alignItems: "center"
 	}
 });
