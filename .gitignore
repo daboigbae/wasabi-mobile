@@ -42,6 +42,7 @@ android/app/build/
 /template/android/app/build/
 /template/android/build/
 
+!**/GoogleService-Info.plist
 
 # Buck
 .buckd
@@ -129,3 +130,4 @@ package-lock.json
 # Android memory profiler files
 *.hprof
 
+ios/GoogleService-Info.plist
