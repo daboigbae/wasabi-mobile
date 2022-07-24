@@ -1,15 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
 	StyleSheet,
 	SafeAreaView,
 	ActivityIndicator,
-	Text
+	Text,
+	Alert
 } from "react-native";
-import { COLOR_PALETTE } from "../utils/constants";
+
+import auth from "@react-native-firebase/auth";
+import PropTypes from "prop-types";
+import { COLOR_PALETTE, NAVIGATORS } from "../utils/constants";
 
 import GlobalStyles from "../utils/GlobalStyles";
 
-const LandingScreen = () => {
+const LandingScreen = ({ navigation }) => {
+	const onAuthStateChanged = (user) => {
+		if (user) {
+			navigation.replace(NAVIGATORS.MAIN);
+		} else {
+			Alert.alert("Something went wrong please try again");
+		}
+	};
+
+	useEffect(() => {
+		const signInUserAnonymously = async () => {
+			await auth().signInAnonymously();
+		};
+
+		const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+		signInUserAnonymously();
+		return subscriber;
+	}, []);
+
 	return (
 		<SafeAreaView
 			style={[StyleSheet.absoluteFill, styles.container, GlobalStyles.appView]}
@@ -19,6 +41,12 @@ const LandingScreen = () => {
 		</SafeAreaView>
 	);
 };
+
+LandingScreen.propTypes = {
+	navigation: PropTypes.object.isRequired
+};
+
+export default LandingScreen;
 
 const styles = StyleSheet.create({
 	container: {
@@ -34,5 +62,3 @@ const styles = StyleSheet.create({
 		marginBottom: 16
 	}
 });
-
-export default LandingScreen;
