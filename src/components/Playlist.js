@@ -2,28 +2,18 @@ import React from "react";
 import { Image, Pressable, StyleSheet, Dimensions } from "react-native";
 
 import PropTypes from "prop-types";
-import {
-	handlePlaylistChange,
-	playSelectedSong
-} from "../utils/MusicPlayerUtil";
+
 const windowWidth = Dimensions.get("window").width;
 
-const Playlist = ({ playlist, testID }) => {
-	const handleOnPress = async () => {
-		await handlePlaylistChange(playlist.songs);
-		await playSelectedSong(0);
-	};
-
-	return (
-		<Pressable style={styles.playlist} onPress={handleOnPress} testID={testID}>
-			<Image style={styles.playlistImage} source={{ uri: playlist?.artwork }} />
-		</Pressable>
-	);
-};
+const Playlist = ({ playlist, testID, onPress }) => (
+	<Pressable style={styles.playlist} onPress={onPress} testID={testID}>
+		<Image style={styles.playlistImage} source={{ uri: playlist?.artwork }} />
+	</Pressable>
+);
 
 Playlist.propTypes = {
 	playlist: PropTypes.object.isRequired,
-	songIndex: PropTypes.number,
+	onPress: PropTypes.func.isRequired,
 	testID: PropTypes.string
 };
 

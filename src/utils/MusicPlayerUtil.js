@@ -11,7 +11,6 @@ export const handlePlaylistChange = async (playlist) => {
 		await TrackPlayer.removeUpcomingTracks();
 		await TrackPlayer.remove([0]);
 		await TrackPlayer.add(playlist, 0);
-		await TrackPlayer.play(0);
 	} catch (error) {
 		Alert.alert("Something went wrong");
 	}
