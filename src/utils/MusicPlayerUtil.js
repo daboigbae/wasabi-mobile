@@ -1,3 +1,4 @@
+import { Alert } from "react-native";
 import TrackPlayer, { State, Capability } from "react-native-track-player";
 
 import SongLibrary from "../assets/SongLibrary";
@@ -5,7 +6,14 @@ import SongLibrary from "../assets/SongLibrary";
 const TIME_OUT_BETWEEN_SKIPS_IN_MILLISECONDS = 1000;
 
 export const handlePlaylistChange = async (playlist) => {
-	await TrackPlayer.add(playlist);
+	try {
+		await TrackPlayer.stop();
+		await TrackPlayer.removeUpcomingTracks();
+		await TrackPlayer.remove([0]);
+		await TrackPlayer.add(playlist, 0);
+	} catch (error) {
+		Alert.alert("Something went wrong");
+	}
 };
 
 export const playSelectedSong = async (selectedSong) => {

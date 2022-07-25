@@ -5,10 +5,10 @@ import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
 import thunk from "redux-thunk";
 
-import songPlayingSlice from "./songPlayingSlice";
+import MusicSlice from "./MusicSlice";
 
 const reducers = combineReducers({
-	songPlaying: songPlayingSlice
+	music: MusicSlice
 });
 
 const persistConfig = {

@@ -3,8 +3,9 @@ import { StatusBar } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import { MAIN_SCREENS } from "../utils/constants";
+import { NAVIGATORS } from "../utils/constants";
 import HomeNavigation from "./HomeNavigation";
+import LandingScreen from "../screens/LandingScreen";
 
 const Stack = createStackNavigator();
 
@@ -14,7 +15,12 @@ const MainNavigation = () => (
 		<NavigationContainer>
 			<Stack.Navigator>
 				<Stack.Screen
-					name={MAIN_SCREENS.MAIN}
+					name={NAVIGATORS.LANDING}
+					component={LandingScreen}
+					options={{ headerShown: false }}
+				/>
+				<Stack.Screen
+					name={NAVIGATORS.MAIN}
 					component={HomeNavigation}
 					options={{ headerShown: false }}
 				/>

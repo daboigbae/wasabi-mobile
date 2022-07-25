@@ -4,7 +4,7 @@ This is the repo of the mobile app for Wasabi Music.
 The application was written in React Native. Currently uses a hard coded playlist of our favorite NFT songs as we implement the support to utilize the full catalog of NFT music found at https://wasabimusic.io/
 
 📱📱📱📱📱
-Try the app now on TestFlight for iOS https://testflight.apple.com/join/OIYIps8f
+Try the app now on TestFlight for iOS https://testflight.apple.com/join/4nCSJUqq
 Android coming soon 
 
 ### Folder Structure 📁 📁 📁 📁
