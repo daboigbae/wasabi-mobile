@@ -7,16 +7,31 @@ import {
 	Alert
 } from "react-native";
 
+import { useDispatch } from "react-redux";
+
 import auth from "@react-native-firebase/auth";
+import database from "@react-native-firebase/database";
+
 import PropTypes from "prop-types";
 import { COLOR_PALETTE, NAVIGATORS } from "../utils/constants";
 
 import GlobalStyles from "../utils/GlobalStyles";
+import { setPlaylists } from "../redux/MusicSlice";
 
 const LandingScreen = ({ navigation }) => {
-	const onAuthStateChanged = (user) => {
+	const dispatch = useDispatch();
+
+	const loadInitialPlaylists = async () => {
+		const playlistSnapshot = await database().ref("/playlists").once("value");
+
+		dispatch(setPlaylists(playlistSnapshot.val()));
+
+		navigation.replace(NAVIGATORS.MAIN);
+	};
+
+	const onAuthStateChanged = async (user) => {
 		if (user) {
-			navigation.replace(NAVIGATORS.MAIN);
+			await loadInitialPlaylists();
 		} else {
 			Alert.alert("Something went wrong please try again");
 		}
