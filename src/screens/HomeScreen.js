@@ -53,9 +53,8 @@ const HomeScreen = () => {
 				<View style={styles.container}>
 					<Text style={styles.title}>Wasabi Music</Text>
 					<Text style={styles.funText}>
-						Wasabi Music is a music NFT streaming platform. Listen to your
-						favorite music NFT and decide once and for all who has the best
-						music NFTs.
+						Wasabi Music is a music streaming platform. Listen to your favorite
+						music NFTs and tell us what you think about them.
 					</Text>
 					<Text style={styles.title}>Popular Playlists</Text>
 					{renderPlaylists()}
