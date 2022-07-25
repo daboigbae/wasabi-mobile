@@ -79,8 +79,6 @@ import com.android.build.OutputFile
 
 project.ext.react = [
     enableHermes: false,  // clean and rebuild if changing
-	 bundleInDebug: true // <-- add this line
-
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
@@ -136,14 +134,12 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.wasabiplayer"
+        applicationId "com.wasabimobile"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
         buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
-        testBuildType System.getProperty('testBuildType', 'debug')  // This will later be used to control the test apk build type
-        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
         if (isNewArchitectureEnabled()) {
             // We configure the NDK build only if you decide to opt-in for the New Architecture.
@@ -161,7 +157,7 @@ android {
                     cppFlags "-std=c++17"
                     // Make sure this target name is the same you specify inside the
                     // src/main/jni/Android.mk file for the `LOCAL_MODULE` variable.
-                    targets "temp_appmodules"
+                    targets "wasabimobile_appmodules"
                 }
             }
             if (!enableSeparateBuildPerCPUArchitecture) {
@@ -239,9 +235,6 @@ android {
             signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-
-            // Detox-specific additions to pro-guard
-            proguardFile "${rootProject.projectDir}/../node_modules/detox/android/detox/proguard-rules-app.pro"
         }
     }
 
@@ -260,8 +253,6 @@ android {
 
         }
     }
-
-	
 }
 
 dependencies {
@@ -293,10 +284,6 @@ dependencies {
     } else {
         implementation jscFlavor
     }
-
-    androidTestImplementation('com.wix:detox:+')
-    androidTestImplementation 'junit:junit:4.12'
-    implementation "androidx.annotation:annotation:1.1.0"
 }
 
 if (isNewArchitectureEnabled()) {
