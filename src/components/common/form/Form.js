@@ -35,13 +35,6 @@ const Form = ({ inputs, defaultValues, onSubmit, isLoading, buttonText }) => {
 				/>
 			))}
 			{renderFormButton()}
-			<Button
-				text="Sign Up"
-				onPress={() => {}}
-				style={styles.textButton}
-				textStyle={styles.textButtonText}
-				type={BUTTON_TYPES.TEXT}
-			/>
 		</View>
 	);
 };
@@ -67,17 +60,6 @@ const styles = StyleSheet.create({
 	},
 	buttonText: {
 		color: "white",
-		fontWeight: "bold"
-	},
-	textButton: {
-		borderWidth: 2,
-		borderColor: COLOR_PALETTE.lightblue,
-		borderRadius: 8,
-		marginTop: 16
-	},
-
-	textButtonText: {
-		color: COLOR_PALETTE.lightblue,
 		fontWeight: "bold"
 	}
 });

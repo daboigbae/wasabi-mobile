@@ -19,7 +19,8 @@ export const icons = {
 };
 
 export const USER_AUTH_SCREENS = {
-	SIGN_IN_SCREEN: "Sign In"
+	SIGN_IN_SCREEN: "Sign In",
+	SIGN_UP_SCREEN: "Sign Up"
 };
 
 export const COLOR_PALETTE = {
@@ -48,3 +49,11 @@ export const SIGN_IN_FORM_INPUTS_ARRAY = [
 		rules: { required: "Password is required" }
 	}
 ];
+
+export const FIREBASE_ERROR_CODES = {
+	WRONG_PASSWORD: "auth/wrong-password",
+	INVALID_EMAIL: "auth/invalid-email",
+	EMAIL_EXISTS: "auth/email-already-in-use",
+	WEAK_PASSWORD: "auth/weak-password",
+	REQUIRES_RECENT_LOGIN: "auth/requires-recent-login"
+};

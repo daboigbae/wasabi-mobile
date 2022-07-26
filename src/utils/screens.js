@@ -8,6 +8,7 @@ import {
 import LibraryScreen from "../screens/LibraryScreen";
 import HomeScreen from "../screens/HomeScreen";
 import SignInScreen from "../screens/authenticationScreens/SignInScreen";
+import SignUpScreen from "../screens/authenticationScreens/SignUpScreen";
 
 export const HOME_SCREENS_ARRAY = [
 	{
@@ -25,7 +26,15 @@ export const HOME_SCREENS_ARRAY = [
 export const USER_AUTH_SCREENS_ARRAY = [
 	{
 		name: USER_AUTH_SCREENS.SIGN_IN_SCREEN,
-		component: () => <SignInScreen />,
+		component: (props) => <SignInScreen {...props} />,
+		options: () => ({
+			headerTintColor: COLOR_PALETTE.white
+		})
+	},
+
+	{
+		name: USER_AUTH_SCREENS.SIGN_UP_SCREEN,
+		component: (props) => <SignUpScreen {...props} />,
 		options: () => ({
 			headerTintColor: COLOR_PALETTE.white
 		})

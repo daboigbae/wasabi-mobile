@@ -4,17 +4,20 @@ import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
 import GlobalStyles from "../../utils/GlobalStyles";
 import {
 	COLOR_PALETTE,
-	SIGN_IN_FORM_INPUTS_ARRAY,
-	USER_AUTH_SCREENS
+	NAVIGATORS,
+	SIGN_IN_FORM_INPUTS_ARRAY
 } from "../../utils/constants";
 import Form from "../../components/common/form/Form";
-import Button, { BUTTON_TYPES } from "../../components/common/Button";
+import { handleSignUp } from "../../utils/firebase";
 
-const SignInScreen = ({ navigation }) => {
+const SignUpScreen = ({ navigation }) => {
 	const [isLoading, setIsLoading] = useState(false);
 
-	const onSubmit = () => {
+	const onSubmit = async (data) => {
 		setIsLoading(true);
+		await handleSignUp(data);
+		navigation.replace(NAVIGATORS.MAIN);
+		setIsLoading(false);
 	};
 	return (
 		<SafeAreaView style={[StyleSheet.absoluteFill, GlobalStyles.appView]}>
@@ -33,16 +36,7 @@ const SignInScreen = ({ navigation }) => {
 						}}
 						onSubmit={onSubmit}
 						isLoading={isLoading}
-						buttonText="Sign In"
-					/>
-					<Button
-						text="Sign Up"
-						onPress={() =>
-							navigation.navigate(USER_AUTH_SCREENS.SIGN_UP_SCREEN)
-						}
-						style={styles.textButton}
-						textStyle={styles.textButtonText}
-						type={BUTTON_TYPES.TEXT}
+						buttonText="Create Account"
 					/>
 				</View>
 			</ScrollView>
@@ -50,11 +44,11 @@ const SignInScreen = ({ navigation }) => {
 	);
 };
 
-SignInScreen.propTypes = {
+SignUpScreen.propTypes = {
 	navigation: PropTypes.object
 };
 
-export default SignInScreen;
+export default SignUpScreen;
 
 const styles = StyleSheet.create({
 	wrapper: {
@@ -80,16 +74,5 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 		fontWeight: "300",
 		marginBottom: 16
-	},
-	textButton: {
-		borderWidth: 2,
-		borderColor: COLOR_PALETTE.lightblue,
-		borderRadius: 8,
-		marginTop: 16
-	},
-
-	textButtonText: {
-		color: COLOR_PALETTE.lightblue,
-		fontWeight: "bold"
 	}
 });
