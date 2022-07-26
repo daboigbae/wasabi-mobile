@@ -22,10 +22,24 @@ export const handleSignUp = async (data) => {
 	}
 };
 
+export const handleSignIn = async (data) => {
+	const { email, password } = data;
+	try {
+		await auth().signInWithEmailAndPassword(email, password);
+	} catch (error) {
+		if (error.code === FIREBASE_ERROR_CODES.WRONG_PASSWORD || error.code)
+			return Alert.alert("Password does not match email");
+		if (error.code === FIREBASE_ERROR_CODES.INVALID_EMAIL)
+			return Alert.alert("Invalid email address, please use a different one");
+		return Alert.alert("Something went wrong, please contact support");
+	}
+};
+
 export const handleSignOut = async () => {
 	try {
 		await auth().signOut();
 		await auth().signInAnonymously();
+		Alert.alert("You have been signed out");
 	} catch (error) {
 		Alert.alert("Something went wrong, please contact support");
 	}

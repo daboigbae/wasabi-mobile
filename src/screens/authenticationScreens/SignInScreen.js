@@ -4,18 +4,23 @@ import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
 import GlobalStyles from "../../utils/GlobalStyles";
 import {
 	COLOR_PALETTE,
+	NAVIGATORS,
 	SIGN_IN_FORM_INPUTS_ARRAY,
 	USER_AUTH_SCREENS
 } from "../../utils/constants";
 import Form from "../../components/common/form/Form";
 import Button, { BUTTON_TYPES } from "../../components/common/Button";
+import { handleSignIn } from "../../utils/firebase";
 
 const SignInScreen = ({ navigation }) => {
 	const [isLoading, setIsLoading] = useState(false);
 
-	const onSubmit = () => {
+	const onSubmit = async (data) => {
 		setIsLoading(true);
+		await handleSignIn(data);
+		navigation.replace(NAVIGATORS.MAIN);
 	};
+
 	return (
 		<SafeAreaView style={[StyleSheet.absoluteFill, GlobalStyles.appView]}>
 			<ScrollView style={styles.wrapper}>

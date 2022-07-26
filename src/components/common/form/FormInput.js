@@ -12,6 +12,8 @@ const FormInput = ({ element, control, rules }) => (
 		render={({ field: { onChange, onBlur, value }, fieldState: { error } }) => (
 			<>
 				<TextInput
+					secureTextEntry={element.name === "Password" ? true : false}
+					autoCapitalize={element.name === "Email" ? "none" : "sentences"}
 					style={styles.input}
 					onBlur={onBlur}
 					onChangeText={onChange}
