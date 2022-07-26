@@ -3,12 +3,17 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { HOME_SCREENS_ARRAY } from "../utils/screens";
-import { COLOR_PALETTE } from "../utils/constants";
+import { COLOR_PALETTE, NAVIGATORS } from "../utils/constants";
+import { Pressable, StyleSheet } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 const Tab = createBottomTabNavigator();
 
 const TAB_SCREEN_OPTIONS = {
-	headerShown: false,
+	headerStyle: {
+		backgroundColor: COLOR_PALETTE.dark.primary
+	},
+	headerTintColor: COLOR_PALETTE.white,
 
 	tabBarActiveTintColor: COLOR_PALETTE.white,
 	tabBarInactiveTintColor: COLOR_PALETTE.lightgray,
@@ -21,21 +26,29 @@ const TAB_SCREEN_OPTIONS = {
 };
 
 const HomeNavigation = () => (
-	<Tab.Navigator screenOptions={TAB_SCREEN_OPTIONS}>
+	<Tab.Navigator>
 		{HOME_SCREENS_ARRAY.map((item, index) => (
 			<Tab.Screen
 				key={index}
 				name={item.name}
 				tabIcon="home"
-				options={{
+				options={({ navigation }) => ({
 					tabBarIcon: ({ color, size }) => (
 						<MaterialCommunityIcons
 							name={item.tabIcon}
 							color={color}
 							size={size}
 						/>
-					)
-				}}
+					),
+					headerRight: () => (
+						<Pressable
+							onPress={() => navigation.navigate(NAVIGATORS.USER_AUTH)}
+						>
+							<Icon name="user" color="white" size={32} style={styles.icon} />
+						</Pressable>
+					),
+					...TAB_SCREEN_OPTIONS
+				})}
 			>
 				{item.component}
 			</Tab.Screen>
@@ -44,3 +57,9 @@ const HomeNavigation = () => (
 );
 
 export default HomeNavigation;
+
+const styles = StyleSheet.create({
+	icon: {
+		marginRight: 16
+	}
+});

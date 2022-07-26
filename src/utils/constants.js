@@ -3,6 +3,7 @@ export const coverImage =
 
 export const NAVIGATORS = {
 	MAIN: "Main",
+	USER_AUTH: "User Authentication",
 	LANDING: "Landing"
 };
 
@@ -15,6 +16,10 @@ export const icons = {
 	play: "play-circle",
 	back: "step-backward",
 	forward: "step-forward"
+};
+
+export const USER_AUTH_SCREENS = {
+	SIGN_IN_SCREEN: "Sign In"
 };
 
 export const COLOR_PALETTE = {
