@@ -32,5 +32,19 @@ export const COLOR_PALETTE = {
 	lightblue: "#1890ff",
 	lightgray: "#868686",
 	shadow: "#000000",
-	white: "#fff"
+	white: "#fff",
+	red100: "#dc143c"
 };
+
+export const SIGN_IN_FORM_INPUTS_ARRAY = [
+	{
+		name: "Email",
+		value: "email",
+		rules: { required: "Email is required" }
+	},
+	{
+		name: "Password",
+		value: "password",
+		rules: { required: "Password is required" }
+	}
+];

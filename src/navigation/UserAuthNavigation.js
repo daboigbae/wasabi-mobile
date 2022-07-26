@@ -15,7 +15,12 @@ const UserAuthNavigation = () => {
 	return (
 		<Stack.Navigator screenOptions={STACK_SCREEN_OPTIONS}>
 			{USER_AUTH_SCREENS_ARRAY.map((item, index) => (
-				<Stack.Screen key={index} name={item.name} tabIcon="home">
+				<Stack.Screen
+					key={index}
+					options={item.options}
+					name={item.name}
+					tabIcon="home"
+				>
 					{item.component}
 				</Stack.Screen>
 			))}
