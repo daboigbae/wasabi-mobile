@@ -5,28 +5,32 @@ import { Controller } from "react-hook-form";
 import { COLOR_PALETTE } from "../../../utils/constants";
 import ErrorMessage from "../ErrorMessage";
 
-const FormInput = ({ element, control, rules }) => (
-	<Controller
-		control={control}
-		rules={rules}
-		render={({ field: { onChange, onBlur, value }, fieldState: { error } }) => (
-			<>
-				<TextInput
-					secureTextEntry={element.name === "Password" ? true : false}
-					autoCapitalize={element.name === "Email" ? "none" : "sentences"}
-					style={styles.input}
-					onBlur={onBlur}
-					onChangeText={onChange}
-					value={value}
-					placeholder={element?.name}
-					placeholderTextColor={COLOR_PALETTE.white}
-				/>
-				{error && <ErrorMessage message={error?.message} />}
-			</>
-		)}
-		name={element?.value}
-	/>
-);
+const FormInput = ({ element, control, rules }) => {
+	const renderInput = ({
+		field: { onChange, onBlur, value },
+		fieldState: { error }
+	}) => (
+		<>
+			<TextInput
+				style={styles.input}
+				onBlur={onBlur}
+				onChangeText={onChange}
+				value={value}
+				placeholder={element?.name}
+				placeholderTextColor={COLOR_PALETTE.white}
+			/>
+			{error && <ErrorMessage message={error?.message} />}
+		</>
+	);
+	return (
+		<Controller
+			control={control}
+			rules={rules}
+			render={renderInput}
+			name={element?.value}
+		/>
+	);
+};
 
 FormInput.propTypes = {
 	element: PropTypes.object,
@@ -41,7 +45,7 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 16,
 		height: 52,
 		color: COLOR_PALETTE.white,
-		borderColor: COLOR_PALETTE.dark.secondary,
+		borderColor: COLOR_PALETTE.lightgray,
 		textAlign: "center",
 		fontWeight: "300",
 		padding: 8,

@@ -5,6 +5,7 @@ import GlobalStyles from "../../utils/GlobalStyles";
 import {
 	COLOR_PALETTE,
 	NAVIGATORS,
+	DEFAULT_FORM_VALUES,
 	SIGN_IN_FORM_INPUTS_ARRAY,
 	USER_AUTH_SCREENS
 } from "../../utils/constants";
@@ -26,28 +27,23 @@ const SignInScreen = ({ navigation }) => {
 			<ScrollView style={styles.wrapper}>
 				<View style={styles.container}>
 					<Text style={styles.title}>Wasabi Music</Text>
-					<Text style={styles.funText}>
-						Login to get the full Wasabi Experience, and support your favorite
-						NFT artists
-					</Text>
+					<Text style={styles.funText}>Music NFTs</Text>
 					<Form
 						inputs={SIGN_IN_FORM_INPUTS_ARRAY}
-						defaultValues={{
-							email: "",
-							password: ""
-						}}
+						defaultValues={DEFAULT_FORM_VALUES.SIGN_IN}
 						onSubmit={onSubmit}
 						isLoading={isLoading}
 						buttonText="Sign In"
 					/>
 					<Button
-						text="Sign Up"
+						text="Create an account"
 						onPress={() =>
 							navigation.navigate(USER_AUTH_SCREENS.SIGN_UP_SCREEN)
 						}
 						style={styles.textButton}
 						textStyle={styles.textButtonText}
 						type={BUTTON_TYPES.TEXT}
+						isLoading={isLoading}
 					/>
 				</View>
 			</ScrollView>
@@ -87,9 +83,6 @@ const styles = StyleSheet.create({
 		marginBottom: 16
 	},
 	textButton: {
-		borderWidth: 2,
-		borderColor: COLOR_PALETTE.lightblue,
-		borderRadius: 8,
 		marginTop: 16
 	},
 

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
+import { useDispatch } from "react-redux";
+import PropTypes from "prop-types";
 import GlobalStyles from "../../utils/GlobalStyles";
 import {
 	COLOR_PALETTE,
@@ -11,11 +12,12 @@ import Form from "../../components/common/form/Form";
 import { handleSignUp } from "../../utils/firebase";
 
 const SignUpScreen = ({ navigation }) => {
+	const dispatch = useDispatch();
 	const [isLoading, setIsLoading] = useState(false);
 
 	const onSubmit = async (data) => {
 		setIsLoading(true);
-		await handleSignUp(data);
+		await handleSignUp(data, dispatch);
 		navigation.replace(NAVIGATORS.MAIN);
 		setIsLoading(false);
 	};
@@ -25,8 +27,8 @@ const SignUpScreen = ({ navigation }) => {
 				<View style={styles.container}>
 					<Text style={styles.title}>Wasabi Music</Text>
 					<Text style={styles.funText}>
-						Login to get the full Wasabi Experience, and support your favorite
-						NFT artists
+						Sign up to create an account and start tracking the NFT music you
+						listen to.
 					</Text>
 					<Form
 						inputs={SIGN_IN_FORM_INPUTS_ARRAY}
@@ -36,7 +38,7 @@ const SignUpScreen = ({ navigation }) => {
 						}}
 						onSubmit={onSubmit}
 						isLoading={isLoading}
-						buttonText="Create Account"
+						buttonText="Sign Up"
 					/>
 				</View>
 			</ScrollView>
