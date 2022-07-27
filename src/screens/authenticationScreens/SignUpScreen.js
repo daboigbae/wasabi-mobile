@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
+import { useDispatch } from "react-redux";
+import PropTypes from "prop-types";
 import GlobalStyles from "../../utils/GlobalStyles";
 import {
 	COLOR_PALETTE,
@@ -11,11 +12,12 @@ import Form from "../../components/common/form/Form";
 import { handleSignUp } from "../../utils/firebase";
 
 const SignUpScreen = ({ navigation }) => {
+	const dispatch = useDispatch();
 	const [isLoading, setIsLoading] = useState(false);
 
 	const onSubmit = async (data) => {
 		setIsLoading(true);
-		await handleSignUp(data);
+		await handleSignUp(data, dispatch);
 		navigation.replace(NAVIGATORS.MAIN);
 		setIsLoading(false);
 	};

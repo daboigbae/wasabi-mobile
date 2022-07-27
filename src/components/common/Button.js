@@ -1,5 +1,11 @@
 import React from "react";
-import { StyleSheet, Text, Pressable, View } from "react-native";
+import {
+	StyleSheet,
+	Text,
+	Pressable,
+	View,
+	ActivityIndicator
+} from "react-native";
 
 import PropTypes from "prop-types";
 
@@ -17,30 +23,41 @@ const Button = ({
 	textStyle = {},
 	buttonTestID,
 	icon,
-	type = BUTTON_TYPES.PRIMARY
+	type = BUTTON_TYPES.PRIMARY,
+	isLoading
 }) => {
 	const getStyleForButtonType = () =>
 		type === BUTTON_TYPES.PRIMARY ? styles.primaryButton : {};
 
-	return (
-		<Pressable
-			style={{ ...styles.button, ...getStyleForButtonType(), ...style }}
-			onPress={onPress}
-			testID={buttonTestID}
-		>
-			{icon && (
-				<View style={styles.iconContainer}>
-					<Icon
-						name={icon}
-						color={COLOR_PALETTE.red500}
-						style={styles.icon}
-						size={32}
-					/>
-				</View>
-			)}
-			<Text style={{ ...styles.title, ...textStyle }}>{text}</Text>
-		</Pressable>
-	);
+	const renderButton = () =>
+		isLoading ? (
+			<ActivityIndicator
+				style={styles.loader}
+				size="large"
+				color={COLOR_PALETTE.lightblue}
+			/>
+		) : (
+			<Pressable
+				style={{ ...styles.button, ...getStyleForButtonType(), ...style }}
+				onPress={onPress}
+				testID={buttonTestID}
+				disabled={isLoading}
+			>
+				{icon && (
+					<View style={styles.iconContainer}>
+						<Icon
+							name={icon}
+							color={COLOR_PALETTE.red500}
+							style={styles.icon}
+							size={32}
+						/>
+					</View>
+				)}
+				<Text style={{ ...styles.title, ...textStyle }}>{text}</Text>
+			</Pressable>
+		);
+
+	return renderButton();
 };
 
 Button.propTypes = {
@@ -50,7 +67,8 @@ Button.propTypes = {
 	textStyle: PropTypes.object,
 	buttonTestID: PropTypes.string,
 	icon: PropTypes.string,
-	type: PropTypes.string
+	type: PropTypes.string,
+	isLoading: PropTypes.bool
 };
 
 export default Button;
@@ -83,5 +101,8 @@ const styles = StyleSheet.create({
 	},
 	icon: {
 		color: "red"
+	},
+	loader: {
+		marginTop: 32
 	}
 });

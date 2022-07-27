@@ -3,11 +3,10 @@ import {
 	StyleSheet,
 	SafeAreaView,
 	ActivityIndicator,
-	Text,
-	Alert
+	Text
 } from "react-native";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import auth from "@react-native-firebase/auth";
 import database from "@react-native-firebase/database";
@@ -17,9 +16,12 @@ import { COLOR_PALETTE, NAVIGATORS } from "../utils/constants";
 
 import GlobalStyles from "../utils/GlobalStyles";
 import { setPlaylists } from "../redux/MusicSlice";
+import { setUser } from "../redux/UserSlice";
 
 const LandingScreen = ({ navigation }) => {
 	const dispatch = useDispatch();
+
+	const user = useSelector(({ user }) => user?.user?.user);
 
 	const loadInitialPlaylists = async () => {
 		const playlistSnapshot = await database().ref("/playlists").once("value");
@@ -29,22 +31,18 @@ const LandingScreen = ({ navigation }) => {
 		navigation.replace(NAVIGATORS.MAIN);
 	};
 
-	const onAuthStateChanged = async (user) => {
-		if (user) {
-			await loadInitialPlaylists();
-		} else {
-			Alert.alert("Something went wrong please try again");
-		}
+	const handleAnonymousSignIn = async () => {
+		const anonymousUser = await auth().signInAnonymously();
+		dispatch(setUser(anonymousUser));
+		await loadInitialPlaylists();
 	};
 
 	useEffect(() => {
-		const signInUserAnonymously = async () => {
-			await auth().signInAnonymously();
-		};
-
-		const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-		signInUserAnonymously();
-		return subscriber;
+		if (!user) {
+			handleAnonymousSignIn();
+		} else {
+			loadInitialPlaylists();
+		}
 	}, []);
 
 	return (

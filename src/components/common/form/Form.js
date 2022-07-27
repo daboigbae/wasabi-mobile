@@ -1,28 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { ActivityIndicator, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useForm } from "react-hook-form";
 import FormInput from "./FormInput";
-import { COLOR_PALETTE } from "../../../utils/constants";
 import Button, { BUTTON_TYPES } from "../Button";
 
 const Form = ({ inputs, defaultValues, onSubmit, isLoading, buttonText }) => {
 	const { control, handleSubmit } = useForm({
 		defaultValues: defaultValues
 	});
-
-	const renderFormButton = () =>
-		isLoading ? (
-			<ActivityIndicator color={COLOR_PALETTE.lightblue} size="large" />
-		) : (
-			<Button
-				text={buttonText}
-				onPress={handleSubmit(onSubmit)}
-				style={styles.loginButton}
-				textStyle={styles.buttonText}
-				type={BUTTON_TYPES.PRIMARY}
-			/>
-		);
 
 	return (
 		<View style={styles.formContainer}>
@@ -34,7 +20,14 @@ const Form = ({ inputs, defaultValues, onSubmit, isLoading, buttonText }) => {
 					rules={item?.rules}
 				/>
 			))}
-			{renderFormButton()}
+			<Button
+				text={buttonText}
+				onPress={handleSubmit(onSubmit)}
+				style={styles.loginButton}
+				textStyle={styles.buttonText}
+				type={BUTTON_TYPES.PRIMARY}
+				isLoading={isLoading}
+			/>
 		</View>
 	);
 };

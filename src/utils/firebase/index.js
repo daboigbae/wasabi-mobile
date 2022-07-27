@@ -1,13 +1,15 @@
 import auth from "@react-native-firebase/auth";
 import { Alert } from "react-native";
+import { setUser } from "../../redux/UserSlice";
 import { FIREBASE_ERROR_CODES } from "../constants";
 
 export const getFirebaseUser = () => auth()?.currentUser;
 
-export const handleSignUp = async (data) => {
+export const handleSignUp = async (data, dispatch) => {
 	const { email, password } = data;
 	try {
-		await auth().createUserWithEmailAndPassword(email, password);
+		const user = await auth().createUserWithEmailAndPassword(email, password);
+		await dispatch(setUser(user));
 	} catch (error) {
 		if (error.code === FIREBASE_ERROR_CODES.INVALID_EMAIL)
 			return Alert.alert("Please use a valid email address");
@@ -22,10 +24,12 @@ export const handleSignUp = async (data) => {
 	}
 };
 
-export const handleSignOut = async () => {
+export const handleSignOut = async (dispatch) => {
 	try {
 		await auth().signOut();
-		await auth().signInAnonymously();
+		const anonymousUser = await auth().signInAnonymously();
+		await dispatch(setUser(anonymousUser));
+		Alert.alert("Singed out!");
 	} catch (error) {
 		Alert.alert("Something went wrong, please contact support");
 	}

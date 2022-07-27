@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import auth from "@react-native-firebase/auth";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { HOME_SCREENS_ARRAY } from "../utils/screens";
 import { COLOR_PALETTE, NAVIGATORS } from "../utils/constants";
-import { Pressable, StyleSheet } from "react-native";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { Pressable } from "react-native";
 import { handleSignOut } from "../utils/firebase";
+import TabBarIcon from "../components/common/icons/TabBarIcon";
+import SignInIcon from "../components/common/icons/SignInIcon";
+import SignOutIcon from "../components/common/icons/SignOutIcon";
 
 const Tab = createBottomTabNavigator();
 
@@ -27,21 +28,14 @@ const TAB_SCREEN_OPTIONS = {
 };
 
 const HomeNavigation = () => {
-	const [isUserAnonymous, setIsUserAnonymous] = useState();
+	const user = useSelector(({ user }) => user?.user?.user);
 
-	const onAuthStateChanged = (user) => {
-		setIsUserAnonymous(user?.isAnonymous);
-	};
-
-	useEffect(() => {
-		const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-		return subscriber;
-	}, []);
+	const dispatch = useDispatch();
 
 	const handleNavigation = async (navigation) =>
-		isUserAnonymous
+		user?.isAnonymous
 			? navigation.navigate(NAVIGATORS.USER_AUTH)
-			: await handleSignOut();
+			: handleSignOut(dispatch);
 
 	return (
 		<Tab.Navigator>
@@ -52,22 +46,11 @@ const HomeNavigation = () => {
 					tabIcon="home"
 					options={({ navigation }) => ({
 						tabBarIcon: ({ color, size }) => (
-							<MaterialCommunityIcons
-								name={item.tabIcon}
-								color={color}
-								size={size}
-							/>
+							<TabBarIcon name={item.tabIcon} color={color} size={size} />
 						),
 						headerRight: () => (
 							<Pressable onPress={() => handleNavigation(navigation)}>
-								<Icon
-									name={
-										isUserAnonymous ? "card-account-details-star" : "logout"
-									}
-									color="white"
-									size={32}
-									style={styles.icon}
-								/>
+								{user?.isAnonymous ? <SignInIcon /> : <SignOutIcon />}
 							</Pressable>
 						),
 						...TAB_SCREEN_OPTIONS
@@ -81,9 +64,3 @@ const HomeNavigation = () => {
 };
 
 export default HomeNavigation;
-
-const styles = StyleSheet.create({
-	icon: {
-		marginRight: 16
-	}
-});

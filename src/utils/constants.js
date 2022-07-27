@@ -57,3 +57,10 @@ export const FIREBASE_ERROR_CODES = {
 	WEAK_PASSWORD: "auth/weak-password",
 	REQUIRES_RECENT_LOGIN: "auth/requires-recent-login"
 };
+
+export const DEFAULT_FORM_VALUES = {
+	SIGN_IN: {
+		email: "",
+		password: ""
+	}
+};

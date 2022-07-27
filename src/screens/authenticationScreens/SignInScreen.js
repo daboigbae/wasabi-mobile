@@ -4,6 +4,7 @@ import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
 import GlobalStyles from "../../utils/GlobalStyles";
 import {
 	COLOR_PALETTE,
+	DEFAULT_FORM_VALUES,
 	SIGN_IN_FORM_INPUTS_ARRAY,
 	USER_AUTH_SCREENS
 } from "../../utils/constants";
@@ -24,10 +25,7 @@ const SignInScreen = ({ navigation }) => {
 					<Text style={styles.funText}>Music NFTs</Text>
 					<Form
 						inputs={SIGN_IN_FORM_INPUTS_ARRAY}
-						defaultValues={{
-							email: "",
-							password: ""
-						}}
+						defaultValues={DEFAULT_FORM_VALUES.SIGN_IN}
 						onSubmit={onSubmit}
 						isLoading={isLoading}
 						buttonText="Sign In"
@@ -40,6 +38,7 @@ const SignInScreen = ({ navigation }) => {
 						style={styles.textButton}
 						textStyle={styles.textButtonText}
 						type={BUTTON_TYPES.TEXT}
+						isLoading={isLoading}
 					/>
 				</View>
 			</ScrollView>
