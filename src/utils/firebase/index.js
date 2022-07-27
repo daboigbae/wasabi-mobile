@@ -24,10 +24,11 @@ export const handleSignUp = async (data, dispatch) => {
 	}
 };
 
-export const handleSignIn = async (data) => {
+export const handleSignIn = async (data, dispatch) => {
 	const { email, password } = data;
 	try {
-		await auth().signInWithEmailAndPassword(email, password);
+		const user = await auth().signInWithEmailAndPassword(email, password);
+		await dispatch(setUser(user));
 	} catch (error) {
 		if (error.code === FIREBASE_ERROR_CODES.WRONG_PASSWORD || error.code)
 			return Alert.alert("Password does not match email");

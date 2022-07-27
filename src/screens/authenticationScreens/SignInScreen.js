@@ -12,13 +12,15 @@ import {
 import Form from "../../components/common/form/Form";
 import Button, { BUTTON_TYPES } from "../../components/common/Button";
 import { handleSignIn } from "../../utils/firebase";
+import { useDispatch } from "react-redux";
 
 const SignInScreen = ({ navigation }) => {
+	const dispatch = useDispatch();
 	const [isLoading, setIsLoading] = useState(false);
 
 	const onSubmit = async (data) => {
 		setIsLoading(true);
-		await handleSignIn(data);
+		await handleSignIn(data, dispatch);
 		navigation.replace(NAVIGATORS.MAIN);
 	};
 
