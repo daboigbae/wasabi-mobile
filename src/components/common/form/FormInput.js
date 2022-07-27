@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 16,
 		height: 52,
 		color: COLOR_PALETTE.white,
-		borderColor: COLOR_PALETTE.dark.secondary,
+		borderColor: COLOR_PALETTE.lightgray,
 		textAlign: "center",
 		fontWeight: "300",
 		padding: 8,

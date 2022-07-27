@@ -61,7 +61,9 @@ const HomeNavigation = () => {
 						headerRight: () => (
 							<Pressable onPress={() => handleNavigation(navigation)}>
 								<Icon
-									name={isUserAnonymous ? "login" : "logout"}
+									name={
+										isUserAnonymous ? "card-account-details-star" : "logout"
+									}
 									color="white"
 									size={32}
 									style={styles.icon}

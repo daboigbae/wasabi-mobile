@@ -25,8 +25,8 @@ const SignUpScreen = ({ navigation }) => {
 				<View style={styles.container}>
 					<Text style={styles.title}>Wasabi Music</Text>
 					<Text style={styles.funText}>
-						Login to get the full Wasabi Experience, and support your favorite
-						NFT artists
+						Sign up to create an account and start tracking the NFT music you
+						listen to.
 					</Text>
 					<Form
 						inputs={SIGN_IN_FORM_INPUTS_ARRAY}
@@ -36,7 +36,7 @@ const SignUpScreen = ({ navigation }) => {
 						}}
 						onSubmit={onSubmit}
 						isLoading={isLoading}
-						buttonText="Create Account"
+						buttonText="Sign Up"
 					/>
 				</View>
 			</ScrollView>
