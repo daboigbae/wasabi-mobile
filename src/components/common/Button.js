@@ -27,32 +27,16 @@ const Button = ({
 	isLoading = false,
 	isDisabled = false
 }) => {
-	const getStyleForButton = () => {
-		let styleForButtonType = {};
-
-		if (type === BUTTON_TYPES.PRIMARY) {
-			styleForButtonType = {
-				...styles.button
-			};
-		}
-		return { ...styleForButtonType, ...style };
-	};
-
 	const renderLoadingComponent = () => (
 		<ActivityIndicator
 			style={styles.loader}
-			size="large"
-			color={COLOR_PALETTE.lightblue}
+			size="small"
+			color={COLOR_PALETTE.white}
 		/>
 	);
 
 	const renderButtonContent = () => (
-		<Pressable
-			style={getStyleForButton()}
-			onPress={onPress}
-			testID={buttonTestID}
-			disabled={isLoading || isDisabled}
-		>
+		<>
 			{icon && (
 				<View style={styles.iconContainer}>
 					<Icon
@@ -64,10 +48,19 @@ const Button = ({
 				</View>
 			)}
 			<Text style={{ ...styles.title, ...textStyle }}>{text}</Text>
-		</Pressable>
+		</>
 	);
 
-	return isLoading ? renderLoadingComponent() : renderButtonContent();
+	return (
+		<Pressable
+			style={getStyleForButton(type, style)}
+			onPress={onPress}
+			testID={buttonTestID}
+			disabled={isLoading || isDisabled}
+		>
+			{isLoading ? renderLoadingComponent() : renderButtonContent()}
+		</Pressable>
+	);
 };
 
 Button.propTypes = {
@@ -84,6 +77,17 @@ Button.propTypes = {
 
 export default Button;
 
+const getStyleForButton = (type, style) => {
+	let styleForButtonType = {};
+
+	if (type === BUTTON_TYPES.PRIMARY) {
+		styleForButtonType = {
+			...styles.button
+		};
+	}
+	return { ...styleForButtonType, ...style };
+};
+
 const styles = StyleSheet.create({
 	iconContainer: {
 		justifyContent: "center",
@@ -98,7 +102,8 @@ const styles = StyleSheet.create({
 		height: 52,
 		justifyContent: "center",
 		alignItems: "center",
-		display: "flex"
+		display: "flex",
+		borderRadius: 4
 	},
 	primaryButton: {
 		backgroundColor: COLOR_PALETTE.lightblue,
@@ -112,8 +117,5 @@ const styles = StyleSheet.create({
 	},
 	icon: {
 		color: "red"
-	},
-	loader: {
-		marginTop: 32
 	}
 });
