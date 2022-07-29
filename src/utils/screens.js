@@ -33,7 +33,6 @@ export const USER_AUTH_SCREENS_ARRAY = [
 			headerBackTitle: " "
 		})
 	},
-
 	{
 		name: USER_AUTH_SCREENS.SIGN_UP_SCREEN,
 		component: (props) => <SignUpScreen {...props} />,
