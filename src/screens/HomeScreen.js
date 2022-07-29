@@ -12,10 +12,7 @@ import { useSelector } from "react-redux";
 import Playlist from "../components/Playlist";
 import { COLOR_PALETTE } from "../utils/constants";
 import GlobalStyles from "../utils/GlobalStyles";
-import {
-	handlePlaylistChange,
-	playSelectedSong
-} from "../utils/MusicPlayerUtil";
+import { handlePlaylistChange } from "../utils/MusicPlayerUtil";
 import { objToArray } from "../utils/utils";
 
 const HomeScreen = () => {
@@ -29,7 +26,6 @@ const HomeScreen = () => {
 
 	const onPress = async (songs) => {
 		await handlePlaylistChange(songs);
-		await playSelectedSong(0);
 	};
 
 	const renderPlaylists = () => (

@@ -15,12 +15,11 @@ import TrackPlayer, {
 	usePlaybackState
 } from "react-native-track-player";
 
-import { handlePause } from "../../utils/MusicPlayerUtil";
-
 import SliderComp from "./Slider";
 import GlobalStyles from "../../utils/GlobalStyles";
 
 import { COLOR_PALETTE, icons } from "../../utils/constants";
+
 const windowWidth = Dimensions.get("window").width;
 
 function Player() {
@@ -31,11 +30,11 @@ function Player() {
 
 	useEffect(() => {
 		const getCurrentTrack = async () => {
-			if (playbackState === "playing") {
+			if (playbackState === State.Playing) {
 				const currentTrackIndex = await TrackPlayer.getCurrentTrack();
 				setCurrentTrack(await TrackPlayer.getTrack(currentTrackIndex));
 				setIsLoading(false);
-			} else if (playbackState === "connecting") {
+			} else if (playbackState === State.Connecting) {
 				setIsLoading(true);
 			}
 		};
@@ -66,12 +65,18 @@ function Player() {
 	//	}
 	//});
 
+	const handlePlayButtonOnPress = async () => {
+		playbackState === State.Playing
+			? await TrackPlayer.pause()
+			: await TrackPlayer.play();
+	};
+
 	const renderControls = () => (
 		<View style={styles.controls}>
 			<Pressable onPress={handleSkipBackwardOnPress}>
 				<Icon name={icons.back} color={COLOR_PALETTE.white} size={24} />
 			</Pressable>
-			<Pressable onPress={() => handlePause(playbackState)} testID="playButton">
+			<Pressable onPress={handlePlayButtonOnPress} testID="playButton">
 				<Icon
 					name={playbackState === State.Playing ? icons.pause : icons.play}
 					color={COLOR_PALETTE.white}
