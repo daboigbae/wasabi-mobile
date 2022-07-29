@@ -14,7 +14,8 @@ export const HOME_SCREENS_ARRAY = [
 	{
 		name: HOME_SCREENS.HOME_SCREEN,
 		component: () => <HomeScreen />,
-		tabIcon: "home"
+		tabIcon: "home",
+		headerShown: true
 	},
 	{
 		name: HOME_SCREENS.LIBRARY_SCREEN,

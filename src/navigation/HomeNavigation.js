@@ -36,6 +36,7 @@ const HomeNavigation = () => {
 							<TabBarIcon name={item.tabIcon} color={color} size={size} />
 						),
 						headerRight: () => <AuthenticationIcon navigation={navigation} />,
+						headerShown: item?.headerShown || false,
 						...TAB_SCREEN_OPTIONS
 					})}
 				>
