@@ -24,6 +24,10 @@ const HomeScreen = () => {
 		objToArray(music?.playlists || {})
 	);
 
+	const email = useSelector(
+		({ UserSlice }) => UserSlice?.userInformation?.user?.email
+	);
+
 	const onPress = async (songs) => {
 		await handlePlaylistChange(songs);
 		await playSelectedSong(0);
@@ -51,7 +55,9 @@ const HomeScreen = () => {
 		<SafeAreaView style={[StyleSheet.absoluteFill, GlobalStyles.appView]}>
 			<ScrollView>
 				<View style={styles.container}>
-					<Text style={styles.title}>Wasabi Music</Text>
+					<Text style={styles.title}>
+						{email ? `Welcome ${email}` : "Wasabi Music"}
+					</Text>
 					<Text style={styles.funText}>
 						Wasabi Music is a music streaming platform. Listen to your favorite
 						music NFTs and tell us what you think about them.
