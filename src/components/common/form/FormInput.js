@@ -12,6 +12,11 @@ const FormInput = ({ element, control, rules }) => {
 	}) => (
 		<>
 			<TextInput
+				secureTextEntry={element?.name === "Password" ? true : false}
+				autoCapitalize={element?.name === "Email" ? "none" : "sentences"}
+				keyboardType={
+					element?.name === "Phone Number" ? "number-pad" : "default"
+				}
 				style={styles.input}
 				onBlur={onBlur}
 				onChangeText={onChange}
