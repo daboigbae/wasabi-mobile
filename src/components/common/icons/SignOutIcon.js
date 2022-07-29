@@ -16,7 +16,7 @@ const SignOutIcon = ({ navigation }) => {
 	const onPress = async () => {
 		await handleSignOut(() => {
 			dispatch(clearUserInformation());
-			navigation.replace(NAVIGATORS.MAIN);
+			navigation.replace(NAVIGATORS.LANDING);
 		});
 	};
 
