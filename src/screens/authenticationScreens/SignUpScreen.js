@@ -11,6 +11,7 @@ import {
 } from "../../utils/constants";
 import Form from "../../components/common/form/Form";
 import { handleSignUp } from "../../utils/firebase";
+import { setUserInformation } from "../../redux/UserSlice";
 
 const SignUpScreen = ({ navigation }) => {
 	const dispatch = useDispatch();
@@ -18,10 +19,15 @@ const SignUpScreen = ({ navigation }) => {
 
 	const onSubmit = async (data) => {
 		setIsLoading(true);
-		await handleSignUp(data, dispatch);
-		navigation.replace(NAVIGATORS.LANDING);
-		setIsLoading(false);
+		await handleSignUp(data, (user) => {
+			if (user) {
+				dispatch(setUserInformation(user));
+				navigation.replace(NAVIGATORS.LANDING);
+			}
+			setIsLoading(false);
+		});
 	};
+
 	return (
 		<SafeAreaView style={[StyleSheet.absoluteFill, GlobalStyles.appView]}>
 			<ScrollView style={styles.wrapper}>
