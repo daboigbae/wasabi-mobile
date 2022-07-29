@@ -58,13 +58,6 @@ function Player() {
 		}
 	};
 
-	//useTrackPlayerEvents([Event.PlaybackTrackChanged], async (event) => {
-	//	if (event.type === Event.PlaybackTrackChanged && event.nextTrack != null) {
-	//		const track = await TrackPlayer.getTrack(event.nextTrack);
-	//		setCurrentSong(track);
-	//	}
-	//});
-
 	const handlePlayButtonOnPress = async () => {
 		playbackState === State.Playing
 			? await TrackPlayer.pause()

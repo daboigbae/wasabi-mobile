@@ -1,8 +1,6 @@
 import { Alert } from "react-native";
 import TrackPlayer, { Capability } from "react-native-track-player";
 
-import SongLibrary from "../assets/SongLibrary";
-
 export const handlePlaylistChange = async (playlist) => {
 	try {
 		await TrackPlayer.stop();
@@ -18,6 +16,12 @@ export const playerSetup = async () => {
 	try {
 		await TrackPlayer.setupPlayer().then(() => {
 			TrackPlayer.updateOptions({
+				capabilities: [
+					Capability.Play,
+					Capability.Pause,
+					Capability.SkipToNext,
+					Capability.SkipToPrevious
+				],
 				compactCapabilities: [
 					Capability.Play,
 					Capability.Pause,
@@ -31,8 +35,6 @@ export const playerSetup = async () => {
 					Capability.SkipToPrevious
 				]
 			});
-
-			TrackPlayer.add(SongLibrary);
 		});
 	} catch (err) {
 		// TODO handle error
