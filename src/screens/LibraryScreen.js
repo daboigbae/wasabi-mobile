@@ -1,60 +1,27 @@
 import React from "react";
-import {
-	View,
-	Text,
-	StyleSheet,
-	SafeAreaView,
-	Image,
-	FlatList
-} from "react-native";
+import { StyleSheet, SafeAreaView } from "react-native";
+import { InstantSearch } from "react-instantsearch-native";
+import algoliasearch from "algoliasearch/lite";
 
-import SongLibrary from "../assets/SongLibrary";
-import { coverImage } from "../utils/constants";
-import Divider from "../components/common/Divider";
-import Song from "../components/Song";
 import Player from "../components/player/Player";
 import GlobalStyles from "../utils/GlobalStyles";
+import SearchBox from "../components/algolia/SearchBox";
+import InfiniteHits from "../components/algolia/InfiniteHits";
+
+import { REACT_APP_ALGOLIA_APP_ID, REACT_APP_ALGOLIA_API_KEY } from "@env";
 
 const LibraryScreen = () => {
-	const renderPlaylist = ({ item, index }) => (
-		<Song
-			testID={`song:${index}`}
-			song={item}
-			songIndex={index}
-			playlist={SongLibrary}
-		/>
+	const searchClient = algoliasearch(
+		REACT_APP_ALGOLIA_APP_ID,
+		REACT_APP_ALGOLIA_API_KEY
 	);
 
 	return (
-		<SafeAreaView
-			style={[StyleSheet.absoluteFill, styles.container, GlobalStyles.appView]}
-		>
-			<View style={styles.flexContainer}>
-				<View style={styles.detailsContainer}>
-					<Image
-						style={styles.playlistImage}
-						source={{
-							uri: coverImage
-						}}
-					/>
-					<View style={styles.contentContainer}>
-						<Text style={[styles.titleText, GlobalStyles.whiteText]}>
-							Top NFT Songs
-						</Text>
-						<Text style={GlobalStyles.whiteText}>
-							Total Songs: {SongLibrary?.length}
-						</Text>
-					</View>
-				</View>
-				<Divider />
-				<FlatList
-					data={SongLibrary}
-					renderItem={renderPlaylist}
-					keyExtractor={(item, index) => index.toString()}
-					contentContainerStyle={styles.songList}
-					showsVerticalScrollIndicator={false}
-				/>
-			</View>
+		<SafeAreaView style={[styles.container, GlobalStyles.appView]}>
+			<InstantSearch searchClient={searchClient} indexName="dev_WASABI">
+				<SearchBox />
+				<InfiniteHits />
+			</InstantSearch>
 
 			<Player />
 		</SafeAreaView>
@@ -65,7 +32,8 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		justifyContent: "flex-start",
-		position: "relative"
+		position: "relative",
+		paddingBottom: 2000
 	},
 
 	flexContainer: {
