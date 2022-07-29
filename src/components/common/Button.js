@@ -24,40 +24,50 @@ const Button = ({
 	buttonTestID,
 	icon,
 	type = BUTTON_TYPES.PRIMARY,
-	isLoading
+	isLoading = false,
+	isDisabled = false
 }) => {
-	const getStyleForButtonType = () =>
-		type === BUTTON_TYPES.PRIMARY ? styles.primaryButton : {};
+	const getStyleForButton = () => {
+		let styleForButtonType = {};
 
-	const renderButton = () =>
-		isLoading ? (
-			<ActivityIndicator
-				style={styles.loader}
-				size="large"
-				color={COLOR_PALETTE.lightblue}
-			/>
-		) : (
-			<Pressable
-				style={{ ...styles.button, ...getStyleForButtonType(), ...style }}
-				onPress={onPress}
-				testID={buttonTestID}
-				disabled={isLoading}
-			>
-				{icon && (
-					<View style={styles.iconContainer}>
-						<Icon
-							name={icon}
-							color={COLOR_PALETTE.red500}
-							style={styles.icon}
-							size={32}
-						/>
-					</View>
-				)}
-				<Text style={{ ...styles.title, ...textStyle }}>{text}</Text>
-			</Pressable>
-		);
+		if (type === BUTTON_TYPES.PRIMARY) {
+			styleForButtonType = {
+				...styles.button
+			};
+		}
+		return { ...styleForButtonType, ...style };
+	};
 
-	return renderButton();
+	const renderLoadingComponent = () => (
+		<ActivityIndicator
+			style={styles.loader}
+			size="large"
+			color={COLOR_PALETTE.lightblue}
+		/>
+	);
+
+	const renderButtonContent = () => (
+		<Pressable
+			style={getStyleForButton()}
+			onPress={onPress}
+			testID={buttonTestID}
+			disabled={isLoading || isDisabled}
+		>
+			{icon && (
+				<View style={styles.iconContainer}>
+					<Icon
+						name={icon}
+						color={COLOR_PALETTE.red500}
+						style={styles.icon}
+						size={32}
+					/>
+				</View>
+			)}
+			<Text style={{ ...styles.title, ...textStyle }}>{text}</Text>
+		</Pressable>
+	);
+
+	return isLoading ? renderLoadingComponent() : renderButtonContent();
 };
 
 Button.propTypes = {
@@ -68,7 +78,8 @@ Button.propTypes = {
 	buttonTestID: PropTypes.string,
 	icon: PropTypes.string,
 	type: PropTypes.string,
-	isLoading: PropTypes.bool
+	isLoading: PropTypes.bool,
+	isDisabled: PropTypes.bool
 };
 
 export default Button;

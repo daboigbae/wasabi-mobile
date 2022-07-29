@@ -38,7 +38,7 @@ const SignInScreen = ({ navigation }) => {
 						style={styles.textButton}
 						textStyle={styles.textButtonText}
 						type={BUTTON_TYPES.TEXT}
-						isLoading={isLoading}
+						isDisabled={isLoading}
 					/>
 				</View>
 			</ScrollView>
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
 		marginBottom: 16
 	},
 	textButton: {
-		marginTop: 16
+		marginTop: 32
 	},
 
 	textButtonText: {
