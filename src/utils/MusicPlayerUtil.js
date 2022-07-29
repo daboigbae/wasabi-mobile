@@ -27,16 +27,6 @@ export const playSelectedSong = async (selectedSong) => {
 	await TrackPlayer.play();
 };
 
-export const handleSkipForward = async () => {
-	await TrackPlayer.skipToNext();
-
-	await new Promise((r) =>
-		setTimeout(r, TIME_OUT_BETWEEN_SKIPS_IN_MILLISECONDS)
-	);
-
-	await TrackPlayer.play();
-};
-
 export const handleSkipBackward = async () => {
 	await TrackPlayer.skipToPrevious();
 

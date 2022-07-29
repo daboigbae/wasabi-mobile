@@ -9,7 +9,6 @@ import {
 } from "react-native";
 import { useSelector } from "react-redux";
 
-import Player from "../components/player/Player";
 import Playlist from "../components/Playlist";
 import { COLOR_PALETTE } from "../utils/constants";
 import GlobalStyles from "../utils/GlobalStyles";
@@ -66,7 +65,6 @@ const HomeScreen = () => {
 					{renderPlaylists()}
 				</View>
 			</ScrollView>
-			<Player />
 		</SafeAreaView>
 	);
 };
