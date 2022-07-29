@@ -13,6 +13,7 @@ import Form from "../../components/common/form/Form";
 import Button, { BUTTON_TYPES } from "../../components/common/Button";
 import { handleSignIn } from "../../utils/firebase";
 import { useDispatch } from "react-redux";
+import { setUserInformation } from "../../redux/UserSlice";
 
 const SignInScreen = ({ navigation }) => {
 	const dispatch = useDispatch();
@@ -20,8 +21,13 @@ const SignInScreen = ({ navigation }) => {
 
 	const onSubmit = async (data) => {
 		setIsLoading(true);
-		await handleSignIn(data, dispatch);
-		navigation.replace(NAVIGATORS.MAIN);
+		await handleSignIn(data, (user) => {
+			if (user) {
+				dispatch(setUserInformation(user));
+				navigation.replace(NAVIGATORS.LANDING);
+			}
+			setIsLoading(false);
+		});
 	};
 
 	return (

@@ -7,9 +7,11 @@ import SignInIcon from "./SignInIcon";
 import SignOutIcon from "./SignOutIcon";
 
 const AuthenticationIcon = ({ navigation }) => {
-	const user = useSelector(({ user }) => user?.user?.user);
+	const userInformation = useSelector(
+		({ UserSlice }) => UserSlice?.userInformation
+	);
 
-	return !user ? (
+	return !userInformation ? (
 		<SignInIcon navigation={navigation} />
 	) : (
 		<SignOutIcon navigation={navigation} />

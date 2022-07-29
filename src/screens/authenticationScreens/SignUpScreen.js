@@ -19,7 +19,7 @@ const SignUpScreen = ({ navigation }) => {
 	const onSubmit = async (data) => {
 		setIsLoading(true);
 		await handleSignUp(data, dispatch);
-		navigation.replace(NAVIGATORS.MAIN);
+		navigation.replace(NAVIGATORS.LANDING);
 		setIsLoading(false);
 	};
 	return (

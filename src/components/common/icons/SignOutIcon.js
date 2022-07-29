@@ -1,12 +1,23 @@
-import { Pressable, StyleSheet } from "react-native";
 import React from "react";
+
+import { Pressable, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+
+import PropTypes from "prop-types";
+
 import { COLOR_PALETTE, NAVIGATORS } from "../../../utils/constants";
 import { handleSignOut } from "../../../utils/firebase";
+import { clearUserInformation } from "../../../redux/UserSlice";
+import { useDispatch } from "react-redux";
 
 const SignOutIcon = ({ navigation }) => {
+	const dispatch = useDispatch();
+
 	const onPress = async () => {
-		await handleSignOut(() => navigation.navigate(NAVIGATORS.MAIN));
+		await handleSignOut(() => {
+			dispatch(clearUserInformation());
+			navigation.replace(NAVIGATORS.MAIN);
+		});
 	};
 
 	return (
@@ -22,7 +33,7 @@ const SignOutIcon = ({ navigation }) => {
 };
 
 SignOutIcon.propTypes = {
-	navigation: SignOutIcon.object
+	navigation: PropTypes.object
 };
 
 export default SignOutIcon;

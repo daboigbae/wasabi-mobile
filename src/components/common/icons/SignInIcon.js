@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import { Pressable, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
@@ -19,7 +20,7 @@ const SignInIcon = ({ navigation }) => {
 };
 
 SignInIcon.propTypes = {
-	navigation: SignInIcon.object
+	navigation: PropTypes.object
 };
 
 export default SignInIcon;
