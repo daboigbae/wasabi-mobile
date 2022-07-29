@@ -1,13 +1,9 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { HOME_SCREENS_ARRAY } from "../utils/screens";
-import { COLOR_PALETTE, NAVIGATORS } from "../utils/constants";
-import { Pressable } from "react-native";
-import { handleSignOut } from "../utils/firebase";
+import { COLOR_PALETTE } from "../utils/constants";
 import TabBarIcon from "../components/common/icons/TabBarIcon";
-import SignInIcon from "../components/common/icons/SignInIcon";
-import SignOutIcon from "../components/common/icons/SignOutIcon";
+import AuthenticationIcon from "../components/common/icons/AuthenticationIcon";
 
 const Tab = createBottomTabNavigator();
 
@@ -28,13 +24,6 @@ const TAB_SCREEN_OPTIONS = {
 };
 
 const HomeNavigation = () => {
-	const user = useSelector(({ user }) => user?.user?.user);
-
-	const handleNavigation = async (navigation) =>
-		!user
-			? navigation.navigate(NAVIGATORS.USER_AUTH)
-			: handleSignOut(() => navigation.navigate(NAVIGATORS.MAIN));
-
 	return (
 		<Tab.Navigator>
 			{HOME_SCREENS_ARRAY.map((item, index) => (
@@ -46,11 +35,7 @@ const HomeNavigation = () => {
 						tabBarIcon: ({ color, size }) => (
 							<TabBarIcon name={item.tabIcon} color={color} size={size} />
 						),
-						headerRight: () => (
-							<Pressable onPress={() => handleNavigation(navigation)}>
-								{!user ? <SignInIcon /> : <SignOutIcon />}
-							</Pressable>
-						),
+						headerRight: () => <AuthenticationIcon navigation={navigation} />,
 						...TAB_SCREEN_OPTIONS
 					})}
 				>

@@ -1,17 +1,28 @@
-import { StyleSheet } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 import React from "react";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import { COLOR_PALETTE } from "../../../utils/constants";
+import { COLOR_PALETTE, NAVIGATORS } from "../../../utils/constants";
+import { handleSignOut } from "../../../utils/firebase";
 
-const SignOutIcon = () => {
+const SignOutIcon = ({ navigation }) => {
+	const onPress = async () => {
+		await handleSignOut(() => navigation.navigate(NAVIGATORS.MAIN));
+	};
+
 	return (
-		<Icon
-			name="logout"
-			color={COLOR_PALETTE.white}
-			size={32}
-			style={styles.icon}
-		/>
+		<Pressable onPress={onPress}>
+			<Icon
+				name="logout"
+				color={COLOR_PALETTE.white}
+				size={32}
+				style={styles.icon}
+			/>
+		</Pressable>
 	);
+};
+
+SignOutIcon.propTypes = {
+	navigation: SignOutIcon.object
 };
 
 export default SignOutIcon;
