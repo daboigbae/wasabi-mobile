@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { HOME_SCREENS_ARRAY } from "../utils/screens";
 import { COLOR_PALETTE, NAVIGATORS } from "../utils/constants";
@@ -30,12 +30,10 @@ const TAB_SCREEN_OPTIONS = {
 const HomeNavigation = () => {
 	const user = useSelector(({ user }) => user?.user?.user);
 
-	const dispatch = useDispatch();
-
 	const handleNavigation = async (navigation) =>
-		user?.isAnonymous
+		!user
 			? navigation.navigate(NAVIGATORS.USER_AUTH)
-			: handleSignOut(dispatch);
+			: handleSignOut(() => navigation.navigate(NAVIGATORS.MAIN));
 
 	return (
 		<Tab.Navigator>
@@ -50,7 +48,7 @@ const HomeNavigation = () => {
 						),
 						headerRight: () => (
 							<Pressable onPress={() => handleNavigation(navigation)}>
-								{user?.isAnonymous ? <SignInIcon /> : <SignOutIcon />}
+								{!user ? <SignInIcon /> : <SignOutIcon />}
 							</Pressable>
 						),
 						...TAB_SCREEN_OPTIONS

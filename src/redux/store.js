@@ -10,7 +10,7 @@ import MusicSlice from "./MusicSlice";
 
 const reducers = combineReducers({
 	music: MusicSlice,
-	user: UserSlice
+	UserSlice: UserSlice
 });
 
 const persistConfig = {

@@ -4,6 +4,7 @@ import { StyleSheet, View } from "react-native";
 import { useForm } from "react-hook-form";
 import FormInput from "./FormInput";
 import Button, { BUTTON_TYPES } from "../Button";
+import { COLOR_PALETTE } from "../../../utils/constants";
 
 const Form = ({ inputs, defaultValues, onSubmit, isLoading, buttonText }) => {
 	const { control, handleSubmit } = useForm({
@@ -49,7 +50,8 @@ const styles = StyleSheet.create({
 		width: "100%"
 	},
 	loginButton: {
-		marginTop: 32
+		marginTop: 32,
+		backgroundColor: COLOR_PALETTE.lightblue
 	},
 	buttonText: {
 		color: "white",

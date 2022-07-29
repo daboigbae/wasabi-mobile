@@ -21,7 +21,7 @@ import { setUser } from "../redux/UserSlice";
 const LandingScreen = ({ navigation }) => {
 	const dispatch = useDispatch();
 
-	const user = useSelector(({ user }) => user?.user?.user);
+	const user = useSelector(({ UserSlice }) => UserSlice?.user);
 
 	const loadInitialPlaylists = async () => {
 		const playlistSnapshot = await database().ref("/playlists").once("value");

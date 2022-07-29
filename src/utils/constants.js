@@ -62,5 +62,9 @@ export const DEFAULT_FORM_VALUES = {
 	SIGN_IN: {
 		email: "",
 		password: ""
+	},
+	SIGN_UP: {
+		email: "",
+		password: ""
 	}
 };

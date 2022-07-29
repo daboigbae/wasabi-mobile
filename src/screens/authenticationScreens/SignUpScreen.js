@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import GlobalStyles from "../../utils/GlobalStyles";
 import {
 	COLOR_PALETTE,
+	DEFAULT_FORM_VALUES,
 	NAVIGATORS,
 	SIGN_IN_FORM_INPUTS_ARRAY
 } from "../../utils/constants";
@@ -32,10 +33,7 @@ const SignUpScreen = ({ navigation }) => {
 					</Text>
 					<Form
 						inputs={SIGN_IN_FORM_INPUTS_ARRAY}
-						defaultValues={{
-							email: "",
-							password: ""
-						}}
+						defaultValues={DEFAULT_FORM_VALUES.SIGN_UP}
 						onSubmit={onSubmit}
 						isLoading={isLoading}
 						buttonText="Sign Up"

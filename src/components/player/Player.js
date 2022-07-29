@@ -68,17 +68,13 @@ function Player() {
 	const renderControls = () => (
 		<View style={styles.controls}>
 			<Pressable onPress={handleSkipBackwardOnPress}>
-				<Icon name={icons.back} color={COLOR_PALETTE.lightgray} size={24} />
+				<Icon name={icons.back} color={COLOR_PALETTE.white} size={24} />
 			</Pressable>
 			<Pressable onPress={() => handlePause(playbackState)} testID="playButton">
-				<Icon
-					name={getPlayButtonIcon}
-					color={COLOR_PALETTE.lightgray}
-					size={40}
-				/>
+				<Icon name={getPlayButtonIcon} color={COLOR_PALETTE.white} size={40} />
 			</Pressable>
 			<Pressable onPress={handleSkipForwardOnPress}>
-				<Icon name={icons.forward} color={COLOR_PALETTE.lightgray} size={24} />
+				<Icon name={icons.forward} color={COLOR_PALETTE.white} size={24} />
 			</Pressable>
 		</View>
 	);
