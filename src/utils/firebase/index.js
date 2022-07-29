@@ -24,12 +24,10 @@ export const handleSignUp = async (data, dispatch) => {
 	}
 };
 
-export const handleSignOut = async (dispatch) => {
+export const handleSignOut = async (callback) => {
 	try {
 		await auth().signOut();
-		const anonymousUser = await auth().signInAnonymously();
-		await dispatch(setUser(anonymousUser));
-		Alert.alert("Singed out!");
+		callback && callback();
 	} catch (error) {
 		Alert.alert("Something went wrong, please contact support");
 	}

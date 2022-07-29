@@ -17,6 +17,7 @@ const SignInScreen = ({ navigation }) => {
 	const onSubmit = () => {
 		setIsLoading(true);
 	};
+
 	return (
 		<SafeAreaView style={[StyleSheet.absoluteFill, GlobalStyles.appView]}>
 			<ScrollView style={styles.wrapper}>
