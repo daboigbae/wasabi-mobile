@@ -32,6 +32,7 @@
 		"algoliasearch": "^4.14.2",
 		"eslint-config-prettier": "^8.5.0",
 		"react": "18.0.0",
+		"react-hook-form": "^7.33.1",
 		"react-instantsearch-native": "^6.30.2",
 		"react-native": "0.69.1",
 		"react-native-dotenv": "^3.3.1",

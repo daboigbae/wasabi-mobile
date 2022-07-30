@@ -3,8 +3,7 @@ import {
 	StyleSheet,
 	SafeAreaView,
 	ActivityIndicator,
-	Text,
-	Alert
+	Text
 } from "react-native";
 
 import { useDispatch } from "react-redux";
@@ -22,30 +21,15 @@ const LandingScreen = ({ navigation }) => {
 	const dispatch = useDispatch();
 
 	const loadInitialPlaylists = async () => {
+		await auth().signInAnonymously();
 		const playlistSnapshot = await database().ref("/playlists").once("value");
-
 		dispatch(setPlaylists(playlistSnapshot.val()));
-
 		navigation.replace(NAVIGATORS.MAIN);
 	};
 
-	const onAuthStateChanged = async (user) => {
-		if (user) {
-			await loadInitialPlaylists();
-		} else {
-			Alert.alert("Something went wrong please try again");
-		}
-	};
-
 	useEffect(() => {
-		const signInUserAnonymously = async () => {
-			await auth().signInAnonymously();
-		};
-
-		const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-		signInUserAnonymously();
-		return subscriber;
-	}, []);
+		loadInitialPlaylists();
+	}, [navigation]);
 
 	return (
 		<SafeAreaView
