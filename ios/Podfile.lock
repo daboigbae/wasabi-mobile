@@ -283,7 +283,7 @@ PODS:
     - ReactCommon/turbomodule/core
   - react-native-slider (4.2.4):
     - React-Core
-  - react-native-track-player (2.2.0-rc4):
+  - react-native-track-player (2.2.0-rc4-e36a016d1640e75649d6da4056f8977da33864e1):
     - React-Core
     - SwiftAudioEx (= 0.15.2)
   - React-perflogger (0.69.1)
@@ -589,7 +589,7 @@ SPEC CHECKSUMS:
   React-logger: ca970551cb7eea2fd814d0d5f6fc1a471eb53b76
   react-native-safe-area-context: 6c12e3859b6f27b25de4fee8201cfb858432d8de
   react-native-slider: cecabb58ecffad671d2ad3ccc58c7f4d2d029e95
-  react-native-track-player: 54a0a51b366a018da124837d09f20690372efb35
+  react-native-track-player: 2f484090d3db84c0cd6968bf7985420851b52490
   React-perflogger: c9161ff0f1c769993cd11d2751e4331ff4ceb7cd
   React-RCTActionSheet: 2d885b0bea76a5254ef852939273edd8de116180
   React-RCTAnimation: 353fa4fc3c19060068832dd32e555182ec07be45

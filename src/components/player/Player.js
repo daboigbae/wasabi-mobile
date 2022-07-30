@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import {
 	View,
@@ -6,72 +6,75 @@ import {
 	StyleSheet,
 	Image,
 	Pressable,
-	Dimensions
+	Dimensions,
+	ActivityIndicator
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import TrackPlayer, {
-	Event,
 	State,
-	usePlaybackState,
-	useTrackPlayerEvents
+	usePlaybackState
 } from "react-native-track-player";
-
-import {
-	handlePause,
-	handleSkipBackward,
-	handleSkipForward,
-	playSelectedSong
-} from "../../utils/MusicPlayerUtil";
-
-import SongLibrary from "../../assets/SongLibrary";
 
 import SliderComp from "./Slider";
 import GlobalStyles from "../../utils/GlobalStyles";
 
 import { COLOR_PALETTE, icons } from "../../utils/constants";
+
 const windowWidth = Dimensions.get("window").width;
 
 function Player() {
 	const playbackState = usePlaybackState();
-	const [currentSong, setCurrentSong] = useState();
 
-	const getPlayButtonIcon = useMemo(
-		() => (playbackState === State.Playing ? icons.pause : icons.play),
-		[playbackState]
-	);
+	const [currentTrack, setCurrentTrack] = useState(null);
+	const [isLoading, setIsLoading] = useState(false);
 
-	const resetPlayer = async () => {
-		playSelectedSong(0);
-	};
+	useEffect(() => {
+		const getCurrentTrack = async () => {
+			if (playbackState === State.Playing) {
+				const currentTrackIndex = await TrackPlayer.getCurrentTrack();
+				setCurrentTrack(await TrackPlayer.getTrack(currentTrackIndex));
+				setIsLoading(false);
+			} else if (playbackState === State.Connecting) {
+				setIsLoading(true);
+			}
+		};
 
-	const isPlaylistOver = () => 0 + 1 === SongLibrary.length;
+		getCurrentTrack();
+	}, [playbackState]);
 
 	const handleSkipForwardOnPress = async () => {
-		if (isPlaylistOver()) {
-			await resetPlayer();
-		} else {
-			await handleSkipForward();
+		try {
+			await TrackPlayer.skipToNext();
+		} catch (error) {
+			await TrackPlayer.skip(0);
 		}
 	};
 
 	const handleSkipBackwardOnPress = async () => {
-		await handleSkipBackward();
+		try {
+			await TrackPlayer.skipToPrevious();
+		} catch (error) {
+			await TrackPlayer.skip(0);
+		}
 	};
 
-	useTrackPlayerEvents([Event.PlaybackTrackChanged], async (event) => {
-		if (event.type === Event.PlaybackTrackChanged && event.nextTrack != null) {
-			const track = await TrackPlayer.getTrack(event.nextTrack);
-			setCurrentSong(track);
-		}
-	});
+	const handlePlayButtonOnPress = async () => {
+		playbackState === State.Playing
+			? await TrackPlayer.pause()
+			: await TrackPlayer.play();
+	};
 
 	const renderControls = () => (
 		<View style={styles.controls}>
 			<Pressable onPress={handleSkipBackwardOnPress}>
 				<Icon name={icons.back} color={COLOR_PALETTE.white} size={24} />
 			</Pressable>
-			<Pressable onPress={() => handlePause(playbackState)} testID="playButton">
-				<Icon name={getPlayButtonIcon} color={COLOR_PALETTE.white} size={40} />
+			<Pressable onPress={handlePlayButtonOnPress} testID="playButton">
+				<Icon
+					name={playbackState === State.Playing ? icons.pause : icons.play}
+					color={COLOR_PALETTE.white}
+					size={40}
+				/>
 			</Pressable>
 			<Pressable onPress={handleSkipForwardOnPress}>
 				<Icon name={icons.forward} color={COLOR_PALETTE.white} size={24} />
@@ -80,23 +83,29 @@ function Player() {
 	);
 
 	return (
-		currentSong && (
+		currentTrack && (
 			<View style={styles.player} testID="player">
-				<View style={styles.songDetails}>
-					<Image
-						style={styles.songPlayerImage}
-						source={{ uri: currentSong?.artwork }}
-					/>
-					<View style={styles.songInfoContainer}>
-						<Text style={[styles.songName, GlobalStyles.whiteText]}>
-							{currentSong?.title}
-						</Text>
-						<Text style={[styles.artistName, GlobalStyles.whiteText]}>
-							{currentSong?.artist}
-						</Text>
+				{isLoading ? (
+					<View style={styles.activityIndicatorContainer}>
+						<ActivityIndicator size="small" />
 					</View>
-					{renderControls()}
-				</View>
+				) : (
+					<View style={styles.songDetails}>
+						<Image
+							style={styles.songPlayerImage}
+							source={{ uri: currentTrack?.artwork }}
+						/>
+						<View style={styles.songInfoContainer}>
+							<Text style={[styles.songName, GlobalStyles.whiteText]}>
+								{currentTrack?.title}
+							</Text>
+							<Text style={[styles.artistName, GlobalStyles.whiteText]}>
+								{currentTrack?.artist}
+							</Text>
+						</View>
+						{renderControls()}
+					</View>
+				)}
 				<SliderComp />
 			</View>
 		)
@@ -111,8 +120,7 @@ const styles = StyleSheet.create({
 		borderTopWidth: 4,
 		backgroundColor: COLOR_PALETTE.dark.secondary,
 		width: "100%",
-		position: "absolute",
-		bottom: 0,
+
 		alignItems: "center",
 		shadowRadius: 2,
 		shadowColor: COLOR_PALETTE.shadow,
@@ -149,5 +157,11 @@ const styles = StyleSheet.create({
 		paddingEnd: 16,
 		paddingTop: 8,
 		alignItems: "center"
+	},
+	activityIndicatorContainer: {
+		height: 52,
+		width: "100%",
+		alignItems: "center",
+		justifyContent: "center"
 	}
 });

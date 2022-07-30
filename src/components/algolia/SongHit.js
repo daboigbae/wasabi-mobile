@@ -4,17 +4,14 @@ import PropTypes from "prop-types";
 import { connectHighlight } from "react-instantsearch-native";
 import { COLOR_PALETTE } from "../../utils/constants";
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
-import {
-	handlePlaylistChange,
-	playSelectedSong
-} from "../../utils/MusicPlayerUtil";
+
+import { handlePlaylistChange } from "../../utils/MusicPlayerUtil";
 
 const windowWidth = Dimensions.get("window").width;
 
 const SongHit = ({ hit }) => {
 	const onPress = async () => {
 		await handlePlaylistChange([hit]);
-		await playSelectedSong(0);
 	};
 
 	return (

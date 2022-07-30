@@ -3,7 +3,6 @@ import { StyleSheet, SafeAreaView } from "react-native";
 import { InstantSearch } from "react-instantsearch-native";
 import algoliasearch from "algoliasearch/lite";
 
-import Player from "../components/player/Player";
 import GlobalStyles from "../utils/GlobalStyles";
 import SearchBox from "../components/algolia/SearchBox";
 import InfiniteHits from "../components/algolia/InfiniteHits";
@@ -22,8 +21,6 @@ const LibraryScreen = () => {
 				<SearchBox />
 				<InfiniteHits />
 			</InstantSearch>
-
-			<Player />
 		</SafeAreaView>
 	);
 };

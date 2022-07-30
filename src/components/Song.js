@@ -3,15 +3,11 @@ import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 
 import GlobalStyles from "../utils/GlobalStyles";
 import PropTypes from "prop-types";
-import {
-	handlePlaylistChange,
-	playSelectedSong
-} from "../utils/MusicPlayerUtil";
+import { handlePlaylistChange } from "../utils/MusicPlayerUtil";
 
-const Song = ({ playlist, song, songIndex, testID }) => {
+const Song = ({ playlist, song, testID }) => {
 	const handleOnPress = async () => {
 		await handlePlaylistChange(playlist);
-		await playSelectedSong(songIndex);
 	};
 
 	return (
@@ -32,7 +28,6 @@ const Song = ({ playlist, song, songIndex, testID }) => {
 Song.propTypes = {
 	playlist: PropTypes.array.isRequired,
 	song: PropTypes.object,
-	songIndex: PropTypes.number,
 	testID: PropTypes.string
 };
 

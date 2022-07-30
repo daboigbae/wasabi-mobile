@@ -4,6 +4,7 @@ import { HOME_SCREENS_ARRAY } from "../utils/screens";
 import { COLOR_PALETTE } from "../utils/constants";
 import TabBarIcon from "../components/common/icons/TabBarIcon";
 import AuthenticationIcon from "../components/common/icons/AuthenticationIcon";
+import BottomTabBar from "../components/navigation/BottomTabBar";
 
 const Tab = createBottomTabNavigator();
 
@@ -25,12 +26,11 @@ const TAB_SCREEN_OPTIONS = {
 
 const HomeNavigation = () => {
 	return (
-		<Tab.Navigator>
+		<Tab.Navigator tabBar={(props) => <BottomTabBar {...props} />}>
 			{HOME_SCREENS_ARRAY.map((item, index) => (
 				<Tab.Screen
 					key={index}
 					name={item.name}
-					tabIcon="home"
 					options={({ navigation }) => ({
 						tabBarIcon: ({ color, size }) => (
 							<TabBarIcon name={item.tabIcon} color={color} size={size} />

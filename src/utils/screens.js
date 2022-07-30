@@ -29,15 +29,16 @@ export const USER_AUTH_SCREENS_ARRAY = [
 		name: USER_AUTH_SCREENS.SIGN_IN_SCREEN,
 		component: (props) => <SignInScreen {...props} />,
 		options: () => ({
-			headerTintColor: COLOR_PALETTE.white
+			headerTintColor: COLOR_PALETTE.white,
+			headerBackTitle: " "
 		})
 	},
-
 	{
 		name: USER_AUTH_SCREENS.SIGN_UP_SCREEN,
 		component: (props) => <SignUpScreen {...props} />,
 		options: () => ({
-			headerTintColor: COLOR_PALETTE.white
+			headerTintColor: COLOR_PALETTE.white,
+			headerBackTitle: " "
 		})
 	}
 ];
