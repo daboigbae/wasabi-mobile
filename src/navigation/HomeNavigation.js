@@ -5,6 +5,7 @@ import { COLOR_PALETTE } from "../utils/constants";
 import TabBarIcon from "../components/common/icons/TabBarIcon";
 import AuthenticationIcon from "../components/common/icons/AuthenticationIcon";
 import BottomTabBar from "../components/navigation/BottomTabBar";
+
 const Tab = createBottomTabNavigator();
 
 const TAB_SCREEN_OPTIONS = {
