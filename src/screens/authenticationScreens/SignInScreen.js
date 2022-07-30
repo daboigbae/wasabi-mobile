@@ -1,6 +1,8 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import React, { useEffect, useRef, useState } from "react";
 import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
+import LottieView from "lottie-react-native";
+import PropTypes from "prop-types";
+
 import GlobalStyles from "../../utils/GlobalStyles";
 import {
 	COLOR_PALETTE,
@@ -19,6 +21,12 @@ const SignInScreen = ({ navigation }) => {
 	const dispatch = useDispatch();
 	const [isLoading, setIsLoading] = useState(false);
 
+	const animationRef = useRef(null);
+
+	useEffect(() => {
+		animationRef.current?.play();
+	}, []);
+
 	const onSubmit = async (data) => {
 		setIsLoading(true);
 		await handleSignIn(data, (user) => {
@@ -34,6 +42,12 @@ const SignInScreen = ({ navigation }) => {
 		<SafeAreaView style={[StyleSheet.absoluteFill, GlobalStyles.appView]}>
 			<ScrollView style={styles.wrapper}>
 				<View style={styles.container}>
+					<LottieView
+						source={require("../../assets/lottie/signInAnimation.json")}
+						style={{ width: "50%" }}
+						autoPlay
+						loop
+					/>
 					<Text style={styles.title}>Wasabi Music</Text>
 					<Text style={styles.funText}>Music NFTs</Text>
 					<Form
@@ -68,14 +82,13 @@ export default SignInScreen;
 const styles = StyleSheet.create({
 	wrapper: {
 		flex: 1,
-		width: "100%",
-		paddingTop: "20%"
+		width: "100%"
 	},
 	container: {
 		flex: 1,
 		width: "100%",
-		justifyContent: "center",
-		alignItems: "center"
+		alignItems: "center",
+		paddingTop: "10%"
 	},
 	title: {
 		color: COLOR_PALETTE.white,

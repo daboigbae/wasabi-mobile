@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
+import LottieView from "lottie-react-native";
+
 import GlobalStyles from "../../utils/GlobalStyles";
 import {
 	COLOR_PALETTE,
@@ -32,10 +34,16 @@ const SignUpScreen = ({ navigation }) => {
 		<SafeAreaView style={[StyleSheet.absoluteFill, GlobalStyles.appView]}>
 			<ScrollView style={styles.wrapper}>
 				<View style={styles.container}>
-					<Text style={styles.title}>Wasabi Music</Text>
+					<LottieView
+						source={require("../../assets/lottie/signUpAnimation.json")}
+						style={{ width: "50%" }}
+						autoPlay
+						loop
+					/>
+					<Text style={styles.title}>Start Listening</Text>
 					<Text style={styles.funText}>
-						Sign up to create an account and start tracking the NFT music you
-						listen to.
+						Sign up and create an account to start creating playlists and liking
+						your favorite music NFTs.
 					</Text>
 					<Form
 						inputs={SIGN_IN_FORM_INPUTS_ARRAY}
@@ -59,14 +67,13 @@ export default SignUpScreen;
 const styles = StyleSheet.create({
 	wrapper: {
 		flex: 1,
-		width: "100%",
-		paddingTop: "20%"
+		width: "100%"
 	},
 	container: {
 		flex: 1,
 		width: "100%",
-		justifyContent: "center",
-		alignItems: "center"
+		alignItems: "center",
+		paddingTop: "10%"
 	},
 	title: {
 		color: COLOR_PALETTE.white,
@@ -79,6 +86,7 @@ const styles = StyleSheet.create({
 		width: "85%",
 		textAlign: "center",
 		fontWeight: "300",
-		marginBottom: 16
+		marginBottom: 16,
+		marginTop: 16
 	}
 });

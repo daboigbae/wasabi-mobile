@@ -1,12 +1,8 @@
 import React, { useEffect } from "react";
-import {
-	StyleSheet,
-	SafeAreaView,
-	ActivityIndicator,
-	Text
-} from "react-native";
+import { StyleSheet, SafeAreaView, Text } from "react-native";
 
 import { useDispatch } from "react-redux";
+import LottieView from "lottie-react-native";
 
 import auth from "@react-native-firebase/auth";
 import database from "@react-native-firebase/database";
@@ -28,15 +24,22 @@ const LandingScreen = ({ navigation }) => {
 	};
 
 	useEffect(() => {
-		loadInitialPlaylists();
+		setTimeout(() => {
+			loadInitialPlaylists();
+		}, 2000);
 	}, [navigation]);
 
 	return (
 		<SafeAreaView
 			style={[StyleSheet.absoluteFill, styles.container, GlobalStyles.appView]}
 		>
-			<Text style={styles.title}>Wasabi Music</Text>
-			<ActivityIndicator size="large" color={COLOR_PALETTE.lightgray} />
+			<LottieView
+				source={require("../assets/lottie/landingAnimation.json")}
+				style={{ width: "70%" }}
+				autoPlay
+				loop
+			/>
+			<Text style={styles.title}>gm</Text>
 		</SafeAreaView>
 	);
 };
@@ -56,8 +59,7 @@ const styles = StyleSheet.create({
 	},
 	title: {
 		color: COLOR_PALETTE.white,
-		fontSize: 30,
-		fontWeight: "bold",
-		marginBottom: 16
+		fontSize: 20,
+		fontWeight: "bold"
 	}
 });
