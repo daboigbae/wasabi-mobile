@@ -5,10 +5,13 @@ import { Pressable, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { COLOR_PALETTE, NAVIGATORS } from "../../../utils/constants";
 
-const SignInIcon = ({ navigation }) => (
-	<Pressable onPress={() => navigation.replace(NAVIGATORS.USER_AUTH)}>
+const CloseScreenIcon = ({ navigation }) => (
+	<Pressable
+		style={styles.container}
+		onPress={() => navigation.replace(NAVIGATORS.LANDING)}
+	>
 		<Icon
-			name="card-account-details-star"
+			name="close"
 			color={COLOR_PALETTE.white}
 			size={32}
 			style={styles.icon}
@@ -16,13 +19,14 @@ const SignInIcon = ({ navigation }) => (
 	</Pressable>
 );
 
-SignInIcon.propTypes = {
+CloseScreenIcon.propTypes = {
 	navigation: PropTypes.object
 };
 
-export default SignInIcon;
+export default CloseScreenIcon;
 
 const styles = StyleSheet.create({
+	container: { paddingLeft: 8 },
 	icon: {
 		marginRight: 16
 	}

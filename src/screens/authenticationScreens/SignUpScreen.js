@@ -1,5 +1,12 @@
-import React, { useState } from "react";
-import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import {
+	BackHandler,
+	SafeAreaView,
+	ScrollView,
+	StyleSheet,
+	Text,
+	View
+} from "react-native";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import LottieView from "lottie-react-native";
@@ -18,6 +25,18 @@ import { setUserInformation } from "../../redux/UserSlice";
 const SignUpScreen = ({ navigation }) => {
 	const dispatch = useDispatch();
 	const [isLoading, setIsLoading] = useState(false);
+
+	useEffect(() => {
+		const backHandler = BackHandler.addEventListener(
+			"hardwareBackPress",
+			() => {
+				navigation.goBack();
+				return true;
+			}
+		);
+
+		return () => backHandler.remove();
+	}, []);
 
 	const onSubmit = async (data) => {
 		setIsLoading(true);

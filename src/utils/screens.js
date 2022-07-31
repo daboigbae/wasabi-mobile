@@ -5,10 +5,12 @@ import {
 	HOME_SCREENS,
 	USER_AUTH_SCREENS
 } from "../utils/constants";
-import LibraryScreen from "../screens/LibraryScreen";
+
 import HomeScreen from "../screens/HomeScreen";
 import SignInScreen from "../screens/authenticationScreens/SignInScreen";
 import SignUpScreen from "../screens/authenticationScreens/SignUpScreen";
+import LibraryScreen from "../screens/LibraryScreen";
+import CloseScreenIcon from "../components/common/icons/CloseScreenIcon";
 
 export const HOME_SCREENS_ARRAY = [
 	{
@@ -28,9 +30,9 @@ export const USER_AUTH_SCREENS_ARRAY = [
 	{
 		name: USER_AUTH_SCREENS.SIGN_IN_SCREEN,
 		component: (props) => <SignInScreen {...props} />,
-		options: () => ({
-			headerTintColor: COLOR_PALETTE.white,
-			headerBackTitle: " "
+		options: (props) => ({
+			headerLeft: () => <CloseScreenIcon {...props} />,
+			headerTintColor: COLOR_PALETTE.white
 		})
 	},
 	{

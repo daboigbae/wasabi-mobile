@@ -26,7 +26,7 @@ const LandingScreen = ({ navigation }) => {
 	useEffect(() => {
 		setTimeout(() => {
 			loadInitialPlaylists();
-		}, 2000);
+		}, 700);
 	}, [navigation]);
 
 	return (

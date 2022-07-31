@@ -1,5 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
-import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+	BackHandler,
+	SafeAreaView,
+	ScrollView,
+	StyleSheet,
+	Text,
+	View
+} from "react-native";
 import LottieView from "lottie-react-native";
 import PropTypes from "prop-types";
 
@@ -11,6 +18,7 @@ import {
 	SIGN_IN_FORM_INPUTS_ARRAY,
 	USER_AUTH_SCREENS
 } from "../../utils/constants";
+
 import Form from "../../components/common/form/Form";
 import Button, { BUTTON_TYPES } from "../../components/common/Button";
 import { handleSignIn } from "../../utils/firebase";
@@ -25,6 +33,16 @@ const SignInScreen = ({ navigation }) => {
 
 	useEffect(() => {
 		animationRef.current?.play();
+
+		const backHandler = BackHandler.addEventListener(
+			"hardwareBackPress",
+			() => {
+				navigation.replace(NAVIGATORS.LANDING);
+				return true;
+			}
+		);
+
+		return () => backHandler.remove();
 	}, []);
 
 	const onSubmit = async (data) => {
@@ -59,9 +77,7 @@ const SignInScreen = ({ navigation }) => {
 					/>
 					<Button
 						text="Create an account"
-						onPress={() =>
-							navigation.navigate(USER_AUTH_SCREENS.SIGN_UP_SCREEN)
-						}
+						onPress={() => navigation.push(USER_AUTH_SCREENS.SIGN_UP_SCREEN)}
 						style={styles.textButton}
 						textStyle={styles.textButtonText}
 						type={BUTTON_TYPES.TEXT}
