@@ -38,7 +38,7 @@ export const HOME_SCREENS_ARRAY = [
 	{
 		name: HOME_SCREENS.PLAYLIST_SCREEN,
 		component: (props) => <PlaylistScreen {...props} />,
-		options: { headerShown: false }
+		options: { headerShown: true, headerRight: null, headerTitle: "" }
 	}
 ];
 
