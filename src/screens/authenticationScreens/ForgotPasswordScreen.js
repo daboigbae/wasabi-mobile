@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+	Alert,
+	SafeAreaView,
+	ScrollView,
+	StyleSheet,
+	Text,
+	View
+} from "react-native";
 import PropTypes from "prop-types";
 import LottieView from "lottie-react-native";
 
@@ -10,12 +17,20 @@ import {
 } from "../../utils/constants";
 import Form from "../../components/common/form/Form";
 import GlobalStyles from "../../utils/GlobalStyles";
+import { handleForgotPassword } from "../../utils/firebase";
 
-const ForgotPasswordScreen = () => {
+const ForgotPasswordScreen = ({ navigation }) => {
 	const [isLoading, setIsLoading] = useState(false);
 
-	const onSubmit = async () => {
+	const onSubmit = async (data) => {
 		setIsLoading(true);
+		await handleForgotPassword(data, () => {
+			Alert.alert(
+				"Password Reset",
+				"Link to reset password has been sent to your email"
+			);
+			navigation.goBack();
+		});
 	};
 	return (
 		<SafeAreaView style={[StyleSheet.absoluteFill, GlobalStyles.appView]}>

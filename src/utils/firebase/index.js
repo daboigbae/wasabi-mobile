@@ -47,3 +47,13 @@ export const handleSignOut = async (callback) => {
 		Alert.alert("Something went wrong, please contact support");
 	}
 };
+
+export const handleForgotPassword = async (data, callback) => {
+	const { email } = data;
+	try {
+		await auth().sendPasswordResetEmail(email);
+		callback && callback();
+	} catch (error) {
+		Alert.alert(error.message);
+	}
+};
