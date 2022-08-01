@@ -29,8 +29,7 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		justifyContent: "flex-start",
-		position: "relative",
-		paddingBottom: 2000
+		position: "relative"
 	},
 
 	flexContainer: {

@@ -1,6 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import {
+	BackHandler,
+	SafeAreaView,
+	ScrollView,
+	StyleSheet,
+	Text,
+	View
+} from "react-native";
+import LottieView from "lottie-react-native";
 import PropTypes from "prop-types";
-import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
+
 import GlobalStyles from "../../utils/GlobalStyles";
 import {
 	COLOR_PALETTE,
@@ -9,6 +18,7 @@ import {
 	SIGN_IN_FORM_INPUTS_ARRAY,
 	USER_AUTH_SCREENS
 } from "../../utils/constants";
+
 import Form from "../../components/common/form/Form";
 import Button, { BUTTON_TYPES } from "../../components/common/Button";
 import { handleSignIn } from "../../utils/firebase";
@@ -18,6 +28,18 @@ import { setUserInformation } from "../../redux/UserSlice";
 const SignInScreen = ({ navigation }) => {
 	const dispatch = useDispatch();
 	const [isLoading, setIsLoading] = useState(false);
+
+	useEffect(() => {
+		const backHandler = BackHandler.addEventListener(
+			"hardwareBackPress",
+			() => {
+				navigation.replace(NAVIGATORS.LANDING);
+				return true;
+			}
+		);
+
+		return () => backHandler.remove();
+	}, []);
 
 	const onSubmit = async (data) => {
 		setIsLoading(true);
@@ -34,6 +56,12 @@ const SignInScreen = ({ navigation }) => {
 		<SafeAreaView style={[StyleSheet.absoluteFill, GlobalStyles.appView]}>
 			<ScrollView style={styles.wrapper}>
 				<View style={styles.container}>
+					<LottieView
+						source={require("../../assets/lottie/signInAnimation.json")}
+						style={{ width: "50%" }}
+						autoPlay
+						loop
+					/>
 					<Text style={styles.title}>Wasabi Music</Text>
 					<Text style={styles.funText}>Music NFTs</Text>
 					<Form
@@ -45,9 +73,7 @@ const SignInScreen = ({ navigation }) => {
 					/>
 					<Button
 						text="Create an account"
-						onPress={() =>
-							navigation.navigate(USER_AUTH_SCREENS.SIGN_UP_SCREEN)
-						}
+						onPress={() => navigation.push(USER_AUTH_SCREENS.SIGN_UP_SCREEN)}
 						style={styles.textButton}
 						textStyle={styles.textButtonText}
 						type={BUTTON_TYPES.TEXT}
@@ -68,14 +94,13 @@ export default SignInScreen;
 const styles = StyleSheet.create({
 	wrapper: {
 		flex: 1,
-		width: "100%",
-		paddingTop: "20%"
+		width: "100%"
 	},
 	container: {
 		flex: 1,
 		width: "100%",
-		justifyContent: "center",
-		alignItems: "center"
+		alignItems: "center",
+		paddingTop: "10%"
 	},
 	title: {
 		color: COLOR_PALETTE.white,
