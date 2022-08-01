@@ -20,7 +20,8 @@ export const icons = {
 
 export const USER_AUTH_SCREENS = {
 	SIGN_IN_SCREEN: "Sign In",
-	SIGN_UP_SCREEN: "Sign Up"
+	SIGN_UP_SCREEN: "Sign Up",
+	FORGOT_PASSWORD_SCREEN: "Reset Password"
 };
 
 export const COLOR_PALETTE = {

@@ -79,6 +79,16 @@ const SignInScreen = ({ navigation }) => {
 						type={BUTTON_TYPES.TEXT}
 						isDisabled={isLoading}
 					/>
+					<Button
+						text="Forgot Password?"
+						onPress={() =>
+							navigation.push(USER_AUTH_SCREENS.FORGOT_PASSWORD_SCREEN)
+						}
+						style={styles.textButton}
+						textStyle={styles.textButtonText}
+						type={BUTTON_TYPES.TEXT}
+						idDisabled={isLoading}
+					/>
 				</View>
 			</ScrollView>
 		</SafeAreaView>
@@ -100,7 +110,8 @@ const styles = StyleSheet.create({
 		flex: 1,
 		width: "100%",
 		alignItems: "center",
-		paddingTop: "10%"
+		paddingTop: "10%",
+		paddingBottom: "10%"
 	},
 	title: {
 		color: COLOR_PALETTE.white,
