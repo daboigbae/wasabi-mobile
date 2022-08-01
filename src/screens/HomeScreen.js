@@ -24,8 +24,10 @@ const HomeScreen = ({ navigation }) => {
 		({ UserSlice }) => UserSlice?.userInformation?.user?.email
 	);
 
-	const onPress = async () => {
-		await navigation.navigate(HOME_SCREENS.PLAYLIST_SCREEN);
+	const onPress = async (playlist) => {
+		await navigation.navigate(HOME_SCREENS.PLAYLIST_SCREEN, {
+			playlist
+		});
 	};
 
 	const renderPlaylists = () => (

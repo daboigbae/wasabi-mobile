@@ -8,12 +8,12 @@ export const NAVIGATORS = {
 };
 
 export const MAIN_SCREENS = {
-	HOME_STACK_SCREEN: "Home",
+	HOME_STACK_SCREEN: "home",
 	LIBRARY_SCREEN: "Library"
 };
 
 export const HOME_SCREENS = {
-	HOME_SCREEN: "home",
+	HOME_SCREEN: "Home",
 	PLAYLIST_SCREEN: "Playlist"
 };
 
