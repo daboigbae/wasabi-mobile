@@ -1,6 +1,6 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { HOME_SCREENS_ARRAY } from "../utils/screens";
+import { MAIN_SCREENS_ARRAY } from "../utils/screens";
 import { COLOR_PALETTE } from "../utils/constants";
 import TabBarIcon from "../components/common/icons/TabBarIcon";
 import AuthenticationIcon from "../components/common/icons/AuthenticationIcon";
@@ -27,7 +27,7 @@ const TAB_SCREEN_OPTIONS = {
 const HomeNavigation = () => {
 	return (
 		<Tab.Navigator tabBar={(props) => <BottomTabBar {...props} />}>
-			{HOME_SCREENS_ARRAY.map((item, index) => (
+			{MAIN_SCREENS_ARRAY.map((item, index) => (
 				<Tab.Screen
 					key={index}
 					name={item.name}

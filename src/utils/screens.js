@@ -3,6 +3,7 @@ import React from "react";
 import {
 	COLOR_PALETTE,
 	HOME_SCREENS,
+	MAIN_SCREENS,
 	USER_AUTH_SCREENS
 } from "../utils/constants";
 
@@ -11,18 +12,33 @@ import SignInScreen from "../screens/authenticationScreens/SignInScreen";
 import SignUpScreen from "../screens/authenticationScreens/SignUpScreen";
 import LibraryScreen from "../screens/LibraryScreen";
 import CloseScreenIcon from "../components/common/icons/CloseScreenIcon";
+import HomeStackScreen from "../screens/HomeStackScreen";
+import PlaylistScreen from "../screens/PlaylistScreen";
 
-export const HOME_SCREENS_ARRAY = [
+export const MAIN_SCREENS_ARRAY = [
 	{
-		name: HOME_SCREENS.HOME_SCREEN,
-		component: () => <HomeScreen />,
+		name: MAIN_SCREENS.HOME_STACK_SCREEN,
+		component: () => <HomeStackScreen />,
 		tabIcon: "home",
 		headerShown: true
 	},
 	{
-		name: HOME_SCREENS.LIBRARY_SCREEN,
+		name: MAIN_SCREENS.LIBRARY_SCREEN,
 		component: () => <LibraryScreen />,
 		tabIcon: "music"
+	}
+];
+
+export const HOME_SCREENS_ARRAY = [
+	{
+		name: HOME_SCREENS.HOME_SCREEN,
+		component: (props) => <HomeScreen {...props} />,
+		options: { headerShown: false }
+	},
+	{
+		name: HOME_SCREENS.PLAYLIST_SCREEN,
+		component: (props) => <PlaylistScreen {...props} />,
+		options: { headerShown: false }
 	}
 ];
 

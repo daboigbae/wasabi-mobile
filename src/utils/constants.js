@@ -7,10 +7,16 @@ export const NAVIGATORS = {
 	LANDING: "Landing"
 };
 
-export const HOME_SCREENS = {
-	HOME_SCREEN: "Home",
+export const MAIN_SCREENS = {
+	HOME_STACK_SCREEN: "Home",
 	LIBRARY_SCREEN: "Library"
 };
+
+export const HOME_SCREENS = {
+	HOME_SCREEN: "home",
+	PLAYLIST_SCREEN: "Playlist"
+};
+
 export const icons = {
 	pause: "pause-circle",
 	play: "play-circle",

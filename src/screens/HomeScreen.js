@@ -7,15 +7,15 @@ import {
 	FlatList,
 	ScrollView
 } from "react-native";
+import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 
 import Playlist from "../components/Playlist";
-import { COLOR_PALETTE } from "../utils/constants";
+import { COLOR_PALETTE, HOME_SCREENS } from "../utils/constants";
 import GlobalStyles from "../utils/GlobalStyles";
-import { handlePlaylistChange } from "../utils/MusicPlayerUtil";
 import { objToArray } from "../utils/utils";
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
 	const playlists = useSelector(({ music }) =>
 		objToArray(music?.playlists || {})
 	);
@@ -24,8 +24,8 @@ const HomeScreen = () => {
 		({ UserSlice }) => UserSlice?.userInformation?.user?.email
 	);
 
-	const onPress = async (songs) => {
-		await handlePlaylistChange(songs);
+	const onPress = async () => {
+		await navigation.navigate(HOME_SCREENS.PLAYLIST_SCREEN);
 	};
 
 	const renderPlaylists = () => (
@@ -39,7 +39,7 @@ const HomeScreen = () => {
 					key={item?.name}
 					playlist={item}
 					testId={`playlist:${index}`}
-					onPress={() => onPress(item?.songs || [])}
+					onPress={() => onPress(item)}
 				/>
 			)}
 			keyExtractor={(item) => item.name}
@@ -86,5 +86,9 @@ const styles = StyleSheet.create({
 		paddingTop: 16
 	}
 });
+
+HomeScreen.propTypes = {
+	navigation: PropTypes.object
+};
 
 export default HomeScreen;
