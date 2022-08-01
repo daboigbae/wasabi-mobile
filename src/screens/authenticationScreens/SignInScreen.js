@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
 	BackHandler,
 	SafeAreaView,
@@ -29,11 +29,7 @@ const SignInScreen = ({ navigation }) => {
 	const dispatch = useDispatch();
 	const [isLoading, setIsLoading] = useState(false);
 
-	const animationRef = useRef(null);
-
 	useEffect(() => {
-		animationRef.current?.play();
-
 		const backHandler = BackHandler.addEventListener(
 			"hardwareBackPress",
 			() => {
