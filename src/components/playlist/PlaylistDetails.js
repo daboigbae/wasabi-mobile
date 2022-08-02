@@ -9,8 +9,8 @@ import {
 } from "react-native";
 import PropTypes from "prop-types";
 
-import { COLOR_PALETTE } from "../../../utils/constants";
-import PlaylistPlayIcon from "../icons/PlaylistPlayIcon";
+import { COLOR_PALETTE } from "../../utils/constants";
+import PlaylistPlayIcon from "../common/icons/PlaylistPlayIcon";
 
 const windowWidth = Dimensions.get("window").width;
 
