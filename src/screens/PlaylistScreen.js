@@ -8,8 +8,9 @@ import {
 } from "react-native";
 import PropTypes from "prop-types";
 import GlobalStyles from "../utils/GlobalStyles";
-import Song from "../components/common/playlist/Song";
-import PlaylistDetails from "../components/common/playlist/PlaylistDetails";
+
+import PlaylistDetails from "../components/playlist/PlaylistDetails";
+import Song from "../components/Song";
 
 const PlaylistScreen = ({ route, navigation }) => {
 	const { playlist } = route.params;

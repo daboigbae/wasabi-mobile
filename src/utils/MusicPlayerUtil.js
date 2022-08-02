@@ -20,11 +20,7 @@ export const handleStartPlaylist = async (playlist) => {
 	}
 };
 
-export const getPlaylist = async () => {
-	return await TrackPlayer.getQueue();
-};
-
-export const handleSelectSong = async (index, playlist) => {
+export const playSongFromPlaylist = async (index, playlist) => {
 	try {
 		await handlePlaylistChange(playlist);
 		await TrackPlayer.skip(index);

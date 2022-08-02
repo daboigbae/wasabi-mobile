@@ -10,7 +10,7 @@ import {
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 
-import Playlist from "../components/Playlist";
+import Playlist from "../components/playlist/Playlist";
 import { COLOR_PALETTE, HOME_SCREENS } from "../utils/constants";
 import GlobalStyles from "../utils/GlobalStyles";
 import { objToArray } from "../utils/utils";

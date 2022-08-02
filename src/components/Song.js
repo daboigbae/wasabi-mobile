@@ -1,24 +1,40 @@
 import React from "react";
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import {
+	Dimensions,
+	Image,
+	PixelRatio,
+	Pressable,
+	StyleSheet,
+	Text,
+	View
+} from "react-native";
 
 import GlobalStyles from "../utils/GlobalStyles";
 import PropTypes from "prop-types";
-import { handlePlaylistChange } from "../utils/MusicPlayerUtil";
+import { playSongFromPlaylist } from "../utils/MusicPlayerUtil";
 
-const Song = ({ playlist, song, testID }) => {
+const width = Dimensions.get("window").width;
+
+const Song = ({ playlist, song, index, testID }) => {
 	const handleOnPress = async () => {
-		await handlePlaylistChange(playlist);
+		await playSongFromPlaylist(index, playlist);
 	};
 
 	return (
 		<Pressable style={styles.song} onPress={handleOnPress} testID={testID}>
 			<Image style={styles.songImage} source={{ uri: song?.artwork }} />
 			<View style={styles.songDetails}>
-				<Text style={[styles.songName, GlobalStyles.whiteText]}>
+				<Text
+					style={[styles.songName, GlobalStyles.whiteText]}
+					numberOfLines={2}
+				>
 					{song?.title}
 				</Text>
-				<Text style={[styles.artistName, GlobalStyles.whiteText]}>
-					{song?.artistName || "Anonymous"}
+				<Text
+					style={[styles.artistName, GlobalStyles.whiteText]}
+					numberOfLines={1}
+				>
+					{song?.artist || "Anonymous"}
 				</Text>
 			</View>
 		</Pressable>
@@ -28,6 +44,7 @@ const Song = ({ playlist, song, testID }) => {
 Song.propTypes = {
 	playlist: PropTypes.array.isRequired,
 	song: PropTypes.object,
+	index: PropTypes.number,
 	testID: PropTypes.string
 };
 
@@ -37,24 +54,24 @@ const styles = StyleSheet.create({
 	song: {
 		height: "auto",
 		width: "100%",
+		alignItems: "center",
 		marginTop: 16,
 		flexDirection: "row"
 	},
 	songImage: {
 		height: 90,
-		width: 90,
-		borderRadius: 8
+		width: 90
 	},
 	songDetails: {
-		padding: 8
+		padding: 16
 	},
 	songName: {
-		fontSize: 14,
-		width: "95%",
+		fontSize: 14 * PixelRatio.getFontScale(),
+		width: width / 2,
 		fontWeight: "bold"
 	},
 	artistName: {
-		fontSize: 12,
+		fontSize: 12 * PixelRatio.getFontScale(),
 		fontWeight: "300"
 	}
 });

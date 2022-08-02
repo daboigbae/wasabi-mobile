@@ -1,20 +1,25 @@
 import React from "react";
-import { Image, PixelRatio, StyleSheet, Text, View } from "react-native";
+import {
+	Dimensions,
+	Image,
+	PixelRatio,
+	StyleSheet,
+	Text,
+	View
+} from "react-native";
 import PropTypes from "prop-types";
-import MoreIcon from "../icons/MoreIcon";
-import PlayIcon from "../icons/PlayIcon";
-import { handleStartPlaylist } from "../../../utils/MusicPlayerUtil";
-import { COLOR_PALETTE } from "../../../utils/constants";
+
+import { COLOR_PALETTE } from "../../utils/constants";
+import PlaylistPlayIcon from "../common/icons/PlaylistPlayIcon";
+
+const windowWidth = Dimensions.get("window").width;
 
 const PlaylistDetails = ({ playlist }) => {
-	const onPress = async () => {
-		await handleStartPlaylist(playlist?.songs);
-	};
 	return (
 		<>
 			<View style={styles.artworkContainer}>
 				<Image
-					style={styles.tinyLogo}
+					style={styles.artwork}
 					source={{
 						uri: playlist?.artwork
 					}}
@@ -23,8 +28,7 @@ const PlaylistDetails = ({ playlist }) => {
 			<Text style={styles.playlistName}>{playlist?.name}</Text>
 			<Text style={styles.funText}>Songs: {playlist?.songs?.length}</Text>
 			<View style={styles.playlistControls}>
-				<MoreIcon />
-				<PlayIcon onPress={onPress} />
+				<PlaylistPlayIcon playlist={playlist?.songs} />
 			</View>
 		</>
 	);
@@ -43,9 +47,9 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		marginBottom: 16
 	},
-	tinyLogo: {
-		width: 175,
-		height: 175,
+	artwork: {
+		height: windowWidth * 0.5,
+		width: windowWidth * 0.5,
 		borderRadius: 8
 	},
 	playlistName: {
@@ -61,7 +65,7 @@ const styles = StyleSheet.create({
 	playlistControls: {
 		marginTop: 8,
 		flexDirection: "row",
-		justifyContent: "space-between",
+		justifyContent: "flex-end",
 		alignItems: "center",
 		marginBottom: 16
 	}
