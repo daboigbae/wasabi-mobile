@@ -38,7 +38,7 @@ const ForgotPasswordScreen = ({ navigation }) => {
 			<ScrollView style={styles.wrapper}>
 				<View style={styles.container}>
 					<LottieView
-						source={require("../../assets/lottie/signInAnimation.json")}
+						source={require("../../assets/lottie/forgotPasswordAnimation.json")}
 						style={styles.lottie}
 						autoPlay
 						loop
@@ -52,7 +52,7 @@ const ForgotPasswordScreen = ({ navigation }) => {
 						defaultValues={DEFAULT_FORM_VALUES.FORGOT_PASSWORD}
 						onSubmit={onSubmit}
 						isLoading={isLoading}
-						buttonText="Sign In"
+						buttonText="Send Email"
 					/>
 				</View>
 			</ScrollView>
