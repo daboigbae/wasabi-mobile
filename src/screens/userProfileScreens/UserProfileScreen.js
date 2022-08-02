@@ -2,29 +2,16 @@ import React from "react";
 import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 import PropTypes from "prop-types";
 import GlobalStyles from "../../utils/GlobalStyles";
-import { COLOR_PALETTE, NAVIGATORS } from "../../utils/constants";
-import Button, { BUTTON_TYPES } from "../../components/common/Button";
-import { handleSignOut } from "../../utils/firebase";
-import { useDispatch } from "react-redux";
-import { clearUserInformation } from "../../redux/UserSlice";
+import { COLOR_PALETTE } from "../../utils/constants";
 
-const UserProfileScreen = ({ navigation }) => {
-	const dispatch = useDispatch();
-	const onPress = async () => {
-		await handleSignOut(() => {
-			dispatch(clearUserInformation());
-			navigation.replace(NAVIGATORS.LANDING);
-		});
-	};
+import UserProfileAvatar from "../../components/profile/UserProfileAvatar";
+
+const UserProfileScreen = () => {
 	return (
 		<SafeAreaView style={[StyleSheet.absoluteFill, GlobalStyles.appView]}>
 			<ScrollView style={styles.wrapper}>
-				<View style={styles.artworkContainer}>
-					<Button
-						onPress={onPress}
-						text="Sign Out"
-						type={BUTTON_TYPES.PRIMARY}
-					/>
+				<View style={styles.profileDetails}>
+					<UserProfileAvatar />
 				</View>
 			</ScrollView>
 		</SafeAreaView>
@@ -42,7 +29,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		paddingTop: "10%"
 	},
-	container: {
+	profileDetails: {
 		flex: 1,
 		paddingHorizontal: 16,
 		justifyContent: "center",
