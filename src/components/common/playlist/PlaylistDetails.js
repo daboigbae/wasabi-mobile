@@ -1,16 +1,25 @@
 import React from "react";
-import { Image, PixelRatio, StyleSheet, Text, View } from "react-native";
+import {
+	Dimensions,
+	Image,
+	PixelRatio,
+	StyleSheet,
+	Text,
+	View
+} from "react-native";
 import PropTypes from "prop-types";
 
 import { COLOR_PALETTE } from "../../../utils/constants";
 import PlaylistPlayIcon from "../icons/PlaylistPlayIcon";
+
+const windowWidth = Dimensions.get("window").width;
 
 const PlaylistDetails = ({ playlist }) => {
 	return (
 		<>
 			<View style={styles.artworkContainer}>
 				<Image
-					style={styles.tinyLogo}
+					style={styles.artwork}
 					source={{
 						uri: playlist?.artwork
 					}}
@@ -38,9 +47,9 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		marginBottom: 16
 	},
-	tinyLogo: {
-		width: 175,
-		height: 175,
+	artwork: {
+		height: windowWidth * 0.5,
+		width: windowWidth * 0.5,
 		borderRadius: 8
 	},
 	playlistName: {
