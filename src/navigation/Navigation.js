@@ -7,6 +7,7 @@ import { NAVIGATORS } from "../utils/constants";
 import HomeNavigation from "./HomeNavigation";
 import LandingScreen from "../screens/LandingScreen";
 import UserAuthNavigation from "./UserAuthNavigation";
+import UserProfileNavigation from "./UserProfileNavigation";
 
 const Stack = createStackNavigator();
 
@@ -33,6 +34,11 @@ const MainNavigation = () => (
 				<Stack.Screen
 					name={NAVIGATORS.MAIN}
 					component={HomeNavigation}
+					options={NAVIGATION_OPTIONS}
+				/>
+				<Stack.Screen
+					name={NAVIGATORS.USER_PROFILE}
+					component={UserProfileNavigation}
 					options={NAVIGATION_OPTIONS}
 				/>
 			</Stack.Navigator>

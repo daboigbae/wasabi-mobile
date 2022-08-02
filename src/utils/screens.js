@@ -4,7 +4,8 @@ import {
 	COLOR_PALETTE,
 	HOME_SCREENS,
 	MAIN_SCREENS,
-	USER_AUTH_SCREENS
+	USER_AUTH_SCREENS,
+	USER_PROFILE_SCREENS
 } from "../utils/constants";
 
 import HomeScreen from "../screens/HomeScreen";
@@ -14,6 +15,7 @@ import LibraryScreen from "../screens/LibraryScreen";
 import CloseScreenIcon from "../components/common/icons/CloseScreenIcon";
 import HomeStackScreen from "../screens/HomeStackScreen";
 import PlaylistScreen from "../screens/PlaylistScreen";
+import UserProfileScreen from "../screens/userProfileScreens/UserProfileScreen";
 
 export const MAIN_SCREENS_ARRAY = [
 	{
@@ -39,6 +41,18 @@ export const HOME_SCREENS_ARRAY = [
 		name: HOME_SCREENS.PLAYLIST_SCREEN,
 		component: (props) => <PlaylistScreen {...props} />,
 		options: { headerShown: true, headerRight: null, headerTitle: "" }
+	}
+];
+
+export const USER_PROFILE_SCREENS_ARRAY = [
+	{
+		name: USER_PROFILE_SCREENS.USER_PROFILE_SCREEN,
+		component: (props) => <UserProfileScreen {...props} />,
+		options: () => ({
+			headerTintColor: COLOR_PALETTE.white,
+			headerBackTitle: "",
+			headerTitle: " "
+		})
 	}
 ];
 

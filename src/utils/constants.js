@@ -4,7 +4,8 @@ export const coverImage =
 export const NAVIGATORS = {
 	MAIN: "Main",
 	USER_AUTH: "User Authentication",
-	LANDING: "Landing"
+	LANDING: "Landing",
+	USER_PROFILE: "User"
 };
 
 export const MAIN_SCREENS = {
@@ -22,6 +23,11 @@ export const icons = {
 	play: "play-circle",
 	back: "step-backward",
 	forward: "step-forward"
+};
+
+export const USER_PROFILE_SCREENS = {
+	USER_PROFILE_SCREEN: "User Profile",
+	EDIT_USER_PROFILE_SCREEN: "Edit User Profile"
 };
 
 export const USER_AUTH_SCREENS = {
