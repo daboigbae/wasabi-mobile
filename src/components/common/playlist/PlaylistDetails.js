@@ -1,7 +1,6 @@
 import React from "react";
 import { Image, PixelRatio, StyleSheet, Text, View } from "react-native";
 import PropTypes from "prop-types";
-import MoreIcon from "../icons/MoreIcon";
 
 import { COLOR_PALETTE } from "../../../utils/constants";
 import PlaylistPlayIcon from "../icons/PlaylistPlayIcon";
@@ -20,7 +19,6 @@ const PlaylistDetails = ({ playlist }) => {
 			<Text style={styles.playlistName}>{playlist?.name}</Text>
 			<Text style={styles.funText}>Songs: {playlist?.songs?.length}</Text>
 			<View style={styles.playlistControls}>
-				<MoreIcon />
 				<PlaylistPlayIcon playlist={playlist?.songs} />
 			</View>
 		</>
@@ -58,7 +56,7 @@ const styles = StyleSheet.create({
 	playlistControls: {
 		marginTop: 8,
 		flexDirection: "row",
-		justifyContent: "space-between",
+		justifyContent: "flex-end",
 		alignItems: "center",
 		marginBottom: 16
 	}
