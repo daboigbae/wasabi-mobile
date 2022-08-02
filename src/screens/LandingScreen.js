@@ -35,7 +35,7 @@ const LandingScreen = ({ navigation }) => {
 		>
 			<LottieView
 				source={require("../assets/lottie/landingAnimation.json")}
-				style={{ width: "70%" }}
+				style={styles.lottie}
 				autoPlay
 				loop
 			/>
@@ -61,5 +61,6 @@ const styles = StyleSheet.create({
 		color: COLOR_PALETTE.white,
 		fontSize: 20,
 		fontWeight: "bold"
-	}
+	},
+	lottie: { width: "70%" }
 });

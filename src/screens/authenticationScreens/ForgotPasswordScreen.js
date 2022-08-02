@@ -38,7 +38,7 @@ const ForgotPasswordScreen = ({ navigation }) => {
 				<View style={styles.container}>
 					<LottieView
 						source={require("../../assets/lottie/signInAnimation.json")}
-						style={{ width: "50%" }}
+						style={styles.lottie}
 						autoPlay
 						loop
 					/>
@@ -89,5 +89,6 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 		fontWeight: "300",
 		marginBottom: 16
-	}
+	},
+	lottie: { width: "50%" }
 });

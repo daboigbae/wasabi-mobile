@@ -55,7 +55,7 @@ const SignUpScreen = ({ navigation }) => {
 				<View style={styles.container}>
 					<LottieView
 						source={require("../../assets/lottie/signUpAnimation.json")}
-						style={{ width: "50%" }}
+						style={styles.lottie}
 						autoPlay
 						loop
 					/>
@@ -107,5 +107,6 @@ const styles = StyleSheet.create({
 		fontWeight: "300",
 		marginBottom: 16,
 		marginTop: 16
-	}
+	},
+	lottie: { width: "50%" }
 });
