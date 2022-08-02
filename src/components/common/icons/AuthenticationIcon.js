@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 
 import SignInIcon from "./SignInIcon";
-import SignOutIcon from "./SignOutIcon";
+import ProfileIcon from "./profileIcon";
 
 const AuthenticationIcon = ({ navigation }) => {
 	const userInformation = useSelector(
@@ -14,7 +14,7 @@ const AuthenticationIcon = ({ navigation }) => {
 	return !userInformation ? (
 		<SignInIcon navigation={navigation} />
 	) : (
-		<SignOutIcon navigation={navigation} />
+		<ProfileIcon navigation={navigation} />
 	);
 };
 

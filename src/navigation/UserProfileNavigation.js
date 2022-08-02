@@ -2,6 +2,7 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { USER_PROFILE_SCREENS_ARRAY } from "../utils/screens";
 import { COLOR_PALETTE } from "../utils/constants";
+import SignOutIcon from "../components/common/icons/SignOutIcon";
 
 const Stack = createStackNavigator();
 
@@ -29,7 +30,11 @@ const UserProfileNavigation = () => {
 				<Stack.Screen
 					key={index}
 					name={screen.name}
-					options={{ ...screen.options, ...SCREEN_OPTIONS }}
+					options={({ navigation }) => ({
+						headerRight: () => <SignOutIcon navigation={navigation} />,
+						...screen.options,
+						...SCREEN_OPTIONS
+					})}
 				>
 					{screen.component}
 				</Stack.Screen>

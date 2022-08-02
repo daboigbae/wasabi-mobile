@@ -1,23 +1,31 @@
 import React from "react";
 
 import { Pressable, StyleSheet } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome5";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 import PropTypes from "prop-types";
 
 import { COLOR_PALETTE, NAVIGATORS } from "../../../utils/constants";
+import { handleSignOut } from "../../../utils/firebase";
+import { useDispatch } from "react-redux";
+import { clearUserInformation } from "../../../redux/UserSlice";
 
 const SignOutIcon = ({ navigation }) => {
+	const dispatch = useDispatch();
 	const onPress = async () => {
-		await navigation.push(NAVIGATORS.USER_PROFILE);
+		await handleSignOut(() => {
+			dispatch(clearUserInformation());
+			navigation.pop();
+			navigation.replace(NAVIGATORS.LANDING);
+		});
 	};
 
 	return (
 		<Pressable onPress={onPress}>
 			<Icon
-				name="user-circle"
+				name="logout"
 				color={COLOR_PALETTE.white}
-				size={24}
+				size={32}
 				style={styles.icon}
 			/>
 		</Pressable>
