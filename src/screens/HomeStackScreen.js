@@ -1,10 +1,10 @@
 import React from "react";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createStackNavigator } from "@react-navigation/stack";
 import { HOME_SCREENS_ARRAY } from "../utils/screens";
 import { COLOR_PALETTE } from "../utils/constants";
 import AuthenticationIcon from "../components/common/icons/AuthenticationIcon";
 
-const HomeStack = createNativeStackNavigator();
+const HomeStack = createStackNavigator();
 
 const TAB_SCREEN_OPTIONS = {
 	headerStyle: {
