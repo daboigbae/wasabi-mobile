@@ -71,14 +71,7 @@ const SignInScreen = ({ navigation }) => {
 						isLoading={isLoading}
 						buttonText="Sign In"
 					/>
-					<Button
-						text="Create an account"
-						onPress={() => navigation.push(USER_AUTH_SCREENS.SIGN_UP_SCREEN)}
-						style={styles.textButton}
-						textStyle={styles.textButtonText}
-						type={BUTTON_TYPES.TEXT}
-						isDisabled={isLoading}
-					/>
+
 					<Button
 						text="Forgot Password?"
 						onPress={() =>
@@ -88,6 +81,15 @@ const SignInScreen = ({ navigation }) => {
 						textStyle={styles.textButtonText}
 						type={BUTTON_TYPES.TEXT}
 						idDisabled={isLoading}
+					/>
+
+					<Button
+						text="Create an account"
+						onPress={() => navigation.push(USER_AUTH_SCREENS.SIGN_UP_SCREEN)}
+						style={styles.createAccountButton}
+						textStyle={styles.textButtonText}
+						type={BUTTON_TYPES.TEXT}
+						isDisabled={isLoading}
 					/>
 				</View>
 			</ScrollView>
@@ -132,6 +134,12 @@ const styles = StyleSheet.create({
 
 	textButtonText: {
 		color: COLOR_PALETTE.lightblue,
-		fontWeight: "bold"
+		fontWeight: "bold",
+		marginTop: 8
+	},
+	createAccountButton: {
+		color: COLOR_PALETTE.lightblue,
+		fontWeight: "bold",
+		marginTop: 48
 	}
 });
