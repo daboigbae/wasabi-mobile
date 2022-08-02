@@ -2,14 +2,11 @@ import React from "react";
 import { Image, PixelRatio, StyleSheet, Text, View } from "react-native";
 import PropTypes from "prop-types";
 import MoreIcon from "../icons/MoreIcon";
-import PlayIcon from "../icons/PlayIcon";
-import { handleStartPlaylist } from "../../../utils/MusicPlayerUtil";
+
 import { COLOR_PALETTE } from "../../../utils/constants";
+import PlaylistPlayIcon from "../icons/PlaylistPlayIcon";
 
 const PlaylistDetails = ({ playlist }) => {
-	const onPress = async () => {
-		await handleStartPlaylist(playlist?.songs);
-	};
 	return (
 		<>
 			<View style={styles.artworkContainer}>
@@ -24,7 +21,7 @@ const PlaylistDetails = ({ playlist }) => {
 			<Text style={styles.funText}>Songs: {playlist?.songs?.length}</Text>
 			<View style={styles.playlistControls}>
 				<MoreIcon />
-				<PlayIcon onPress={onPress} />
+				<PlaylistPlayIcon playlist={playlist?.songs} />
 			</View>
 		</>
 	);
