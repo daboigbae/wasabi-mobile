@@ -11,13 +11,13 @@ import {
 
 import GlobalStyles from "../utils/GlobalStyles";
 import PropTypes from "prop-types";
-import { handleSelectSong } from "../utils/MusicPlayerUtil";
+import { playSongFromPlaylist } from "../utils/MusicPlayerUtil";
 
 const width = Dimensions.get("window").width;
 
 const Song = ({ playlist, song, index, testID }) => {
 	const handleOnPress = async () => {
-		await handleSelectSong(index, playlist);
+		await playSongFromPlaylist(index, playlist);
 	};
 
 	return (
