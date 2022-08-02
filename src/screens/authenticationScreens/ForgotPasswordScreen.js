@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {
 	Alert,
+	PixelRatio,
 	SafeAreaView,
 	ScrollView,
 	StyleSheet,
@@ -79,12 +80,12 @@ const styles = StyleSheet.create({
 	},
 	title: {
 		color: COLOR_PALETTE.white,
-		fontSize: 40,
+		fontSize: 40 * PixelRatio.getFontScale(),
 		fontWeight: "bold"
 	},
 	funText: {
 		color: COLOR_PALETTE.white,
-		fontSize: 16,
+		fontSize: 16 * PixelRatio.getFontScale(),
 		width: "85%",
 		textAlign: "center",
 		fontWeight: "300",

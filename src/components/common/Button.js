@@ -4,7 +4,8 @@ import {
 	Text,
 	Pressable,
 	View,
-	ActivityIndicator
+	ActivityIndicator,
+	PixelRatio
 } from "react-native";
 
 import PropTypes from "prop-types";
@@ -112,7 +113,7 @@ const styles = StyleSheet.create({
 	title: {
 		width: "80%",
 		textAlign: "center",
-		fontSize: 16,
+		fontSize: 16 * PixelRatio.getFontScale(),
 		color: COLOR_PALETTE.blue500
 	},
 	icon: {

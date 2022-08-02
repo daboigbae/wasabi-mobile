@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, TextInput } from "react-native";
+import { StyleSheet, View, TextInput, PixelRatio } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 import { connectSearchBox } from "react-instantsearch-native";
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
 	},
 	input: {
 		padding: 12,
-		fontSize: 16,
+		fontSize: 16 * PixelRatio.getFontScale(),
 		height: 50,
 		backgroundColor: "#212133",
 		borderTopRightRadius: 8,

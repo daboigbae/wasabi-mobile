@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, SafeAreaView } from "react-native";
+import { StyleSheet, SafeAreaView, PixelRatio } from "react-native";
 import { InstantSearch } from "react-instantsearch-native";
 import algoliasearch from "algoliasearch/lite";
 
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
 	},
 
 	titleText: {
-		fontSize: 18,
+		fontSize: 18 * PixelRatio.getFontScale(),
 		fontWeight: "bold"
 	},
 
