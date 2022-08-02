@@ -1,9 +1,9 @@
 import React from "react";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createStackNavigator } from "@react-navigation/stack";
 import { USER_PROFILE_SCREENS_ARRAY } from "../utils/screens";
 import { COLOR_PALETTE } from "../utils/constants";
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 const SCREEN_OPTIONS = {
 	headerStyle: {

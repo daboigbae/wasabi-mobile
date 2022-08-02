@@ -45,7 +45,7 @@ const SignInScreen = ({ navigation }) => {
 		setIsLoading(true);
 		await handleSignIn(data, (user) => {
 			if (user) {
-				dispatch(setUserInformation(user));
+				dispatch(setUserInformation(user?.user));
 				navigation.replace(NAVIGATORS.LANDING);
 			}
 			setIsLoading(false);
