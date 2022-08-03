@@ -12,12 +12,16 @@ import { COLOR_PALETTE, NAVIGATORS } from "../utils/constants";
 
 import GlobalStyles from "../utils/GlobalStyles";
 import { setPlaylists } from "../redux/MusicSlice";
+import { getFirebaseUser } from "../utils/firebase";
 
 const LandingScreen = ({ navigation }) => {
 	const dispatch = useDispatch();
+	const user = getFirebaseUser();
 
 	const loadInitialPlaylists = async () => {
-		await auth().signInAnonymously();
+		if (!user) {
+			await auth().signInAnonymously();
+		}
 		const playlistSnapshot = await database().ref("/playlists").once("value");
 		dispatch(setPlaylists(playlistSnapshot.val()));
 		navigation.replace(NAVIGATORS.MAIN);

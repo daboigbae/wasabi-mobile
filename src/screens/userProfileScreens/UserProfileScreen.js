@@ -16,16 +16,20 @@ import { useSelector } from "react-redux";
 import Button from "../../components/common/Button";
 
 const UserProfileScreen = ({ navigation }) => {
-	const username = useSelector(
-		({ UserSlice }) => UserSlice?.userInformation?.username
+	const displayName = useSelector(
+		({ UserSlice }) => UserSlice?.userInformation?.displayName
+	);
+
+	const photoURL = useSelector(
+		({ UserSlice }) => UserSlice?.userInformation?.photoURL
 	);
 
 	return (
 		<SafeAreaView style={[StyleSheet.absoluteFill, GlobalStyles.appView]}>
 			<ScrollView style={styles.wrapper}>
 				<View style={styles.profileDetails}>
-					<UserProfileAvatar />
-					<Text style={styles.username}>{username || "Default User"}</Text>
+					<UserProfileAvatar avatar={photoURL} />
+					<Text style={styles.username}>{displayName || "Default User"}</Text>
 					<Button
 						text="Edit profile"
 						textStyle={styles.buttonText}
