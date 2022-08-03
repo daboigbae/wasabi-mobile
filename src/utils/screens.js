@@ -17,6 +17,7 @@ import HomeNavigation from "../navigation/HomeNavigation";
 import PlaylistScreen from "../screens/PlaylistScreen";
 import ForgotPasswordScreen from "../screens/authenticationScreens/ForgotPasswordScreen";
 import UserProfileScreen from "../screens/userProfileScreens/UserProfileScreen";
+import EditUserProfileScreen from "../screens/userProfileScreens/EditUserProfileScreen";
 
 export const MAIN_SCREENS_ARRAY = [
 	{
@@ -40,6 +41,15 @@ export const USER_PROFILE_SCREENS_ARRAY = [
 			headerTintColor: COLOR_PALETTE.white,
 			headerBackTitle: "",
 			headerTitle: " "
+		})
+	},
+	{
+		name: USER_PROFILE_SCREENS.EDIT_USER_PROFILE_SCREEN,
+		component: (props) => <EditUserProfileScreen {...props} />,
+		options: () => ({
+			headerTintColor: COLOR_PALETTE.white,
+			headerBackTitle: "",
+			headerTitle: ""
 		})
 	}
 ];

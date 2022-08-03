@@ -1,4 +1,3 @@
-import React from "react";
 import {
 	PixelRatio,
 	SafeAreaView,
@@ -7,43 +6,29 @@ import {
 	Text,
 	View
 } from "react-native";
-import PropTypes from "prop-types";
-import GlobalStyles from "../../utils/GlobalStyles";
-import { COLOR_PALETTE, USER_PROFILE_SCREENS } from "../../utils/constants";
-
+import React from "react";
 import UserProfileAvatar from "../../components/profile/UserProfileAvatar";
 import { useSelector } from "react-redux";
-import Button from "../../components/common/Button";
+import GlobalStyles from "../../utils/GlobalStyles";
+import { COLOR_PALETTE } from "../../utils/constants";
 
-const UserProfileScreen = ({ navigation }) => {
+const EditUserProfileScreen = () => {
 	const username = useSelector(
 		({ UserSlice }) => UserSlice?.userInformation?.username
 	);
-
 	return (
 		<SafeAreaView style={[StyleSheet.absoluteFill, GlobalStyles.appView]}>
 			<ScrollView style={styles.wrapper}>
 				<View style={styles.profileDetails}>
 					<UserProfileAvatar />
 					<Text style={styles.username}>{username || "Default User"}</Text>
-					<Button
-						text="Edit profile"
-						textStyle={styles.buttonText}
-						onPress={() =>
-							navigation.navigate(USER_PROFILE_SCREENS.EDIT_USER_PROFILE_SCREEN)
-						}
-					/>
 				</View>
 			</ScrollView>
 		</SafeAreaView>
 	);
 };
 
-UserProfileScreen.propTypes = {
-	navigation: PropTypes.object.isRequired
-};
-
-export default UserProfileScreen;
+export default EditUserProfileScreen;
 
 const styles = StyleSheet.create({
 	wrapper: {
