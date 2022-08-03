@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 
 import SignInIcon from "./SignInIcon";
-import ProfileIcon from "./profileIcon";
+import ProfileIcon from "./ProfileIcon";
 
 const AuthenticationIcon = ({ navigation }) => {
 	const userInformation = useSelector(
