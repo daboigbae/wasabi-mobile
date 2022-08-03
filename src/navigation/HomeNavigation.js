@@ -1,12 +1,10 @@
 import React from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
 import { HOME_SCREENS_ARRAY } from "../utils/screens";
 import { COLOR_PALETTE } from "../utils/constants";
-import TabBarIcon from "../components/common/icons/TabBarIcon";
 import AuthenticationIcon from "../components/common/icons/AuthenticationIcon";
-import BottomTabBar from "../components/navigation/BottomTabBar";
 
-const Tab = createBottomTabNavigator();
+const HomeStack = createStackNavigator();
 
 const TAB_SCREEN_OPTIONS = {
 	headerStyle: {
@@ -26,24 +24,21 @@ const TAB_SCREEN_OPTIONS = {
 
 const HomeNavigation = () => {
 	return (
-		<Tab.Navigator tabBar={(props) => <BottomTabBar {...props} />}>
-			{HOME_SCREENS_ARRAY.map((item, index) => (
-				<Tab.Screen
+		<HomeStack.Navigator>
+			{HOME_SCREENS_ARRAY.map((screen, index) => (
+				<HomeStack.Screen
 					key={index}
-					name={item.name}
+					name={screen.name}
 					options={({ navigation }) => ({
-						tabBarIcon: ({ color, size }) => (
-							<TabBarIcon name={item.tabIcon} color={color} size={size} />
-						),
 						headerRight: () => <AuthenticationIcon navigation={navigation} />,
-						headerShown: item?.headerShown || false,
+						...screen.options,
 						...TAB_SCREEN_OPTIONS
 					})}
 				>
-					{item.component}
-				</Tab.Screen>
+					{screen.component}
+				</HomeStack.Screen>
 			))}
-		</Tab.Navigator>
+		</HomeStack.Navigator>
 	);
 };
 

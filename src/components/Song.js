@@ -1,5 +1,6 @@
 import React from "react";
 import {
+	Dimensions,
 	Image,
 	PixelRatio,
 	Pressable,
@@ -12,20 +13,28 @@ import GlobalStyles from "../utils/GlobalStyles";
 import PropTypes from "prop-types";
 import { handlePlaylistChange } from "../utils/MusicPlayerUtil";
 
-const Song = ({ playlist, song, testID }) => {
+const width = Dimensions.get("window").width;
+
+const Song = ({ playlist, song, index, testID }) => {
 	const handleOnPress = async () => {
-		await handlePlaylistChange(playlist);
+		await handlePlaylistChange(playlist, index);
 	};
 
 	return (
 		<Pressable style={styles.song} onPress={handleOnPress} testID={testID}>
 			<Image style={styles.songImage} source={{ uri: song?.artwork }} />
 			<View style={styles.songDetails}>
-				<Text style={[styles.songName, GlobalStyles.whiteText]}>
+				<Text
+					style={[styles.songName, GlobalStyles.whiteText]}
+					numberOfLines={2}
+				>
 					{song?.title}
 				</Text>
-				<Text style={[styles.artistName, GlobalStyles.whiteText]}>
-					{song?.artistName || "Anonymous"}
+				<Text
+					style={[styles.artistName, GlobalStyles.whiteText]}
+					numberOfLines={1}
+				>
+					{song?.artist || "Anonymous"}
 				</Text>
 			</View>
 		</Pressable>
@@ -35,6 +44,7 @@ const Song = ({ playlist, song, testID }) => {
 Song.propTypes = {
 	playlist: PropTypes.array.isRequired,
 	song: PropTypes.object,
+	index: PropTypes.number,
 	testID: PropTypes.string
 };
 
@@ -44,20 +54,20 @@ const styles = StyleSheet.create({
 	song: {
 		height: "auto",
 		width: "100%",
+		alignItems: "center",
 		marginTop: 16,
 		flexDirection: "row"
 	},
 	songImage: {
 		height: 90,
-		width: 90,
-		borderRadius: 8
+		width: 90
 	},
 	songDetails: {
-		padding: 8
+		padding: 16
 	},
 	songName: {
 		fontSize: 14 * PixelRatio.getFontScale(),
-		width: "95%",
+		width: width / 2,
 		fontWeight: "bold"
 	},
 	artistName: {
