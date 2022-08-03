@@ -1,26 +1,10 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { HOME_SCREENS_ARRAY } from "../utils/screens";
-import { COLOR_PALETTE } from "../utils/constants";
+import { TAB_SCREEN_OPTIONS } from "../utils/constants";
 import AuthenticationIcon from "../components/common/icons/AuthenticationIcon";
 
 const HomeStack = createStackNavigator();
-
-const TAB_SCREEN_OPTIONS = {
-	headerStyle: {
-		backgroundColor: COLOR_PALETTE.dark.primary
-	},
-	headerTintColor: COLOR_PALETTE.white,
-
-	tabBarActiveTintColor: COLOR_PALETTE.white,
-	tabBarInactiveTintColor: COLOR_PALETTE.lightgray,
-	tabBarStyle: {
-		height: 100,
-		paddingTop: 8,
-		backgroundColor: COLOR_PALETTE.dark.primary
-	},
-	lazy: false //added to ensure that player loads correctly on all tabs
-};
 
 const HomeStackScreen = () => {
 	return (

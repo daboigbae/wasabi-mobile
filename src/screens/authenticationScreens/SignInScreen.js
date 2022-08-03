@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
 	BackHandler,
+	PixelRatio,
 	SafeAreaView,
 	ScrollView,
 	StyleSheet,
@@ -58,7 +59,7 @@ const SignInScreen = ({ navigation }) => {
 				<View style={styles.container}>
 					<LottieView
 						source={require("../../assets/lottie/signInAnimation.json")}
-						style={{ width: "50%" }}
+						style={styles.lottie}
 						autoPlay
 						loop
 					/>
@@ -71,10 +72,22 @@ const SignInScreen = ({ navigation }) => {
 						isLoading={isLoading}
 						buttonText="Sign In"
 					/>
+
+					<Button
+						text="Forgot Password?"
+						onPress={() =>
+							navigation.push(USER_AUTH_SCREENS.FORGOT_PASSWORD_SCREEN)
+						}
+						style={styles.textButton}
+						textStyle={styles.textButtonText}
+						type={BUTTON_TYPES.TEXT}
+						idDisabled={isLoading}
+					/>
+
 					<Button
 						text="Create an account"
 						onPress={() => navigation.push(USER_AUTH_SCREENS.SIGN_UP_SCREEN)}
-						style={styles.textButton}
+						style={styles.createAccountButton}
 						textStyle={styles.textButtonText}
 						type={BUTTON_TYPES.TEXT}
 						isDisabled={isLoading}
@@ -100,16 +113,17 @@ const styles = StyleSheet.create({
 		flex: 1,
 		width: "100%",
 		alignItems: "center",
-		paddingTop: "10%"
+		paddingTop: "10%",
+		paddingBottom: "10%"
 	},
 	title: {
 		color: COLOR_PALETTE.white,
-		fontSize: 40,
+		fontSize: 40 * PixelRatio.getFontScale(),
 		fontWeight: "bold"
 	},
 	funText: {
 		color: COLOR_PALETTE.white,
-		fontSize: 16,
+		fontSize: 16 * PixelRatio.getFontScale(),
 		width: "85%",
 		textAlign: "center",
 		fontWeight: "300",
@@ -121,6 +135,13 @@ const styles = StyleSheet.create({
 
 	textButtonText: {
 		color: COLOR_PALETTE.lightblue,
-		fontWeight: "bold"
-	}
+		fontWeight: "bold",
+		marginTop: 8
+	},
+	createAccountButton: {
+		color: COLOR_PALETTE.lightblue,
+		fontWeight: "bold",
+		marginTop: 48
+	},
+	lottie: { width: "50%" }
 });

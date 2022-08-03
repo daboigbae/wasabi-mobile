@@ -13,14 +13,15 @@ import SignInScreen from "../screens/authenticationScreens/SignInScreen";
 import SignUpScreen from "../screens/authenticationScreens/SignUpScreen";
 import LibraryScreen from "../screens/LibraryScreen";
 import CloseScreenIcon from "../components/common/icons/CloseScreenIcon";
-import HomeStackScreen from "../screens/HomeStackScreen";
+import HomeNavigation from "../navigation/HomeNavigation";
 import PlaylistScreen from "../screens/PlaylistScreen";
+import ForgotPasswordScreen from "../screens/authenticationScreens/ForgotPasswordScreen";
 import UserProfileScreen from "../screens/userProfileScreens/UserProfileScreen";
 
 export const MAIN_SCREENS_ARRAY = [
 	{
 		name: MAIN_SCREENS.HOME_STACK_SCREEN,
-		component: () => <HomeStackScreen />,
+		component: () => <HomeNavigation />,
 		tabIcon: "home",
 		headerShown: true
 	},
@@ -28,6 +29,18 @@ export const MAIN_SCREENS_ARRAY = [
 		name: MAIN_SCREENS.LIBRARY_SCREEN,
 		component: () => <LibraryScreen />,
 		tabIcon: "music"
+	}
+];
+
+export const USER_PROFILE_SCREENS_ARRAY = [
+	{
+		name: USER_PROFILE_SCREENS.USER_PROFILE_SCREEN,
+		component: (props) => <UserProfileScreen {...props} />,
+		options: () => ({
+			headerTintColor: COLOR_PALETTE.white,
+			headerBackTitle: "",
+			headerTitle: " "
+		})
 	}
 ];
 
@@ -44,18 +57,6 @@ export const HOME_SCREENS_ARRAY = [
 	}
 ];
 
-export const USER_PROFILE_SCREENS_ARRAY = [
-	{
-		name: USER_PROFILE_SCREENS.USER_PROFILE_SCREEN,
-		component: (props) => <UserProfileScreen {...props} />,
-		options: () => ({
-			headerTintColor: COLOR_PALETTE.white,
-			headerBackTitle: "",
-			headerTitle: " "
-		})
-	}
-];
-
 export const USER_AUTH_SCREENS_ARRAY = [
 	{
 		name: USER_AUTH_SCREENS.SIGN_IN_SCREEN,
@@ -68,6 +69,15 @@ export const USER_AUTH_SCREENS_ARRAY = [
 	{
 		name: USER_AUTH_SCREENS.SIGN_UP_SCREEN,
 		component: (props) => <SignUpScreen {...props} />,
+		options: () => ({
+			headerTintColor: COLOR_PALETTE.white,
+			headerBackTitle: " "
+		})
+	},
+
+	{
+		name: USER_AUTH_SCREENS.FORGOT_PASSWORD_SCREEN,
+		component: (props) => <ForgotPasswordScreen {...props} />,
 		options: () => ({
 			headerTintColor: COLOR_PALETTE.white,
 			headerBackTitle: " "
