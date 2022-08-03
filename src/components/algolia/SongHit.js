@@ -1,5 +1,12 @@
 import React from "react";
-import { Image, Text, StyleSheet, View, Dimensions } from "react-native";
+import {
+	Image,
+	Text,
+	StyleSheet,
+	View,
+	Dimensions,
+	PixelRatio
+} from "react-native";
 import PropTypes from "prop-types";
 import { connectHighlight } from "react-instantsearch-native";
 import { COLOR_PALETTE } from "../../utils/constants";
@@ -41,7 +48,7 @@ const style = StyleSheet.create({
 	},
 	text: {
 		color: COLOR_PALETTE.white,
-		fontSize: 14
+		fontSize: 14 * PixelRatio.getFontScale()
 	},
 	songInfoContainer: {
 		width: "70%",

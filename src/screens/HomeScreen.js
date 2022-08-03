@@ -5,7 +5,8 @@ import {
 	Text,
 	View,
 	FlatList,
-	ScrollView
+	ScrollView,
+	PixelRatio
 } from "react-native";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
@@ -74,16 +75,16 @@ const styles = StyleSheet.create({
 	},
 	title: {
 		color: COLOR_PALETTE.white,
-		fontSize: 30,
+		fontSize: 25 * PixelRatio.getFontScale(),
 		fontWeight: "800",
 		marginTop: 32
 	},
 	playlists: {
-		marginTop: 16
+		marginVertical: 16
 	},
 	funText: {
 		color: COLOR_PALETTE.white,
-		fontSize: 16,
+		fontSize: 16 * PixelRatio.getFontScale(),
 		fontWeight: "300",
 		paddingTop: 16
 	}

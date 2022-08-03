@@ -33,14 +33,5 @@ const styles = StyleSheet.create({
 	},
 	songDetails: {
 		padding: 8
-	},
-	songName: {
-		fontSize: 14,
-		width: "95%",
-		fontWeight: "bold"
-	},
-	artistName: {
-		fontSize: 12,
-		fontWeight: "300"
 	}
 });

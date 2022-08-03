@@ -14,6 +14,7 @@ import LibraryScreen from "../screens/LibraryScreen";
 import CloseScreenIcon from "../components/common/icons/CloseScreenIcon";
 import HomeStackScreen from "../screens/HomeStackScreen";
 import PlaylistScreen from "../screens/PlaylistScreen";
+import ForgotPasswordScreen from "../screens/authenticationScreens/ForgotPasswordScreen";
 
 export const MAIN_SCREENS_ARRAY = [
 	{
@@ -54,6 +55,15 @@ export const USER_AUTH_SCREENS_ARRAY = [
 	{
 		name: USER_AUTH_SCREENS.SIGN_UP_SCREEN,
 		component: (props) => <SignUpScreen {...props} />,
+		options: () => ({
+			headerTintColor: COLOR_PALETTE.white,
+			headerBackTitle: " "
+		})
+	},
+
+	{
+		name: USER_AUTH_SCREENS.FORGOT_PASSWORD_SCREEN,
+		component: (props) => <ForgotPasswordScreen {...props} />,
 		options: () => ({
 			headerTintColor: COLOR_PALETTE.white,
 			headerBackTitle: " "
