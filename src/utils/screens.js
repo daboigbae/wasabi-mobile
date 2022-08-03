@@ -12,14 +12,14 @@ import SignInScreen from "../screens/authenticationScreens/SignInScreen";
 import SignUpScreen from "../screens/authenticationScreens/SignUpScreen";
 import LibraryScreen from "../screens/LibraryScreen";
 import CloseScreenIcon from "../components/common/icons/CloseScreenIcon";
-import HomeStackScreen from "../screens/HomeStackScreen";
+import HomeNavigation from "../navigation/HomeNavigation";
 import PlaylistScreen from "../screens/PlaylistScreen";
 import ForgotPasswordScreen from "../screens/authenticationScreens/ForgotPasswordScreen";
 
 export const MAIN_SCREENS_ARRAY = [
 	{
 		name: MAIN_SCREENS.HOME_STACK_SCREEN,
-		component: () => <HomeStackScreen />,
+		component: () => <HomeNavigation />,
 		tabIcon: "home",
 		headerShown: true
 	},

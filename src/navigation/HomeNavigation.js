@@ -1,29 +1,44 @@
 import React from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { MAIN_SCREENS_ARRAY } from "../utils/screens";
-import TabBarIcon from "../components/common/icons/TabBarIcon";
-import BottomTabBar from "../components/navigation/BottomTabBar";
+import { createStackNavigator } from "@react-navigation/stack";
+import { HOME_SCREENS_ARRAY } from "../utils/screens";
+import { COLOR_PALETTE } from "../utils/constants";
+import AuthenticationIcon from "../components/common/icons/AuthenticationIcon";
 
-const Tab = createBottomTabNavigator();
+const HomeStack = createStackNavigator();
+
+const TAB_SCREEN_OPTIONS = {
+	headerStyle: {
+		backgroundColor: COLOR_PALETTE.dark.primary
+	},
+	headerTintColor: COLOR_PALETTE.white,
+
+	tabBarActiveTintColor: COLOR_PALETTE.white,
+	tabBarInactiveTintColor: COLOR_PALETTE.lightgray,
+	tabBarStyle: {
+		height: 100,
+		paddingTop: 8,
+		backgroundColor: COLOR_PALETTE.dark.primary
+	},
+	lazy: false //added to ensure that player loads correctly on all tabs
+};
 
 const HomeNavigation = () => {
 	return (
-		<Tab.Navigator tabBar={(props) => <BottomTabBar {...props} />}>
-			{MAIN_SCREENS_ARRAY.map((item, index) => (
-				<Tab.Screen
+		<HomeStack.Navigator>
+			{HOME_SCREENS_ARRAY.map((screen, index) => (
+				<HomeStack.Screen
 					key={index}
-					name={item.name}
-					options={() => ({
-						tabBarIcon: ({ color, size }) => (
-							<TabBarIcon name={item.tabIcon} color={color} size={size} />
-						),
-						headerShown: false
+					name={screen.name}
+					options={({ navigation }) => ({
+						headerRight: () => <AuthenticationIcon navigation={navigation} />,
+						...screen.options,
+						...TAB_SCREEN_OPTIONS
 					})}
 				>
-					{item.component}
-				</Tab.Screen>
+					{screen.component}
+				</HomeStack.Screen>
 			))}
-		</Tab.Navigator>
+		</HomeStack.Navigator>
 	);
 };
 
