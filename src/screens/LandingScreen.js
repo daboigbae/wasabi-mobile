@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { StyleSheet, SafeAreaView, Text } from "react-native";
+import { StyleSheet, SafeAreaView, Text, PixelRatio } from "react-native";
 
 import { useDispatch } from "react-redux";
 import LottieView from "lottie-react-native";
@@ -35,7 +35,7 @@ const LandingScreen = ({ navigation }) => {
 		>
 			<LottieView
 				source={require("../assets/lottie/landingAnimation.json")}
-				style={{ width: "70%" }}
+				style={styles.lottie}
 				autoPlay
 				loop
 			/>
@@ -59,7 +59,8 @@ const styles = StyleSheet.create({
 	},
 	title: {
 		color: COLOR_PALETTE.white,
-		fontSize: 20,
+		fontSize: 20 * PixelRatio.getFontScale(),
 		fontWeight: "bold"
-	}
+	},
+	lottie: { width: "70%" }
 });

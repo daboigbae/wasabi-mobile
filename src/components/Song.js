@@ -1,5 +1,12 @@
 import React from "react";
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import {
+	Image,
+	PixelRatio,
+	Pressable,
+	StyleSheet,
+	Text,
+	View
+} from "react-native";
 
 import GlobalStyles from "../utils/GlobalStyles";
 import PropTypes from "prop-types";
@@ -49,12 +56,12 @@ const styles = StyleSheet.create({
 		padding: 8
 	},
 	songName: {
-		fontSize: 14,
+		fontSize: 14 * PixelRatio.getFontScale(),
 		width: "95%",
 		fontWeight: "bold"
 	},
 	artistName: {
-		fontSize: 12,
+		fontSize: 12 * PixelRatio.getFontScale(),
 		fontWeight: "300"
 	}
 });

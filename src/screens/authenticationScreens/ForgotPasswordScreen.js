@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
-	BackHandler,
+	Alert,
 	PixelRatio,
 	SafeAreaView,
 	ScrollView,
@@ -8,69 +8,51 @@ import {
 	Text,
 	View
 } from "react-native";
-import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import LottieView from "lottie-react-native";
 
-import GlobalStyles from "../../utils/GlobalStyles";
 import {
 	COLOR_PALETTE,
 	DEFAULT_FORM_VALUES,
-	NAVIGATORS,
-	SIGN_IN_FORM_INPUTS_ARRAY
+	FORGOT_PASSWORD_INPUTS_ARRAY
 } from "../../utils/constants";
 import Form from "../../components/common/form/Form";
-import { handleSignUp } from "../../utils/firebase";
-import { setUserInformation } from "../../redux/UserSlice";
+import GlobalStyles from "../../utils/GlobalStyles";
+import { handleForgotPassword } from "../../utils/firebase";
 
-const SignUpScreen = ({ navigation }) => {
-	const dispatch = useDispatch();
+const ForgotPasswordScreen = ({ navigation }) => {
 	const [isLoading, setIsLoading] = useState(false);
-
-	useEffect(() => {
-		const backHandler = BackHandler.addEventListener(
-			"hardwareBackPress",
-			() => {
-				navigation.goBack();
-				return true;
-			}
-		);
-
-		return () => backHandler.remove();
-	}, []);
 
 	const onSubmit = async (data) => {
 		setIsLoading(true);
-		await handleSignUp(data, (user) => {
-			if (user) {
-				dispatch(setUserInformation(user));
-				navigation.replace(NAVIGATORS.LANDING);
-			}
-			setIsLoading(false);
+		await handleForgotPassword(data, () => {
+			Alert.alert(
+				"Password Reset",
+				"Link to reset password has been sent to your email"
+			);
+			navigation.goBack();
 		});
 	};
-
 	return (
 		<SafeAreaView style={[StyleSheet.absoluteFill, GlobalStyles.appView]}>
 			<ScrollView style={styles.wrapper}>
 				<View style={styles.container}>
 					<LottieView
-						source={require("../../assets/lottie/signUpAnimation.json")}
+						source={require("../../assets/lottie/forgotPasswordAnimation.json")}
 						style={styles.lottie}
 						autoPlay
 						loop
 					/>
-					<Text style={styles.title}>Start Listening</Text>
+					<Text style={styles.title}>Wasabi Music</Text>
 					<Text style={styles.funText}>
-						Sign up and create an account to start creating playlists and liking
-						your favorite music NFTs.
+						Enter your email to reset your password
 					</Text>
 					<Form
-						inputs={SIGN_IN_FORM_INPUTS_ARRAY}
-						defaultValues={DEFAULT_FORM_VALUES.SIGN_UP}
+						inputs={FORGOT_PASSWORD_INPUTS_ARRAY}
+						defaultValues={DEFAULT_FORM_VALUES.FORGOT_PASSWORD}
 						onSubmit={onSubmit}
 						isLoading={isLoading}
-						buttonText="Sign Up"
+						buttonText="Send Email"
 					/>
 				</View>
 			</ScrollView>
@@ -78,11 +60,11 @@ const SignUpScreen = ({ navigation }) => {
 	);
 };
 
-SignUpScreen.propTypes = {
+ForgotPasswordScreen.propTypes = {
 	navigation: PropTypes.object
 };
 
-export default SignUpScreen;
+export default ForgotPasswordScreen;
 
 const styles = StyleSheet.create({
 	wrapper: {
@@ -93,7 +75,8 @@ const styles = StyleSheet.create({
 		flex: 1,
 		width: "100%",
 		alignItems: "center",
-		paddingTop: "10%"
+		paddingTop: "10%",
+		paddingBottom: "10%"
 	},
 	title: {
 		color: COLOR_PALETTE.white,
@@ -106,8 +89,7 @@ const styles = StyleSheet.create({
 		width: "85%",
 		textAlign: "center",
 		fontWeight: "300",
-		marginBottom: 16,
-		marginTop: 16
+		marginBottom: 16
 	},
 	lottie: { width: "50%" }
 });
