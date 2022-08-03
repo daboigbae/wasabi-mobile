@@ -1,28 +1,19 @@
 import { Alert } from "react-native";
 import TrackPlayer, { Capability } from "react-native-track-player";
 
-export const handlePlaylistChange = async (playlist) => {
+/**
+ *
+ *  Everything that involves playing music revolves around
+ * 	playlists, so everytime we play music,
+ *  we pass the playlist to the player and play at the specific index.
+ *  0 as a default for songs, or starting a playlist from the beginning
+ *  */
+
+export const handlePlaylistChange = async (playlist, index = 0) => {
 	try {
 		await TrackPlayer.stop();
 		await TrackPlayer.reset();
 		await TrackPlayer.add(playlist);
-	} catch (error) {
-		Alert.alert("Something went wrong");
-	}
-};
-
-export const handleStartPlaylist = async (playlist) => {
-	try {
-		await handlePlaylistChange(playlist);
-		await TrackPlayer.play();
-	} catch (error) {
-		Alert.alert("Something went wrong");
-	}
-};
-
-export const playSongFromPlaylist = async (index, playlist) => {
-	try {
-		await handlePlaylistChange(playlist);
 		await TrackPlayer.skip(index);
 		await TrackPlayer.play();
 	} catch (error) {
