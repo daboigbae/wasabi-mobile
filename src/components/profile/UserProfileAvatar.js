@@ -12,9 +12,14 @@ const UserProfileAvatar = () => {
 	);
 
 	return !avatar ? (
-		<Icon name="user-circle" size={width / 2.5} color={COLOR_PALETTE.white} />
+		<Icon name="user-circle" size={width * 0.5} color={COLOR_PALETTE.white} />
 	) : (
-		<Image resizeMethod="cover" style={styles.avatar} />
+		<Image
+			style={styles.avatar}
+			source={{
+				uri: avatar && avatar
+			}}
+		/>
 	);
 };
 
@@ -22,9 +27,8 @@ export default UserProfileAvatar;
 
 const styles = StyleSheet.create({
 	avatar: {
-		width: width / 2.5,
-		height: width / 2.5,
-		backgroundColor: "yellow",
+		width: width * 0.5,
+		height: width * 0.5,
 		borderRadius: 100
 	}
 });

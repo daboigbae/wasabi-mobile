@@ -11,16 +11,7 @@ const SCREEN_OPTIONS = {
 		backgroundColor: COLOR_PALETTE.dark.primary
 	},
 	headerTintColor: COLOR_PALETTE.white,
-
-	tabBarActiveTintColor: COLOR_PALETTE.white,
-	tabBarInactiveTintColor: COLOR_PALETTE.lightgray,
-	tabBarStyle: {
-		height: 100,
-		paddingTop: 8,
-		backgroundColor: COLOR_PALETTE.dark.primary
-	},
-	headerTitle: "",
-	lazy: false //added to ensure that player loads correctly on all tabs
+	headerTitle: ""
 };
 
 const UserProfileNavigation = () => {
