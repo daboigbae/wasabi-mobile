@@ -35,12 +35,7 @@ export const MAIN_SCREENS_ARRAY = [
 export const USER_PROFILE_SCREENS_ARRAY = [
 	{
 		name: USER_PROFILE_SCREENS.USER_PROFILE_SCREEN,
-		component: (props) => <UserProfileScreen {...props} />,
-		options: () => ({
-			headerTintColor: COLOR_PALETTE.white,
-			headerBackTitle: "",
-			headerTitle: " "
-		})
+		component: (props) => <UserProfileScreen {...props} />
 	}
 ];
 
