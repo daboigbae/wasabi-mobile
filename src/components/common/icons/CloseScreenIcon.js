@@ -3,13 +3,10 @@ import PropTypes from "prop-types";
 
 import { Pressable, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import { COLOR_PALETTE, NAVIGATORS } from "../../../utils/constants";
+import { COLOR_PALETTE } from "../../../utils/constants";
 
-const CloseScreenIcon = ({ navigation }) => (
-	<Pressable
-		style={styles.container}
-		onPress={() => navigation.replace(NAVIGATORS.LANDING)}
-	>
+const CloseScreenIcon = ({ onPress }) => (
+	<Pressable style={styles.container} onPress={onPress}>
 		<Icon
 			name="close"
 			color={COLOR_PALETTE.white}
@@ -20,7 +17,7 @@ const CloseScreenIcon = ({ navigation }) => (
 );
 
 CloseScreenIcon.propTypes = {
-	navigation: PropTypes.object
+	onPress: PropTypes.func
 };
 
 export default CloseScreenIcon;
