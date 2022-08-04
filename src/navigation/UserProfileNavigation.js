@@ -7,7 +7,7 @@ import SignOutIcon from "../components/common/icons/SignOutIcon";
 const Stack = createStackNavigator();
 
 const UserProfileNavigation = () => (
-	<Stack.Navigator>
+	<Stack.Navigator screenOptions={{ presentation: "modal" }}>
 		{USER_PROFILE_SCREENS_ARRAY.map((screen, index) => (
 			<Stack.Screen
 				key={index}
