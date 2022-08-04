@@ -33,15 +33,19 @@ const EditUserProfileScreen = ({ navigation }) => {
 		({ UserSlice }) => UserSlice?.userInformation?.photoURL
 	);
 
-	const [editUserName, setEditUsername] = useState(
+	const [editUsername, setEditUsername] = useState(
 		displayName || "Default User"
 	);
 	const [imagePreview, setImagePreview] = useState(photoURL || "");
 	const [isLoading, setIsLoading] = useState(false);
 
 	const informationNotUpdated = useMemo(() => {
-		return displayName === editUserName && photoURL === imagePreview;
-	}, [displayName, photoURL]);
+		return displayName === editUsername && photoURL === imagePreview;
+	}, [editUsername, imagePreview]);
+
+	const imageIsNotUpdatedOrEmpty = useMemo(() => {
+		return imagePreview === (photoURL || "");
+	}, [imagePreview]);
 
 	const handleSelectImageOnPress = async () => {
 		await handleSelectImage((response) => {
@@ -55,7 +59,11 @@ const EditUserProfileScreen = ({ navigation }) => {
 
 	const handleUpdateProfileOnPress = async () => {
 		setIsLoading(true);
-		await handleUpdateProfile(imagePreview, editUserName, () => {
+		const data = {
+			username: editUsername,
+			imagePreview: imageIsNotUpdatedOrEmpty ? null : imagePreview
+		};
+		await handleUpdateProfile(data, () => {
 			navigation.goBack();
 			getUpdatedUserInformation(dispatch);
 		});
@@ -79,7 +87,7 @@ const EditUserProfileScreen = ({ navigation }) => {
 					<TextInput
 						onChangeText={setEditUsername}
 						style={styles.editInput}
-						value={editUserName}
+						value={editUsername}
 						editable={!isLoading}
 					/>
 					{!informationNotUpdated && (

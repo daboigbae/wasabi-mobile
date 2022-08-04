@@ -60,19 +60,26 @@ export const handleForgotPassword = async (data, callback) => {
 	}
 };
 
-export const handleUpdateProfile = async (image, username, callback) => {
-	const uploadUri = image;
-	let filename = uploadUri.substring(uploadUri.lastIndexOf("/") + 1);
-	let imageReference = storage().ref(filename);
+export const handleUpdateProfile = async (data, callback) => {
+	let FIELDS_TO_UPDATE = {
+		displayName: data?.username
+	};
+
+	if (data?.imagePreview) {
+		const uploadUri = data?.imagePreview;
+		let filename = uploadUri.substring(uploadUri.lastIndexOf("/") + 1);
+		let imageReference = storage().ref(filename);
+		try {
+			await imageReference.putFile(uploadUri);
+			const url = await imageReference.getDownloadURL();
+			FIELDS_TO_UPDATE["photoURL"] = url;
+		} catch (error) {
+			Alert.alert(error.message);
+		}
+	}
 
 	try {
-		await imageReference.putFile(uploadUri);
-		const url = await imageReference.getDownloadURL();
-
-		await auth().currentUser.updateProfile({
-			displayName: username,
-			photoURL: url
-		});
+		await auth().currentUser.updateProfile(FIELDS_TO_UPDATE);
 
 		callback && callback();
 	} catch (error) {
