@@ -1,7 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { HOME_SCREENS_ARRAY } from "../utils/screens";
-import { TAB_SCREEN_OPTIONS } from "../utils/constants";
+import { HEADER_OPTIONS } from "../utils/constants";
 import AuthenticationIcon from "../components/common/icons/AuthenticationIcon";
 
 const HomeStack = createStackNavigator();
@@ -15,8 +15,8 @@ const HomeNavigation = () => {
 					name={screen.name}
 					options={({ navigation }) => ({
 						headerRight: () => <AuthenticationIcon navigation={navigation} />,
-						...screen.options,
-						...TAB_SCREEN_OPTIONS
+						...HEADER_OPTIONS,
+						...screen.options
 					})}
 				>
 					{screen.component}

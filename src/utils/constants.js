@@ -93,12 +93,16 @@ export const DEFAULT_FORM_VALUES = {
 	}
 };
 
-export const TAB_SCREEN_OPTIONS = {
+export const HEADER_OPTIONS = {
 	headerStyle: {
 		backgroundColor: COLOR_PALETTE.dark.primary
 	},
 	headerTintColor: COLOR_PALETTE.white,
+	headerTitle: "",
+	headerBackTitle: " "
+};
 
+export const TAB_SCREEN_OPTIONS = {
 	tabBarActiveTintColor: COLOR_PALETTE.white,
 	tabBarInactiveTintColor: COLOR_PALETTE.lightgray,
 	tabBarStyle: {

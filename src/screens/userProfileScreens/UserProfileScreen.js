@@ -20,21 +20,17 @@ const UserProfileScreen = ({ navigation }) => {
 		({ UserSlice }) => UserSlice?.userInformation?.displayName
 	);
 
-	const photoURL = useSelector(
-		({ UserSlice }) => UserSlice?.userInformation?.photoURL
-	);
-
 	return (
 		<SafeAreaView style={[StyleSheet.absoluteFill, GlobalStyles.appView]}>
 			<ScrollView style={styles.wrapper}>
 				<View style={styles.profileDetails}>
-					<UserProfileAvatar avatar={photoURL} />
+					<UserProfileAvatar />
 					<Text style={styles.username}>{displayName || "Default User"}</Text>
 					<Button
 						text="Edit profile"
 						textStyle={styles.buttonText}
 						onPress={() =>
-							navigation.navigate(USER_PROFILE_SCREENS.EDIT_USER_PROFILE_SCREEN)
+							navigation.push(USER_PROFILE_SCREENS.EDIT_USER_PROFILE_SCREEN)
 						}
 					/>
 				</View>
