@@ -4,7 +4,8 @@ export const coverImage =
 export const NAVIGATORS = {
 	MAIN: "Main",
 	USER_AUTH: "User Authentication",
-	LANDING: "Landing"
+	LANDING: "Landing",
+	USER_PROFILE: "User"
 };
 
 export const MAIN_SCREENS = {
@@ -22,6 +23,11 @@ export const icons = {
 	play: "play-circle",
 	back: "step-backward",
 	forward: "step-forward"
+};
+
+export const USER_PROFILE_SCREENS = {
+	USER_PROFILE_SCREEN: "User Profile",
+	EDIT_USER_PROFILE_SCREEN: "Edit User Profile"
 };
 
 export const USER_AUTH_SCREENS = {
@@ -85,4 +91,24 @@ export const DEFAULT_FORM_VALUES = {
 	FORGOT_PASSWORD: {
 		email: ""
 	}
+};
+
+export const HEADER_OPTIONS = {
+	headerStyle: {
+		backgroundColor: COLOR_PALETTE.dark.primary
+	},
+	headerTintColor: COLOR_PALETTE.white,
+	headerTitle: "",
+	headerBackTitle: " "
+};
+
+export const TAB_SCREEN_OPTIONS = {
+	tabBarActiveTintColor: COLOR_PALETTE.white,
+	tabBarInactiveTintColor: COLOR_PALETTE.lightgray,
+	tabBarStyle: {
+		height: 100,
+		paddingTop: 8,
+		backgroundColor: COLOR_PALETTE.dark.primary
+	},
+	lazy: false //added to ensure that player loads correctly on all tabs
 };

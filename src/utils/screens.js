@@ -4,7 +4,8 @@ import {
 	COLOR_PALETTE,
 	HOME_SCREENS,
 	MAIN_SCREENS,
-	USER_AUTH_SCREENS
+	USER_AUTH_SCREENS,
+	USER_PROFILE_SCREENS
 } from "../utils/constants";
 
 import HomeScreen from "../screens/HomeScreen";
@@ -15,6 +16,7 @@ import CloseScreenIcon from "../components/common/icons/CloseScreenIcon";
 import HomeNavigation from "../navigation/HomeNavigation";
 import PlaylistScreen from "../screens/PlaylistScreen";
 import ForgotPasswordScreen from "../screens/authenticationScreens/ForgotPasswordScreen";
+import UserProfileScreen from "../screens/userProfileScreens/UserProfileScreen";
 
 export const MAIN_SCREENS_ARRAY = [
 	{
@@ -27,6 +29,13 @@ export const MAIN_SCREENS_ARRAY = [
 		name: MAIN_SCREENS.LIBRARY_SCREEN,
 		component: () => <LibraryScreen />,
 		tabIcon: "music"
+	}
+];
+
+export const USER_PROFILE_SCREENS_ARRAY = [
+	{
+		name: USER_PROFILE_SCREENS.USER_PROFILE_SCREEN,
+		component: (props) => <UserProfileScreen {...props} />
 	}
 ];
 

@@ -83,7 +83,8 @@ const getStyleForButton = (type, style) => {
 
 	if (type === BUTTON_TYPES.PRIMARY) {
 		styleForButtonType = {
-			...styles.button
+			...styles.button,
+			...styles.primaryButton
 		};
 	}
 	return { ...styleForButtonType, ...style };

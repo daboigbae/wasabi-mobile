@@ -7,8 +7,8 @@ import PropTypes from "prop-types";
 
 import { COLOR_PALETTE, NAVIGATORS } from "../../../utils/constants";
 import { handleSignOut } from "../../../utils/firebase";
-import { clearUserInformation } from "../../../redux/UserSlice";
 import { useDispatch } from "react-redux";
+import { clearUserInformation } from "../../../redux/UserSlice";
 
 const SignOutIcon = ({ navigation }) => {
 	const dispatch = useDispatch();
@@ -16,6 +16,7 @@ const SignOutIcon = ({ navigation }) => {
 	const onPress = async () => {
 		await handleSignOut(() => {
 			dispatch(clearUserInformation());
+			navigation.pop(); // todo = this is a hack to get the user back to the landing screen, need to investigate
 			navigation.replace(NAVIGATORS.LANDING);
 		});
 	};
@@ -40,6 +41,6 @@ export default SignOutIcon;
 
 const styles = StyleSheet.create({
 	icon: {
-		marginRight: 16
+		marginRight: 8
 	}
 });

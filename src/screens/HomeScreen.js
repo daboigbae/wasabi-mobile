@@ -22,7 +22,7 @@ const HomeScreen = ({ navigation }) => {
 	);
 
 	const email = useSelector(
-		({ UserSlice }) => UserSlice?.userInformation?.user?.email
+		({ UserSlice }) => UserSlice?.userInformation?.email
 	);
 
 	const onPress = async (playlist) => {
