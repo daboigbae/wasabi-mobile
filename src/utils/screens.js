@@ -17,7 +17,7 @@ import HomeNavigation from "../navigation/HomeNavigation";
 import PlaylistScreen from "../screens/PlaylistScreen";
 import ForgotPasswordScreen from "../screens/authenticationScreens/ForgotPasswordScreen";
 import UserProfileScreen from "../screens/userProfileScreens/UserProfileScreen";
-
+import EditUserProfileScreen from "../screens/userProfileScreens/EditUserProfileScreen";
 export const MAIN_SCREENS_ARRAY = [
 	{
 		name: MAIN_SCREENS.HOME_STACK_SCREEN,
@@ -36,6 +36,10 @@ export const USER_PROFILE_SCREENS_ARRAY = [
 	{
 		name: USER_PROFILE_SCREENS.USER_PROFILE_SCREEN,
 		component: (props) => <UserProfileScreen {...props} />
+	},
+	{
+		name: USER_PROFILE_SCREENS.EDIT_USER_PROFILE_SCREEN,
+		component: (props) => <EditUserProfileScreen {...props} />
 	}
 ];
 
