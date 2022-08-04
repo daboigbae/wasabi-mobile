@@ -20,11 +20,15 @@ const UserProfileScreen = ({ navigation }) => {
 		({ UserSlice }) => UserSlice?.userInformation?.displayName
 	);
 
+	const photoURL = useSelector(
+		({ UserSlice }) => UserSlice?.userInformation?.photoURL
+	);
+
 	return (
 		<SafeAreaView style={[StyleSheet.absoluteFill, GlobalStyles.appView]}>
 			<ScrollView style={styles.wrapper}>
 				<View style={styles.profileDetails}>
-					<UserProfileAvatar />
+					<UserProfileAvatar avatar={photoURL} />
 					<Text style={styles.username}>{displayName || "Default User"}</Text>
 					<Button
 						text="Edit profile"

@@ -1,3 +1,4 @@
+import React, { useMemo, useState } from "react";
 import {
 	Alert,
 	Dimensions,
@@ -9,17 +10,16 @@ import {
 	View
 } from "react-native";
 import PropTypes from "prop-types";
-import React, { useMemo, useState } from "react";
 import UserProfileAvatar from "../../components/profile/UserProfileAvatar";
 import { useDispatch, useSelector } from "react-redux";
 import GlobalStyles from "../../utils/GlobalStyles";
 import { COLOR_PALETTE } from "../../utils/constants";
 import Button, { BUTTON_TYPES } from "../../components/common/Button";
-import { launchImageLibrary } from "react-native-image-picker";
 import {
 	getUpdatedUserInformation,
 	handleUpdateProfile
 } from "../../utils/firebase";
+import { handleSelectImage } from "../../utils/images";
 
 const width = Dimensions.get("window").width;
 
@@ -41,14 +41,10 @@ const EditUserProfileScreen = ({ navigation }) => {
 
 	const informationNotUpdated = useMemo(() => {
 		return displayName === editUserName && photoURL === imagePreview;
-	});
+	}, [displayName, photoURL]);
 
-	const handleSelectImage = async () => {
-		const IMAGE_OPTIONS = {
-			maxWidth: 500,
-			maxHeight: 500
-		};
-		await launchImageLibrary(IMAGE_OPTIONS, (response) => {
+	const handleSelectImageOnPress = async () => {
+		await handleSelectImage((response) => {
 			if (response.didCancel) {
 				Alert.alert("Cancelled image selection");
 			} else {
@@ -76,7 +72,7 @@ const EditUserProfileScreen = ({ navigation }) => {
 						text="Change photo"
 						style={styles.button}
 						textStyle={styles.buttonText}
-						onPress={handleSelectImage}
+						onPress={handleSelectImageOnPress}
 						isLoading={isLoading}
 						isDisabled={isLoading}
 					/>
