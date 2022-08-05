@@ -32,6 +32,7 @@ export default ProfileIcon;
 
 const styles = StyleSheet.create({
 	icon: {
-		marginRight: 8
+		marginRight: 16,
+		marginBottom: 8
 	}
 });
