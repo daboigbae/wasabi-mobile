@@ -17,7 +17,7 @@ const ProfileIcon = ({ navigation }) => {
 			<Icon
 				name="user-circle"
 				color={COLOR_PALETTE.white}
-				size={32}
+				size={24}
 				style={styles.icon}
 			/>
 		</Pressable>
@@ -32,6 +32,7 @@ export default ProfileIcon;
 
 const styles = StyleSheet.create({
 	icon: {
-		marginRight: 16
+		marginRight: 16,
+		marginBottom: 8
 	}
 });

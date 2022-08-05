@@ -60,7 +60,7 @@ export const HOME_SCREENS_ARRAY = [
 	{
 		name: HOME_SCREENS.HOME_SCREEN,
 		component: (props) => <HomeScreen {...props} />,
-		options: { headerShown: true }
+		options: { headerShown: true, headerTitle: "Wasabi Music" }
 	},
 	{
 		name: HOME_SCREENS.PLAYLIST_SCREEN,

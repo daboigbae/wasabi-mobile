@@ -10,7 +10,7 @@ const width = Dimensions.get("window").width;
 
 const UserProfileAvatar = ({ avatar }) => {
 	return !avatar ? (
-		<Icon name="user-circle" size={width * 0.5} color={COLOR_PALETTE.white} />
+		<Icon name="user-circle" size={width * 0.4} color={COLOR_PALETTE.white} />
 	) : (
 		<Image
 			style={styles.avatar}
@@ -28,8 +28,8 @@ export default UserProfileAvatar;
 
 const styles = StyleSheet.create({
 	avatar: {
-		width: width * 0.5,
-		height: width * 0.5,
+		width: width * 0.4,
+		height: width * 0.4,
 		borderRadius: 100
 	}
 });
