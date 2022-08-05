@@ -4,12 +4,14 @@ import {
 	View,
 	Text,
 	StyleSheet,
-	Image,
 	Pressable,
 	Dimensions,
 	ActivityIndicator
 } from "react-native";
+
+import FastImage from "react-native-fast-image";
 import Icon from "react-native-vector-icons/FontAwesome";
+
 import TrackPlayer, {
 	State,
 	usePlaybackState
@@ -91,9 +93,13 @@ function Player() {
 					</View>
 				) : (
 					<View style={styles.songDetails}>
-						<Image
+						<FastImage
 							style={styles.songPlayerImage}
-							source={{ uri: currentTrack?.artwork }}
+							source={{
+								uri: currentTrack?.artwork,
+								priority: FastImage.priority.high
+							}}
+							resizeMode={FastImage.resizeMode.cover}
 						/>
 						<View style={styles.songInfoContainer}>
 							<Text style={[styles.songName, GlobalStyles.whiteText]}>

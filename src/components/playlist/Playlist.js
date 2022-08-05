@@ -1,13 +1,18 @@
 import React from "react";
-import { Image, Pressable, StyleSheet, Dimensions } from "react-native";
+import { Pressable, StyleSheet, Dimensions } from "react-native";
 
 import PropTypes from "prop-types";
+import FastImage from "react-native-fast-image";
 
 const windowWidth = Dimensions.get("window").width;
 
 const Playlist = ({ playlist, testID, onPress }) => (
 	<Pressable style={styles.playlist} onPress={onPress} testID={testID}>
-		<Image style={styles.playlistImage} source={{ uri: playlist?.artwork }} />
+		<FastImage
+			style={styles.playlistImage}
+			source={{ uri: playlist?.artwork }}
+			resizeMode={FastImage.resizeMode.cover}
+		/>
 	</Pressable>
 );
 

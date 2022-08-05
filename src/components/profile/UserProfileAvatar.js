@@ -1,8 +1,9 @@
 import React from "react";
-import { Dimensions, Image, StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 import PropTypes from "prop-types";
 
 import Icon from "react-native-vector-icons/FontAwesome";
+import FastImage from "react-native-fast-image";
 
 import { COLOR_PALETTE } from "../../utils/constants";
 
@@ -12,11 +13,12 @@ const UserProfileAvatar = ({ avatar }) => {
 	return !avatar ? (
 		<Icon name="user-circle" size={width * 0.4} color={COLOR_PALETTE.white} />
 	) : (
-		<Image
+		<FastImage
 			style={styles.avatar}
 			source={{
 				uri: avatar && avatar
 			}}
+			resizeMode={FastImage.resizeMode.cover}
 		/>
 	);
 };
