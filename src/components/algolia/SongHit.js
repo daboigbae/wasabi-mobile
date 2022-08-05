@@ -1,14 +1,9 @@
 import React from "react";
-import {
-	Image,
-	Text,
-	StyleSheet,
-	View,
-	Dimensions,
-	PixelRatio
-} from "react-native";
+import { Text, StyleSheet, View, Dimensions, PixelRatio } from "react-native";
 import PropTypes from "prop-types";
 import { connectHighlight } from "react-instantsearch-native";
+import FastImage from "react-native-fast-image";
+
 import { COLOR_PALETTE } from "../../utils/constants";
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 
@@ -23,7 +18,11 @@ const SongHit = ({ hit }) => {
 
 	return (
 		<Pressable style={style.container} onPress={onPress}>
-			<Image source={{ uri: hit?.artwork }} style={style.cover} />
+			<FastImage
+				style={style.cover}
+				source={{ uri: hit?.artwork }}
+				resizeMode={FastImage.resizeMode.cover}
+			/>
 			<View style={style.songInfoContainer}>
 				<Text style={style.text} numberOfLines={1}>
 					{hit.title}

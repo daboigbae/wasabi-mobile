@@ -1,12 +1,7 @@
 import React from "react";
-import {
-	Dimensions,
-	Image,
-	PixelRatio,
-	StyleSheet,
-	Text,
-	View
-} from "react-native";
+import { Dimensions, PixelRatio, StyleSheet, Text, View } from "react-native";
+
+import FastImage from "react-native-fast-image";
 import PropTypes from "prop-types";
 
 import { COLOR_PALETTE } from "../../utils/constants";
@@ -18,11 +13,12 @@ const PlaylistDetails = ({ playlist }) => {
 	return (
 		<>
 			<View style={styles.artworkContainer}>
-				<Image
+				<FastImage
 					style={styles.artwork}
 					source={{
 						uri: playlist?.artwork
 					}}
+					resizeMode={FastImage.resizeMode.cover}
 				/>
 			</View>
 			<Text style={styles.playlistName}>{playlist?.name}</Text>
@@ -50,7 +46,8 @@ const styles = StyleSheet.create({
 	artwork: {
 		height: windowWidth * 0.5,
 		width: windowWidth * 0.5,
-		borderRadius: 8
+		borderRadius: 8,
+		marginTop: 32
 	},
 	playlistName: {
 		color: COLOR_PALETTE.white,

@@ -1,7 +1,6 @@
 import React from "react";
 import {
 	Dimensions,
-	Image,
 	PixelRatio,
 	Pressable,
 	StyleSheet,
@@ -12,6 +11,7 @@ import {
 import GlobalStyles from "../utils/GlobalStyles";
 import PropTypes from "prop-types";
 import { handlePlaylistChange } from "../utils/MusicPlayerUtil";
+import FastImage from "react-native-fast-image";
 
 const width = Dimensions.get("window").width;
 
@@ -22,7 +22,11 @@ const Song = ({ playlist, song, index, testID }) => {
 
 	return (
 		<Pressable style={styles.song} onPress={handleOnPress} testID={testID}>
-			<Image style={styles.songImage} source={{ uri: song?.artwork }} />
+			<FastImage
+				style={styles.songImage}
+				source={{ uri: song?.artwork, priority: FastImage.priority.high }}
+				resizeMode={FastImage.resizeMode.cover}
+			/>
 			<View style={styles.songDetails}>
 				<Text
 					style={[styles.songName, GlobalStyles.whiteText]}
