@@ -9,24 +9,34 @@ import {
 } from "react-native";
 import PropTypes from "prop-types";
 import GlobalStyles from "../../utils/GlobalStyles";
-import { COLOR_PALETTE } from "../../utils/constants";
+import { COLOR_PALETTE, USER_PROFILE_SCREENS } from "../../utils/constants";
 
 import UserProfileAvatar from "../../components/profile/UserProfileAvatar";
 import { useSelector } from "react-redux";
 import Button from "../../components/common/Button";
 
-const UserProfileScreen = () => {
-	const username = useSelector(
-		({ UserSlice }) => UserSlice?.userInformation?.username
+const UserProfileScreen = ({ navigation }) => {
+	const displayName = useSelector(
+		({ UserSlice }) => UserSlice?.userInformation?.displayName
+	);
+
+	const photoURL = useSelector(
+		({ UserSlice }) => UserSlice?.userInformation?.photoURL
 	);
 
 	return (
 		<SafeAreaView style={[StyleSheet.absoluteFill, GlobalStyles.appView]}>
 			<ScrollView style={styles.wrapper}>
 				<View style={styles.profileDetails}>
-					<UserProfileAvatar />
-					<Text style={styles.username}>{username || "Default User"}</Text>
-					<Button text="Edit profile" textStyle={styles.buttonText} />
+					<UserProfileAvatar avatar={photoURL} />
+					<Text style={styles.username}>{displayName || "Default User"}</Text>
+					<Button
+						text="Edit profile"
+						textStyle={styles.buttonText}
+						onPress={() =>
+							navigation.push(USER_PROFILE_SCREENS.EDIT_USER_PROFILE_SCREEN)
+						}
+					/>
 				</View>
 			</ScrollView>
 		</SafeAreaView>

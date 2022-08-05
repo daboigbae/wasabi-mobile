@@ -1,7 +1,9 @@
 import auth from "@react-native-firebase/auth";
 import { Alert } from "react-native";
+import storage from "@react-native-firebase/storage";
 
 import { FIREBASE_ERROR_CODES } from "../constants";
+import { setUserInformation } from "../../redux/UserSlice";
 
 export const getFirebaseUser = () => auth()?.currentUser;
 
@@ -56,4 +58,36 @@ export const handleForgotPassword = async (data, callback) => {
 	} catch (error) {
 		Alert.alert(error.message);
 	}
+};
+
+export const handleUpdateProfile = async (data, callback) => {
+	let FIELDS_TO_UPDATE = {
+		displayName: data?.username
+	};
+
+	if (data?.imagePreview) {
+		const uploadUri = data?.imagePreview;
+		let filename = uploadUri.substring(uploadUri.lastIndexOf("/") + 1);
+		let imageReference = storage().ref(filename);
+		try {
+			await imageReference.putFile(uploadUri);
+			const url = await imageReference.getDownloadURL();
+			FIELDS_TO_UPDATE["photoURL"] = url;
+		} catch (error) {
+			Alert.alert(error.message);
+		}
+	}
+
+	try {
+		await auth().currentUser.updateProfile(FIELDS_TO_UPDATE);
+
+		callback && callback();
+	} catch (error) {
+		Alert.alert(error);
+	}
+};
+
+export const getUpdatedUserInformation = async (dispatch) => {
+	const user = getFirebaseUser();
+	await dispatch(setUserInformation(user));
 };

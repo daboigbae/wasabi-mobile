@@ -12,7 +12,6 @@ import { clearUserInformation } from "../../../redux/UserSlice";
 
 const SignOutIcon = ({ navigation }) => {
 	const dispatch = useDispatch();
-
 	const onPress = async () => {
 		await handleSignOut(() => {
 			dispatch(clearUserInformation());
