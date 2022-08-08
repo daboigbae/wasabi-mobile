@@ -25,11 +25,13 @@ const UserProfileScreen = ({ navigation }) => {
 	);
 
 	return (
-		<SafeAreaView style={[StyleSheet.absoluteFill, GlobalStyles.appView]}>
-			<ScrollView style={styles.wrapper}>
-				<View style={styles.profileDetails}>
+		<SafeAreaView className="w-full h-full" style={GlobalStyles.appView}>
+			<ScrollView className="pt-8">
+				<View className="px-16 items-center">
 					<UserProfileAvatar avatar={photoURL} />
-					<Text style={styles.username}>{displayName || "Default User"}</Text>
+					<Text className="text-white text-2xl font-extrabold my-4">
+						{displayName || "Default User"}
+					</Text>
 					<Button
 						text="Edit profile"
 						textStyle={styles.buttonText}
@@ -50,23 +52,6 @@ UserProfileScreen.propTypes = {
 export default UserProfileScreen;
 
 const styles = StyleSheet.create({
-	wrapper: {
-		flex: 1,
-		paddingTop: "10%"
-	},
-	profileDetails: {
-		flex: 1,
-		paddingHorizontal: 16,
-		justifyContent: "center",
-		alignItems: "center"
-	},
-	username: {
-		color: COLOR_PALETTE.white,
-		fontSize: 32 * PixelRatio.getFontScale(),
-		fontWeight: "800",
-		textAlign: "center",
-		marginVertical: 16
-	},
 	buttonText: {
 		color: COLOR_PALETTE.white,
 		fontSize: 16 * PixelRatio.getFontScale(),

@@ -4,6 +4,7 @@ import "react-native-gesture-handler";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
+import { TailwindProvider } from "tailwindcss-react-native";
 
 import store from "./src/redux/store";
 import { playerSetup } from "./src/utils/MusicPlayerUtil";
@@ -17,11 +18,13 @@ const App = () => {
 	}, []);
 
 	return (
-		<Provider store={store}>
-			<PersistGate persistor={persistor}>
-				<Navigation />
-			</PersistGate>
-		</Provider>
+		<TailwindProvider>
+			<Provider store={store}>
+				<PersistGate persistor={persistor}>
+					<Navigation />
+				</PersistGate>
+			</Provider>
+		</TailwindProvider>
 	);
 };
 
