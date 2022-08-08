@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, TextInput, PixelRatio } from "react-native";
+import { StyleSheet, View, TextInput } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 import { connectSearchBox } from "react-instantsearch-native";
@@ -9,17 +9,16 @@ import { COLOR_PALETTE } from "../../utils/constants";
 
 const SearchBox = ({ currentRefinement, refine }) => {
 	return (
-		<View style={styles.container}>
-			<View style={styles.iconContainer}>
-				<Icon
-					style={styles.searchIcon}
-					name="search"
-					size={20}
-					color={COLOR_PALETTE.white}
-				/>
+		<View className="flex-row p-4">
+			<View
+				className="w-[10%] h-[50] justify-center items-center rounded-tl-lg rounded-bl-lg"
+				style={styles.inputBackground}
+			>
+				<Icon name="search" size={20} color={COLOR_PALETTE.white} />
 			</View>
 			<TextInput
-				style={styles.input}
+				className="w-[90%] h-[50] p-4 justify-center items-center rounded-tr-lg rounded-br-lg text-white"
+				style={styles.inputBackground}
 				onChangeText={(value) => refine(value)}
 				value={currentRefinement}
 				placeholder="Search"
@@ -35,31 +34,8 @@ SearchBox.propTypes = {
 };
 
 const styles = StyleSheet.create({
-	container: {
-		padding: 16,
-		flexDirection: "row",
-		width: "100%",
-		alignItems: "center"
-	},
-	iconContainer: {
-		width: "10%",
-		height: 50,
-		borderTopLeftRadius: 8,
-		borderBottomLeftRadius: 8,
-		backgroundColor: "#212133",
-		justifyContent: "center",
-		alignItems: "flex-end"
-	},
-	input: {
-		padding: 12,
-		fontSize: 16 * PixelRatio.getFontScale(),
-		height: 50,
-		backgroundColor: "#212133",
-		borderTopRightRadius: 8,
-		borderBottomRightRadius: 8,
-		shadowRadius: 4,
-		width: "90%",
-		color: "white"
+	inputBackground: {
+		backgroundColor: "#212133"
 	}
 });
 
