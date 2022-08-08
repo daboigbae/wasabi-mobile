@@ -1,18 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { Pressable, StyleSheet } from "react-native";
+import { Pressable } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { COLOR_PALETTE } from "../../../utils/constants";
 
 const CloseScreenIcon = ({ onPress }) => (
-	<Pressable style={styles.container} onPress={onPress}>
-		<Icon
-			name="close"
-			color={COLOR_PALETTE.white}
-			size={32}
-			style={styles.icon}
-		/>
+	<Pressable className="pl-2" onPress={onPress}>
+		<Icon name="close" color={COLOR_PALETTE.white} size={32} className="mr-4" />
 	</Pressable>
 );
 
@@ -21,10 +16,3 @@ CloseScreenIcon.propTypes = {
 };
 
 export default CloseScreenIcon;
-
-const styles = StyleSheet.create({
-	container: { paddingLeft: 8 },
-	icon: {
-		marginRight: 16
-	}
-});

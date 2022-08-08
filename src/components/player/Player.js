@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import {
-	View,
-	Text,
-	StyleSheet,
-	Pressable,
-	Dimensions,
-	ActivityIndicator
-} from "react-native";
+import { View, Text, Pressable, ActivityIndicator } from "react-native";
 
 import FastImage from "react-native-fast-image";
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -21,8 +14,6 @@ import SliderComp from "./Slider";
 import GlobalStyles from "../../utils/GlobalStyles";
 
 import { COLOR_PALETTE, icons } from "../../utils/constants";
-
-const windowWidth = Dimensions.get("window").width;
 
 function Player() {
 	const playbackState = usePlaybackState();
@@ -67,7 +58,7 @@ function Player() {
 	};
 
 	const renderControls = () => (
-		<View style={styles.controls}>
+		<View className="flex-row justify-between w-[35%] pr-4 pt-2 items-center">
 			<Pressable onPress={handleSkipBackwardOnPress}>
 				<Icon name={icons.back} color={COLOR_PALETTE.white} size={24} />
 			</Pressable>
@@ -86,26 +77,29 @@ function Player() {
 
 	return (
 		currentTrack && (
-			<View style={styles.player} testID="player">
+			<View
+				className="border-t-4 border-t-[#B026FF] bg-[#1f1f32] w-full items-center shadow-md "
+				testID="player"
+			>
 				{isLoading ? (
-					<View style={styles.activityIndicatorContainer}>
+					<View className="h-[52px] w-full items-center justify-center">
 						<ActivityIndicator size="small" />
 					</View>
 				) : (
-					<View style={styles.songDetails}>
+					<View className="w-full flex-row items-center">
 						<FastImage
-							style={styles.songPlayerImage}
+							className="w-[50px] h-[50px]"
 							source={{
 								uri: currentTrack?.artwork,
 								priority: FastImage.priority.high
 							}}
 							resizeMode={FastImage.resizeMode.cover}
 						/>
-						<View style={styles.songInfoContainer}>
-							<Text style={[styles.songName, GlobalStyles.whiteText]}>
+						<View className="flex-col w-1/2 px-4">
+							<Text style={[GlobalStyles.whiteText]} className="font-bold">
 								{currentTrack?.title}
 							</Text>
-							<Text style={[styles.artistName, GlobalStyles.whiteText]}>
+							<Text style={[GlobalStyles.whiteText]} className="font-light">
 								{currentTrack?.artist}
 							</Text>
 						</View>
@@ -119,55 +113,3 @@ function Player() {
 }
 
 export default Player;
-
-const styles = StyleSheet.create({
-	player: {
-		borderTopColor: COLOR_PALETTE.purple,
-		borderTopWidth: 4,
-		backgroundColor: COLOR_PALETTE.dark.secondary,
-		width: "100%",
-
-		alignItems: "center",
-		shadowRadius: 2,
-		shadowColor: COLOR_PALETTE.shadow,
-		elevation: 20
-	},
-
-	songDetails: {
-		width: "100%",
-		flexDirection: "row",
-		alignItems: "center"
-	},
-	songPlayerImage: {
-		width: windowWidth * 0.15,
-		height: windowWidth * 0.15
-	},
-
-	songInfoContainer: {
-		flexDirection: "column",
-		width: "50%",
-		paddingHorizontal: 8
-	},
-	songName: {
-		fontWeight: "bold"
-	},
-
-	artistName: {
-		fontWeight: "300"
-	},
-
-	controls: {
-		flexDirection: "row",
-		justifyContent: "space-between",
-		width: "35%",
-		paddingEnd: 16,
-		paddingTop: 8,
-		alignItems: "center"
-	},
-	activityIndicatorContainer: {
-		height: 52,
-		width: "100%",
-		alignItems: "center",
-		justifyContent: "center"
-	}
-});

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Pressable, StyleSheet } from "react-native";
+import { Pressable } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 import PropTypes from "prop-types";
@@ -21,13 +21,8 @@ const SignOutIcon = ({ navigation }) => {
 	};
 
 	return (
-		<Pressable onPress={onPress}>
-			<Icon
-				name="logout"
-				color={COLOR_PALETTE.white}
-				size={32}
-				style={styles.icon}
-			/>
+		<Pressable onPress={onPress} className="mr-2">
+			<Icon name="logout" color={COLOR_PALETTE.white} size={32} />
 		</Pressable>
 	);
 };
@@ -37,9 +32,3 @@ SignOutIcon.propTypes = {
 };
 
 export default SignOutIcon;
-
-const styles = StyleSheet.create({
-	icon: {
-		marginRight: 8
-	}
-});

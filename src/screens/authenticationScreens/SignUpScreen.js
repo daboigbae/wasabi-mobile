@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
 	BackHandler,
-	PixelRatio,
 	SafeAreaView,
 	ScrollView,
 	StyleSheet,
@@ -14,7 +13,6 @@ import LottieView from "lottie-react-native";
 
 import GlobalStyles from "../../utils/GlobalStyles";
 import {
-	COLOR_PALETTE,
 	DEFAULT_FORM_VALUES,
 	NAVIGATORS,
 	SIGN_IN_FORM_INPUTS_ARRAY
@@ -52,16 +50,16 @@ const SignUpScreen = ({ navigation }) => {
 
 	return (
 		<SafeAreaView style={[StyleSheet.absoluteFill, GlobalStyles.appView]}>
-			<ScrollView style={styles.wrapper}>
-				<View style={styles.container}>
+			<ScrollView className="flex-1 w-full">
+				<View className="flex-1 w-full items-center pt-[10%]">
 					<LottieView
 						source={require("../../assets/lottie/signUpAnimation.json")}
-						style={styles.lottie}
+						className="w-1/2"
 						autoPlay
 						loop
 					/>
-					<Text style={styles.title}>Start Listening</Text>
-					<Text style={styles.funText}>
+					<Text className="text-white text-4xl font-bold">Start Listening</Text>
+					<Text className="text-white text-base w-[85%] text-center font-light my-2">
 						Sign up and create an account to start creating playlists and liking
 						your favorite music NFTs.
 					</Text>
@@ -83,31 +81,3 @@ SignUpScreen.propTypes = {
 };
 
 export default SignUpScreen;
-
-const styles = StyleSheet.create({
-	wrapper: {
-		flex: 1,
-		width: "100%"
-	},
-	container: {
-		flex: 1,
-		width: "100%",
-		alignItems: "center",
-		paddingTop: "10%"
-	},
-	title: {
-		color: COLOR_PALETTE.white,
-		fontSize: 40 * PixelRatio.getFontScale(),
-		fontWeight: "bold"
-	},
-	funText: {
-		color: COLOR_PALETTE.white,
-		fontSize: 16 * PixelRatio.getFontScale(),
-		width: "85%",
-		textAlign: "center",
-		fontWeight: "300",
-		marginBottom: 16,
-		marginTop: 16
-	},
-	lottie: { width: "50%" }
-});

@@ -28,9 +28,8 @@ const PlaylistScreen = ({ route, navigation }) => {
 	}, []);
 	return (
 		<SafeAreaView style={[StyleSheet.absoluteFill, GlobalStyles.appView]}>
-			<View style={styles.container}>
+			<View className="flex-1 px-4">
 				<FlatList
-					style={styles.songs}
 					ListHeaderComponent={<PlaylistDetails playlist={playlist} />}
 					showsVerticalScrollIndicator={false}
 					data={playlist?.songs}
@@ -54,10 +53,3 @@ PlaylistScreen.propTypes = {
 };
 
 export default PlaylistScreen;
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		paddingHorizontal: 16
-	}
-});

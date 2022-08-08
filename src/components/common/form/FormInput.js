@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { StyleSheet, TextInput } from "react-native";
+import { TextInput } from "react-native";
 import { Controller } from "react-hook-form";
 import { COLOR_PALETTE } from "../../../utils/constants";
 import ErrorMessage from "../ErrorMessage";
@@ -17,7 +17,7 @@ const FormInput = ({ element, control, rules }) => {
 				keyboardType={
 					element?.name === "Phone Number" ? "number-pad" : "default"
 				}
-				style={styles.input}
+				className="w-[80%] px-4 h-[52px] text-white border-2 border-gray-300 text-center font-light p-4 mt-4 rounded-md"
 				onBlur={onBlur}
 				onChangeText={onChange}
 				value={value}
@@ -43,19 +43,3 @@ FormInput.propTypes = {
 	rules: PropTypes.object
 };
 export default FormInput;
-
-const styles = StyleSheet.create({
-	input: {
-		width: "80%",
-		paddingHorizontal: 16,
-		height: 52,
-		color: COLOR_PALETTE.white,
-		borderColor: COLOR_PALETTE.lightgray,
-		textAlign: "center",
-		fontWeight: "300",
-		padding: 8,
-		borderWidth: 1,
-		marginTop: 16,
-		borderRadius: 4
-	}
-});

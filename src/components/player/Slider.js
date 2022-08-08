@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { View } from "react-native";
 import TrackPlayer, { useProgress } from "react-native-track-player";
 import Slider from "@react-native-community/slider";
 
@@ -11,21 +11,15 @@ const SliderComp = () => {
 	};
 
 	return (
-		<Slider
-			style={styles.slider}
-			value={progress.position}
-			minimumValue={0}
-			maximumValue={progress.duration}
-			onSlidingComplete={handleSlideOnRelease}
-		/>
+		<View className="w-[95%] py-4">
+			<Slider
+				value={progress.position}
+				minimumValue={0}
+				maximumValue={progress.duration}
+				onSlidingComplete={handleSlideOnRelease}
+			/>
+		</View>
 	);
 };
 
 export default SliderComp;
-
-const styles = StyleSheet.create({
-	slider: {
-		width: "95%",
-		paddingVertical: 8
-	}
-});

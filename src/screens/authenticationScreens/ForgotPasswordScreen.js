@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
 	Alert,
-	PixelRatio,
 	SafeAreaView,
 	ScrollView,
 	StyleSheet,
@@ -12,7 +11,6 @@ import PropTypes from "prop-types";
 import LottieView from "lottie-react-native";
 
 import {
-	COLOR_PALETTE,
 	DEFAULT_FORM_VALUES,
 	FORGOT_PASSWORD_INPUTS_ARRAY
 } from "../../utils/constants";
@@ -35,16 +33,18 @@ const ForgotPasswordScreen = ({ navigation }) => {
 	};
 	return (
 		<SafeAreaView style={[StyleSheet.absoluteFill, GlobalStyles.appView]}>
-			<ScrollView style={styles.wrapper}>
-				<View style={styles.container}>
+			<ScrollView className="flex-1 w-full">
+				<View className="flex-1 w-full items-center pt-[10%] pb-[10%]">
 					<LottieView
 						source={require("../../assets/lottie/forgotPasswordAnimation.json")}
-						style={styles.lottie}
+						className="w-[50%]"
 						autoPlay
 						loop
 					/>
-					<Text style={styles.title}>Wasabi Music</Text>
-					<Text style={styles.funText}>
+					<Text className="text-white text-5xl font-bold text-center">
+						Wasabi Music
+					</Text>
+					<Text className="text-white text-lg w-[85%] text-center font-light mb-4">
 						Enter your email to reset your password
 					</Text>
 					<Form
@@ -65,31 +65,3 @@ ForgotPasswordScreen.propTypes = {
 };
 
 export default ForgotPasswordScreen;
-
-const styles = StyleSheet.create({
-	wrapper: {
-		flex: 1,
-		width: "100%"
-	},
-	container: {
-		flex: 1,
-		width: "100%",
-		alignItems: "center",
-		paddingTop: "10%",
-		paddingBottom: "10%"
-	},
-	title: {
-		color: COLOR_PALETTE.white,
-		fontSize: 40 * PixelRatio.getFontScale(),
-		fontWeight: "bold"
-	},
-	funText: {
-		color: COLOR_PALETTE.white,
-		fontSize: 16 * PixelRatio.getFontScale(),
-		width: "85%",
-		textAlign: "center",
-		fontWeight: "300",
-		marginBottom: 16
-	},
-	lottie: { width: "50%" }
-});
