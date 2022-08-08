@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, SafeAreaView, PixelRatio } from "react-native";
+import { SafeAreaView } from "react-native";
 import { InstantSearch } from "react-instantsearch-native";
 import algoliasearch from "algoliasearch/lite";
 
@@ -16,7 +16,7 @@ const LibraryScreen = () => {
 	);
 
 	return (
-		<SafeAreaView style={[styles.container, GlobalStyles.appView]}>
+		<SafeAreaView className="w-full h-full" style={GlobalStyles.appView}>
 			<InstantSearch searchClient={searchClient} indexName="dev_WASABI">
 				<SearchBox />
 				<InfiniteHits />
@@ -24,48 +24,5 @@ const LibraryScreen = () => {
 		</SafeAreaView>
 	);
 };
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		justifyContent: "flex-start",
-		position: "relative"
-	},
-
-	flexContainer: {
-		flex: 1,
-		width: "100%",
-		paddingTop: 20,
-		paddingHorizontal: 20
-	},
-
-	detailsContainer: {
-		height: "auto",
-		width: "100%",
-		flexDirection: "row",
-		justifyContent: "flex-start"
-	},
-
-	playlistImage: {
-		height: 120,
-		width: 120,
-		borderRadius: 8
-	},
-
-	contentContainer: {
-		height: 120,
-		flex: 1,
-		padding: 12
-	},
-
-	titleText: {
-		fontSize: 18 * PixelRatio.getFontScale(),
-		fontWeight: "bold"
-	},
-
-	songList: {
-		paddingBottom: 165
-	}
-});
 
 export default LibraryScreen;
