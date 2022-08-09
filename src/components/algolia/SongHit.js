@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, StyleSheet, View, Dimensions } from "react-native";
+import { Text, View } from "react-native";
 import PropTypes from "prop-types";
 import { connectHighlight } from "react-instantsearch-native";
 import FastImage from "react-native-fast-image";
@@ -7,8 +7,6 @@ import FastImage from "react-native-fast-image";
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 
 import { handlePlaylistChange } from "../../utils/MusicPlayerUtil";
-
-const windowWidth = Dimensions.get("window").width;
 
 const SongHit = ({ hit }) => {
 	const onPress = async () => {
@@ -19,7 +17,7 @@ const SongHit = ({ hit }) => {
 		<Pressable onPress={onPress}>
 			<View className="flex-row w-full p-2 items-center ">
 				<FastImage
-					style={style.cover}
+					className="w-12 h-12"
 					source={{ uri: hit?.artwork }}
 					resizeMode={FastImage.resizeMode.cover}
 				/>
@@ -34,12 +32,6 @@ const SongHit = ({ hit }) => {
 	);
 };
 
-const style = StyleSheet.create({
-	cover: {
-		height: windowWidth * 0.1,
-		width: windowWidth * 0.1
-	}
-});
 SongHit.propTypes = {
 	hit: PropTypes.object.isRequired
 };

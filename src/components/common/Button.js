@@ -13,8 +13,8 @@ export const BUTTON_TYPES = {
 const Button = ({
 	text,
 	onPress,
-	style = {},
-	textStyle = {},
+	style = "",
+	textStyle = "",
 	buttonTestID,
 	icon,
 	type = BUTTON_TYPES.PRIMARY,
@@ -55,8 +55,8 @@ const Button = ({
 Button.propTypes = {
 	text: PropTypes.string.isRequired,
 	onPress: PropTypes.func.isRequired,
-	style: PropTypes.object,
-	textStyle: PropTypes.object,
+	style: PropTypes.string,
+	textStyle: PropTypes.string,
 	buttonTestID: PropTypes.string,
 	icon: PropTypes.string,
 	type: PropTypes.string,

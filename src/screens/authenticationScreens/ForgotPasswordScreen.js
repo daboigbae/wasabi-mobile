@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-	Alert,
-	SafeAreaView,
-	ScrollView,
-	StyleSheet,
-	Text,
-	View
-} from "react-native";
+import { Alert, SafeAreaView, ScrollView, Text, View } from "react-native";
 import PropTypes from "prop-types";
 import LottieView from "lottie-react-native";
 
@@ -32,7 +25,7 @@ const ForgotPasswordScreen = ({ navigation }) => {
 		});
 	};
 	return (
-		<SafeAreaView style={[StyleSheet.absoluteFill, GlobalStyles.appView]}>
+		<SafeAreaView className="w-full h-full" style={GlobalStyles.appView}>
 			<ScrollView className="flex-1 w-full">
 				<View className="flex-1 w-full items-center pt-[10%] pb-[10%]">
 					<LottieView

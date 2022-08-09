@@ -1,12 +1,5 @@
 import React, { useMemo, useState } from "react";
-import {
-	Alert,
-	SafeAreaView,
-	ScrollView,
-	StyleSheet,
-	TextInput,
-	View
-} from "react-native";
+import { Alert, SafeAreaView, ScrollView, TextInput, View } from "react-native";
 import PropTypes from "prop-types";
 import UserProfileAvatar from "../../components/profile/UserProfileAvatar";
 import { useDispatch, useSelector } from "react-redux";
@@ -66,7 +59,7 @@ const EditUserProfileScreen = ({ navigation }) => {
 	};
 
 	return (
-		<SafeAreaView style={[StyleSheet.absoluteFill, GlobalStyles.appView]}>
+		<SafeAreaView className="h-full w-full" style={GlobalStyles.appView}>
 			<ScrollView className="flex-1 pt-[10%]">
 				<View className="flex-1 px-4 justify-center items-center">
 					<UserProfileAvatar avatar={imagePreview} />

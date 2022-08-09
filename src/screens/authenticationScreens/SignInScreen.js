@@ -3,7 +3,6 @@ import {
 	BackHandler,
 	SafeAreaView,
 	ScrollView,
-	StyleSheet,
 	Text,
 	View
 } from "react-native";
@@ -52,7 +51,7 @@ const SignInScreen = ({ navigation }) => {
 	};
 
 	return (
-		<SafeAreaView style={[StyleSheet.absoluteFill, GlobalStyles.appView]}>
+		<SafeAreaView className="w-full h-full" style={GlobalStyles.appView}>
 			<ScrollView className="flex-1 w-full">
 				<View className="flex-1 w-full items-center pt-[10%] pb-[10%]">
 					<LottieView

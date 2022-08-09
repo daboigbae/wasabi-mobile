@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { StyleSheet, SafeAreaView, Text } from "react-native";
+import { SafeAreaView, Text } from "react-native";
 
 import { useDispatch } from "react-redux";
 import LottieView from "lottie-react-native";
@@ -36,7 +36,7 @@ const LandingScreen = ({ navigation }) => {
 	return (
 		<SafeAreaView
 			className="flex-1 relative justify-center items-center"
-			style={[StyleSheet.absoluteFill, GlobalStyles.appView]}
+			style={GlobalStyles.appView}
 		>
 			<LottieView
 				source={require("../assets/lottie/landingAnimation.json")}
