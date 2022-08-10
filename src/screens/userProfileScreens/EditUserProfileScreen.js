@@ -1,27 +1,15 @@
 import React, { useMemo, useState } from "react";
-import {
-	Alert,
-	Dimensions,
-	PixelRatio,
-	SafeAreaView,
-	ScrollView,
-	StyleSheet,
-	TextInput,
-	View
-} from "react-native";
+import { Alert, SafeAreaView, ScrollView, TextInput, View } from "react-native";
 import PropTypes from "prop-types";
 import UserProfileAvatar from "../../components/profile/UserProfileAvatar";
 import { useDispatch, useSelector } from "react-redux";
 import GlobalStyles from "../../utils/GlobalStyles";
-import { COLOR_PALETTE } from "../../utils/constants";
 import Button, { BUTTON_TYPES } from "../../components/common/Button";
 import {
 	getUpdatedUserInformation,
 	handleUpdateProfile
 } from "../../utils/firebase";
 import { handleSelectImage } from "../../utils/images";
-
-const width = Dimensions.get("window").width;
 
 const EditUserProfileScreen = ({ navigation }) => {
 	const dispatch = useDispatch();
@@ -71,22 +59,22 @@ const EditUserProfileScreen = ({ navigation }) => {
 	};
 
 	return (
-		<SafeAreaView style={[StyleSheet.absoluteFill, GlobalStyles.appView]}>
-			<ScrollView style={styles.wrapper}>
-				<View style={styles.profileDetails}>
+		<SafeAreaView className="h-full w-full" style={GlobalStyles.appView}>
+			<ScrollView className="flex-1 pt-[10%]">
+				<View className="flex-1 px-4 justify-center items-center">
 					<UserProfileAvatar avatar={imagePreview} />
 					<Button
 						type={BUTTON_TYPES.TEXT}
 						text="Change photo"
-						style={styles.button}
-						textStyle={styles.buttonText}
+						style={"mt-5"}
+						textStyle={"text-white text-base font-normal"}
 						onPress={handleSelectImageOnPress}
 						isLoading={isLoading}
 						isDisabled={isLoading}
 					/>
 					<TextInput
 						onChangeText={setEditUsername}
-						style={styles.editInput}
+						className="text-white text-4xl font-bold text-center my-5 w-[80%] border-b-2 border-white"
 						value={editUsername}
 						editable={!isLoading}
 					/>
@@ -94,8 +82,8 @@ const EditUserProfileScreen = ({ navigation }) => {
 						<Button
 							type={BUTTON_TYPES.PRIMARY}
 							text="Finish Editing"
-							style={styles.button}
-							textStyle={styles.buttonText}
+							style={"mt-5"}
+							textStyle={"text-white text-lg font-bold"}
 							onPress={handleUpdateProfileOnPress}
 							isLoading={isLoading}
 							isDisabled={isLoading}
@@ -112,34 +100,3 @@ EditUserProfileScreen.propTypes = {
 };
 
 export default EditUserProfileScreen;
-
-const styles = StyleSheet.create({
-	wrapper: {
-		flex: 1,
-		paddingTop: "10%"
-	},
-	profileDetails: {
-		flex: 1,
-		paddingHorizontal: 16,
-		justifyContent: "center",
-		alignItems: "center"
-	},
-	editInput: {
-		color: COLOR_PALETTE.white,
-		fontSize: 32 * PixelRatio.getFontScale(),
-		fontWeight: "800",
-		textAlign: "center",
-		marginVertical: 24,
-		width: width * 0.8,
-		borderBottomWidth: 1,
-		borderColor: COLOR_PALETTE.white
-	},
-	button: {
-		marginTop: 24
-	},
-	buttonText: {
-		color: COLOR_PALETTE.white,
-		fontSize: 14 * PixelRatio.getFontScale(),
-		fontWeight: "500"
-	}
-});

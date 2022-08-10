@@ -1,12 +1,5 @@
 import React from "react";
-import {
-	StyleSheet,
-	Text,
-	Pressable,
-	View,
-	ActivityIndicator,
-	PixelRatio
-} from "react-native";
+import { Text, Pressable, View, ActivityIndicator } from "react-native";
 
 import PropTypes from "prop-types";
 
@@ -20,8 +13,8 @@ export const BUTTON_TYPES = {
 const Button = ({
 	text,
 	onPress,
-	style = {},
-	textStyle = {},
+	style = "",
+	textStyle = "",
 	buttonTestID,
 	icon,
 	type = BUTTON_TYPES.PRIMARY,
@@ -29,32 +22,27 @@ const Button = ({
 	isDisabled = false
 }) => {
 	const renderLoadingComponent = () => (
-		<ActivityIndicator
-			style={styles.loader}
-			size="small"
-			color={COLOR_PALETTE.white}
-		/>
+		<ActivityIndicator size="small" color={COLOR_PALETTE.white} />
 	);
 
 	const renderButtonContent = () => (
 		<>
 			{icon && (
-				<View style={styles.iconContainer}>
-					<Icon
-						name={icon}
-						color={COLOR_PALETTE.red500}
-						style={styles.icon}
-						size={32}
-					/>
+				<View className="justify-center items-center w-32 h-32 absolute left-4">
+					<Icon name={icon} color={COLOR_PALETTE.red100} size={32} />
 				</View>
 			)}
-			<Text style={{ ...styles.title, ...textStyle }}>{text}</Text>
+			<Text
+				className={`w-[80%] text-center text-lg text-blue-500 ${textStyle}`}
+			>
+				{text}
+			</Text>
 		</>
 	);
 
 	return (
 		<Pressable
-			style={getStyleForButton(type, style)}
+			className={getStyleForButton(type, style)}
 			onPress={onPress}
 			testID={buttonTestID}
 			disabled={isLoading || isDisabled}
@@ -67,8 +55,8 @@ const Button = ({
 Button.propTypes = {
 	text: PropTypes.string.isRequired,
 	onPress: PropTypes.func.isRequired,
-	style: PropTypes.object,
-	textStyle: PropTypes.object,
+	style: PropTypes.string,
+	textStyle: PropTypes.string,
 	buttonTestID: PropTypes.string,
 	icon: PropTypes.string,
 	type: PropTypes.string,
@@ -82,42 +70,8 @@ const getStyleForButton = (type, style) => {
 	let styleForButtonType = {};
 
 	if (type === BUTTON_TYPES.PRIMARY) {
-		styleForButtonType = {
-			...styles.button,
-			...styles.primaryButton
-		};
+		styleForButtonType =
+			"w-[80%] h-12 justify-center items-center flex rounded-lg bg-blue-500 ";
 	}
-	return { ...styleForButtonType, ...style };
+	return `${styleForButtonType} ${style}`;
 };
-
-const styles = StyleSheet.create({
-	iconContainer: {
-		justifyContent: "center",
-		alignItems: "center",
-		width: 32,
-		height: 32,
-		position: "absolute",
-		left: 16
-	},
-	button: {
-		width: "80%",
-		height: 52,
-		justifyContent: "center",
-		alignItems: "center",
-		display: "flex",
-		borderRadius: 4
-	},
-	primaryButton: {
-		backgroundColor: COLOR_PALETTE.lightblue,
-		borderRadius: 8
-	},
-	title: {
-		width: "80%",
-		textAlign: "center",
-		fontSize: 16 * PixelRatio.getFontScale(),
-		color: COLOR_PALETTE.blue500
-	},
-	icon: {
-		color: "red"
-	}
-});

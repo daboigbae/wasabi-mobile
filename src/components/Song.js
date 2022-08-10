@@ -1,19 +1,10 @@
 import React from "react";
-import {
-	Dimensions,
-	PixelRatio,
-	Pressable,
-	StyleSheet,
-	Text,
-	View
-} from "react-native";
+import { Pressable, Text, View } from "react-native";
 
 import GlobalStyles from "../utils/GlobalStyles";
 import PropTypes from "prop-types";
 import { handlePlaylistChange } from "../utils/MusicPlayerUtil";
 import FastImage from "react-native-fast-image";
-
-const width = Dimensions.get("window").width;
 
 const Song = ({ playlist, song, index, testID }) => {
 	const handleOnPress = async () => {
@@ -21,21 +12,27 @@ const Song = ({ playlist, song, index, testID }) => {
 	};
 
 	return (
-		<Pressable style={styles.song} onPress={handleOnPress} testID={testID}>
+		<Pressable
+			className="h-auto w-full items-center mt-4 flex-row"
+			onPress={handleOnPress}
+			testID={testID}
+		>
 			<FastImage
-				style={styles.songImage}
+				className="h-[90px] w-[90px]"
 				source={{ uri: song?.artwork, priority: FastImage.priority.high }}
 				resizeMode={FastImage.resizeMode.cover}
 			/>
-			<View style={styles.songDetails}>
+			<View className="p-4">
 				<Text
-					style={[styles.songName, GlobalStyles.whiteText]}
+					className="text-lg w-full font-bold"
+					style={[GlobalStyles.whiteText]}
 					numberOfLines={2}
 				>
 					{song?.title}
 				</Text>
 				<Text
-					style={[styles.artistName, GlobalStyles.whiteText]}
+					className="text-sm font-light"
+					style={[GlobalStyles.whiteText]}
 					numberOfLines={1}
 				>
 					{song?.artist || "Anonymous"}
@@ -53,29 +50,3 @@ Song.propTypes = {
 };
 
 export default Song;
-
-const styles = StyleSheet.create({
-	song: {
-		height: "auto",
-		width: "100%",
-		alignItems: "center",
-		marginTop: 16,
-		flexDirection: "row"
-	},
-	songImage: {
-		height: 90,
-		width: 90
-	},
-	songDetails: {
-		padding: 16
-	},
-	songName: {
-		fontSize: 14 * PixelRatio.getFontScale(),
-		width: width / 2,
-		fontWeight: "bold"
-	},
-	artistName: {
-		fontSize: 12 * PixelRatio.getFontScale(),
-		fontWeight: "300"
-	}
-});

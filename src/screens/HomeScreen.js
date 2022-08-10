@@ -1,18 +1,10 @@
 import React from "react";
-import {
-	StyleSheet,
-	SafeAreaView,
-	Text,
-	View,
-	FlatList,
-	ScrollView,
-	PixelRatio
-} from "react-native";
+import { SafeAreaView, Text, View, FlatList, ScrollView } from "react-native";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 
 import Playlist from "../components/playlist/Playlist";
-import { COLOR_PALETTE, HOME_SCREENS } from "../utils/constants";
+import { HOME_SCREENS } from "../utils/constants";
 import GlobalStyles from "../utils/GlobalStyles";
 import { objToArray } from "../utils/utils";
 
@@ -33,7 +25,6 @@ const HomeScreen = ({ navigation }) => {
 
 	const renderPlaylists = () => (
 		<FlatList
-			style={styles.playlists}
 			showsHorizontalScrollIndicator={false}
 			data={playlists}
 			horizontal={true}
@@ -50,45 +41,25 @@ const HomeScreen = ({ navigation }) => {
 	);
 
 	return (
-		<SafeAreaView style={[StyleSheet.absoluteFill, GlobalStyles.appView]}>
+		<SafeAreaView className="w-full h-full" style={GlobalStyles.appView}>
 			<ScrollView>
-				<View style={styles.container}>
-					<Text style={styles.title}>
+				<View className="px-4">
+					<Text className="text-white text-2xl font-bold mt-8">
 						{email ? `Welcome ${email}` : "Wasabi Music"}
 					</Text>
-					<Text style={styles.funText}>
+					<Text className="text-white font-light text-xl mt-4">
 						Wasabi Music is a music streaming platform. Listen to your favorite
 						music NFTs and tell us what you think about them.
 					</Text>
-					<Text style={styles.title}>Popular Playlists</Text>
+					<Text className="text-white text-2xl font-bold mt-8">
+						Popular Playlists
+					</Text>
 					{renderPlaylists()}
 				</View>
 			</ScrollView>
 		</SafeAreaView>
 	);
 };
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		paddingHorizontal: 16
-	},
-	title: {
-		color: COLOR_PALETTE.white,
-		fontSize: 25 * PixelRatio.getFontScale(),
-		fontWeight: "800",
-		marginTop: 32
-	},
-	playlists: {
-		marginVertical: 16
-	},
-	funText: {
-		color: COLOR_PALETTE.white,
-		fontSize: 16 * PixelRatio.getFontScale(),
-		fontWeight: "300",
-		paddingTop: 16
-	}
-});
 
 HomeScreen.propTypes = {
 	navigation: PropTypes.object

@@ -1,10 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { useForm } from "react-hook-form";
 import FormInput from "./FormInput";
 import Button, { BUTTON_TYPES } from "../Button";
-import { COLOR_PALETTE } from "../../../utils/constants";
 
 const Form = ({ inputs, defaultValues, onSubmit, isLoading, buttonText }) => {
 	const { control, handleSubmit } = useForm({
@@ -12,7 +11,7 @@ const Form = ({ inputs, defaultValues, onSubmit, isLoading, buttonText }) => {
 	});
 
 	return (
-		<View style={styles.formContainer}>
+		<View className="justify-center items-center w-full">
 			{inputs.map((item, index) => (
 				<FormInput
 					key={index}
@@ -24,8 +23,8 @@ const Form = ({ inputs, defaultValues, onSubmit, isLoading, buttonText }) => {
 			<Button
 				text={buttonText}
 				onPress={handleSubmit(onSubmit)}
-				style={styles.loginButton}
-				textStyle={styles.buttonText}
+				style={"mt-5"}
+				textStyle={"text-white font-bold"}
 				type={BUTTON_TYPES.PRIMARY}
 				isLoading={isLoading}
 			/>
@@ -42,19 +41,3 @@ Form.propTypes = {
 	isLoading: PropTypes.bool,
 	buttonText: PropTypes.string
 };
-
-const styles = StyleSheet.create({
-	formContainer: {
-		justifyContent: "center",
-		alignItems: "center",
-		width: "100%"
-	},
-	loginButton: {
-		marginTop: 32,
-		backgroundColor: COLOR_PALETTE.lightblue
-	},
-	buttonText: {
-		color: "white",
-		fontWeight: "bold"
-	}
-});

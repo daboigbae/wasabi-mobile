@@ -1,18 +1,8 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
-import { COLOR_PALETTE } from "../../utils/constants";
+import { View } from "react-native";
 
 const Divider = () => {
-	return <View style={styles.divider} />;
+	return <View className="mt-4 w-full h-1 bg-gray-200" />;
 };
 
 export default Divider;
-
-const styles = StyleSheet.create({
-	divider: {
-		marginTop: 16,
-		width: "100%",
-		height: 1,
-		backgroundColor: COLOR_PALETTE.lightgray
-	}
-});
