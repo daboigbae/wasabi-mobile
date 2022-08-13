@@ -20,7 +20,7 @@ const BottomTabBar = ({ state, descriptors, navigation }) => {
 			>
 				{state.routes.map((route, index) => {
 					const { options } = descriptors[route.key];
-					const label =
+					let label =
 						options.tabBarLabel !== undefined
 							? options.tabBarLabel
 							: options.title !== undefined
@@ -45,6 +45,13 @@ const BottomTabBar = ({ state, descriptors, navigation }) => {
 							type: "tabLongPress",
 							target: route.key
 						});
+					};
+
+					const getLabel = () => {
+						if (label === "archive-search") {
+							return "Search";
+						}
+						return label.charAt(0).toUpperCase() + label.slice(1);
 					};
 
 					return (
@@ -78,7 +85,7 @@ const BottomTabBar = ({ state, descriptors, navigation }) => {
 									marginTop: 8
 								}}
 							>
-								{label}
+								{getLabel()}
 							</Text>
 						</Pressable>
 					);

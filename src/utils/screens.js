@@ -4,7 +4,7 @@ import {
 	COLOR_PALETTE,
 	HEADER_OPTIONS,
 	HOME_SCREENS,
-	MAIN_SCREENS,
+	BOTTOM_NAVIGATION_SCREENS,
 	NAVIGATORS,
 	USER_AUTH_SCREENS,
 	USER_PROFILE_SCREENS
@@ -21,17 +21,36 @@ import ForgotPasswordScreen from "../screens/authenticationScreens/ForgotPasswor
 import UserProfileScreen from "../screens/userProfileScreens/UserProfileScreen";
 import EditUserProfileScreen from "../screens/userProfileScreens/EditUserProfileScreen";
 import SignOutIcon from "../components/common/icons/SignOutIcon";
-export const MAIN_SCREENS_ARRAY = [
+export const AUTHENTICATED_BOTTOM_SCREENS_ARRAY = [
 	{
-		name: MAIN_SCREENS.HOME_STACK_SCREEN,
+		name: BOTTOM_NAVIGATION_SCREENS.HOME_STACK,
 		component: () => <HomeNavigation />,
-		tabIcon: "home",
+		headerTitle: "Home",
 		headerShown: true
 	},
 	{
-		name: MAIN_SCREENS.LIBRARY_SCREEN,
+		name: BOTTOM_NAVIGATION_SCREENS.SEARCH_STACK,
 		component: () => <LibraryScreen />,
-		tabIcon: "music"
+		headerTitle: "Search"
+	},
+	{
+		name: BOTTOM_NAVIGATION_SCREENS.LIBRARY_STACK,
+		component: () => <LibraryScreen />,
+		headerTitle: "Your Library"
+	}
+];
+
+export const NOT_AUTHENTICATED_BOTTOM_SCREENS_ARRAY = [
+	{
+		name: BOTTOM_NAVIGATION_SCREENS.HOME_STACK,
+		component: () => <HomeNavigation />,
+		headerTitle: "Home",
+		headerShown: true
+	},
+	{
+		name: BOTTOM_NAVIGATION_SCREENS.LIBRARY_STACK,
+		component: () => <LibraryScreen />,
+		headerTitle: "Search"
 	}
 ];
 

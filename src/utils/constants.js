@@ -8,9 +8,10 @@ export const NAVIGATORS = {
 	USER_PROFILE: "User"
 };
 
-export const MAIN_SCREENS = {
-	HOME_STACK_SCREEN: "home",
-	LIBRARY_SCREEN: "Library"
+export const BOTTOM_NAVIGATION_SCREENS = {
+	HOME_STACK: "home",
+	SEARCH_STACK: "archive-search",
+	LIBRARY_STACK: "library"
 };
 
 export const HOME_SCREENS = {

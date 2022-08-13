@@ -1,15 +1,25 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { MAIN_SCREENS_ARRAY } from "../utils/screens";
+import {
+	AUTHENTICATED_BOTTOM_SCREENS_ARRAY,
+	NOT_AUTHENTICATED_BOTTOM_SCREENS_ARRAY
+} from "../utils/screens";
 import TabBarIcon from "../components/common/icons/TabBarIcon";
 import BottomTabBar from "../components/navigation/BottomTabBar";
+import { getFirebaseUser } from "../utils/firebase";
 
 const Tab = createBottomTabNavigator();
 
 const TabNavigation = () => {
+	const user = getFirebaseUser();
+
+	const screenArray = user
+		? AUTHENTICATED_BOTTOM_SCREENS_ARRAY
+		: NOT_AUTHENTICATED_BOTTOM_SCREENS_ARRAY;
+
 	return (
 		<Tab.Navigator tabBar={(props) => <BottomTabBar {...props} />}>
-			{MAIN_SCREENS_ARRAY.map((item, index) => (
+			{screenArray.map((item, index) => (
 				<Tab.Screen
 					key={index}
 					name={item.name}
