@@ -23,9 +23,16 @@ module.exports = {
 	},
 
 	plugins: ["react", "react-native", "detox"],
-
+	ignorePatterns: ["!.*", "dist", "node_modules"],
 	rules: {
-		indent: ["error", "tab"],
+		indent: [
+			"error",
+			"tab",
+			{
+				SwitchCase: 1,
+				ignoredNodes: ["ConditionalExpression"]
+			}
+		],
 		"linebreak-style": ["error", "unix"],
 		quotes: ["error", "double"],
 		semi: ["error", "always"],
